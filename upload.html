@@ -6,8 +6,10 @@
 <meta name="robots" content="noindex">
 <title>Файл и требования — демо</title>
 
+<meta name="color-scheme" content="only light">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
+:root{color-scheme:only light}html,body{background:#F7F8FA}
 body{margin:0;background:#F7F8FA}
 .flipin{animation:riseIn .5s cubic-bezier(.22,1,.36,1) backwards}
 @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -80,11 +82,11 @@ background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 6
 label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 @media (prefers-reduced-motion:reduce){.chk-box,.chk-box svg{transition:none}}
 .sr{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-@media (max-width:767px){.step-label{display:none}.hide-m{display:none !important}.mstep{display:flex !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}a[href="check.html"]{width:100%;justify-content:center}}
+@media (max-width:767px){.step-label{display:none !important}.hide-m{display:none !important}.mstep{display:flex !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}a[href="check.html"]{width:100%;justify-content:center}}
 .mstep{display:none}
 </style>
 
-<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}@media (max-width:767px){.demo-badge{animation:demoOut .6s ease 4s forwards}}@keyframes demoOut{to{opacity:0;visibility:hidden}}</style>
 </head>
 <body>
 <div id="app"></div>

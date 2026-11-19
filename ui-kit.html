@@ -6,8 +6,10 @@
 <meta name="robots" content="noindex">
 <title>UI-kit — демо</title>
 
+<meta name="color-scheme" content="only light">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
+:root{color-scheme:only light}html,body{background:#F7F8FA}
 body{margin:0}
 a{color:#151A23}a:hover{color:#000}
 *{box-sizing:border-box}
@@ -16,7 +18,7 @@ a{color:#151A23}a:hover{color:#000}
 @media (prefers-reduced-motion:reduce){.spin{animation:none}}
 </style>
 
-<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}@media (max-width:767px){.demo-badge{animation:demoOut .6s ease 4s forwards}}@keyframes demoOut{to{opacity:0;visibility:hidden}}</style>
 </head>
 <body>
 <div id="app"></div>

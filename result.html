@@ -6,8 +6,10 @@
 <meta name="robots" content="noindex">
 <title>Результат и оплата — демо</title>
 
+<meta name="color-scheme" content="only light">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
+:root{color-scheme:only light}html,body{background:#F7F8FA}
 body{margin:0;background:#F7F8FA}
 a{color:#151A23}a:hover{color:#000}
 *{box-sizing:border-box}
@@ -66,9 +68,10 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 @media (prefers-reduced-motion:reduce){.chk-box,.chk-box svg{transition:none}}
 @media (max-width:1023px){.report{order:-1}}
 @media (max-width:767px){[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}header [style*="height: 64px"]{height:auto !important;min-height:64px;padding-top:10px !important;padding-bottom:10px !important;flex-wrap:wrap}[style*="height: 900px"]{height:520px !important;padding:16px !important}}
+@media (max-width:767px){header .timer{display:none !important}}
 </style>
 
-<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}@media (max-width:767px){.demo-badge{animation:demoOut .6s ease 4s forwards}}@keyframes demoOut{to{opacity:0;visibility:hidden}}</style>
 </head>
 <body>
 <div id="app"></div>
@@ -82,7 +85,7 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 Оформление</a>
 <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #596273; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 41 мин</span>
+<span class="timer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #596273; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 41 мин</span>
 <span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: #EAF1FF; color: #2B4C86; font-size: 13px; font-weight: 700">Демонстрация</span>
 </div>
 </div>
