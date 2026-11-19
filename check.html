@@ -5,20 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Проверка структуры — демо</title>
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
-<meta name="color-scheme" content="only light">
+<meta name="color-scheme" content="light dark">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:only light}html,body{background:#F7F8FA}
-body{margin:0;background:#F7F8FA}
-a{color:#151A23}a:hover{color:#000}
+:root{color-scheme:light;--bg-121A24:#121A24;--bg-151A23:#151A23;--bg-1C2633:#1C2633;--bg-2C3849:#2C3849;--bg-C4CBD5:#C4CBD5;--bg-DCE1E8:#DCE1E8;--bg-DDF5B4:#DDF5B4;--bg-E2EBFF:#E2EBFF;--bg-E9ECF1:#E9ECF1;--bg-EAF1FF:#EAF1FF;--bg-ECF8D6:#ECF8D6;--bg-EEF0F3:#EEF0F3;--bg-F0FADF:#F0FADF;--bg-F1E8FF:#F1E8FF;--bg-F2F4F7:#F2F4F7;--bg-F3F4F7:#F3F4F7;--bg-F4FDE4:#F4FDE4;--bg-F7F8FA:#F7F8FA;--bg-FAFFF2:#FAFFF2;--bg-FDECEA:#FDECEA;--bg-FFE7E3:#FFE7E3;--bg-FFF1DB:#FFF1DB;--bg-FFF8F7:#FFF8F7;--bg-FFFFFF:#FFFFFF;--fg-151A23:#151A23;--fg-1F3A0C:#1F3A0C;--fg-2B4C86:#2B4C86;--fg-2E5A12:#2E5A12;--fg-2F3B1E:#2F3B1E;--fg-3D4553:#3D4553;--fg-596273:#596273;--fg-6B7482:#6B7482;--fg-7A1A12:#7A1A12;--fg-8A5300:#8A5300;--fg-9F1F12:#9F1F12;--fg-B42318:#B42318;--bd-121A24:#121A24;--bd-151A23:#151A23;--bd-4A7BD0:#4A7BD0;--bd-B42318:#B42318;--bd-B8C1CD:#B8C1CD;--bd-DCE1E8:#DCE1E8;--bd-E2F3C4:#E2F3C4;--bd-EEF0F3:#EEF0F3;--bd-F3C1BB:#F3C1BB;--hdr-glass:rgba(247,248,250,.88);--sun:none;--moon:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg-121A24:#222B39;--bg-151A23:#222B39;--bg-1C2633:#2A3546;--bg-2C3849:#34425A;--bg-C4CBD5:#3A4555;--bg-DCE1E8:#2A3341;--bg-DDF5B4:#28391A;--bg-E2EBFF:#1A2A45;--bg-E9ECF1:#222A36;--bg-EAF1FF:#16233A;--bg-ECF8D6:#1E2C13;--bg-EEF0F3:#222A36;--bg-F0FADF:#1B2811;--bg-F1E8FF:#251C38;--bg-F2F4F7:#1D2430;--bg-F3F4F7:#1D2430;--bg-F4FDE4:#18230F;--bg-F7F8FA:#0E1218;--bg-FAFFF2:#161F0E;--bg-FDECEA:#2E1816;--bg-FFE7E3:#341B18;--bg-FFF1DB:#2B2112;--bg-FFF8F7:#2A1715;--bg-FFFFFF:#161C25;--fg-151A23:#E8ECF1;--fg-1F3A0C:#C5F66A;--fg-2B4C86:#A9C9FF;--fg-2E5A12:#B9E67F;--fg-2F3B1E:#D2EAA9;--fg-3D4553:#C3CAD4;--fg-596273:#A3ADBC;--fg-6B7482:#9AA4B3;--fg-7A1A12:#FFB3A7;--fg-8A5300:#F2BE6A;--fg-9F1F12:#FF9C8C;--fg-B42318:#FF8A7A;--bd-121A24:#C5CDD8;--bd-151A23:#DDE3EA;--bd-4A7BD0:#86AAE8;--bd-B42318:#FF8A7A;--bd-B8C1CD:#424D5E;--bd-DCE1E8:#2C3544;--bd-E2F3C4:#33481F;--bd-EEF0F3:#252D3A;--bd-F3C1BB:#5C2B25;--hdr-glass:rgba(14,18,24,.86);--sun:block;--moon:none}:root:not([data-theme=light]) [fill="#151A23"],:root:not([data-theme=light]) [fill="#151a23"]{fill:#E8ECF1}:root:not([data-theme=light]) [fill="#596273"],:root:not([data-theme=light]) [fill="#596273"]{fill:#A3ADBC}:root:not([data-theme=light]) [fill="#C4CBD5"],:root:not([data-theme=light]) [fill="#c4cbd5"]{fill:#4A5566}:root:not([data-theme=light]) [fill="#DCE1E8"],:root:not([data-theme=light]) [fill="#dce1e8"]{fill:#323C4B}:root:not([data-theme=light]) [fill="#F2F4F7"],:root:not([data-theme=light]) [fill="#f2f4f7"]{fill:#1D2430}:root:not([data-theme=light]) [fill="#EEF0F3"],:root:not([data-theme=light]) [fill="#eef0f3"]{fill:#252D3A}:root:not([data-theme=light]) [fill="#2E5A12"],:root:not([data-theme=light]) [fill="#2e5a12"]{fill:#B9E67F}:root:not([data-theme=light]) [fill="#2B4C86"],:root:not([data-theme=light]) [fill="#2b4c86"]{fill:#A9C9FF}:root:not([data-theme=light]) [fill="#4A7BD0"],:root:not([data-theme=light]) [fill="#4a7bd0"]{fill:#86AAE8}:root:not([data-theme=light]) [fill="#7FA4E0"],:root:not([data-theme=light]) [fill="#7fa4e0"]{fill:#5F84BF}:root:not([data-theme=light]) [fill="#B42318"],:root:not([data-theme=light]) [fill="#b42318"]{fill:#FF8A7A}:root:not([data-theme=light]) [fill="#8A5300"],:root:not([data-theme=light]) [fill="#8a5300"]{fill:#F2BE6A}:root:not([data-theme=light]) [fill="#BFD3F5"],:root:not([data-theme=light]) [fill="#bfd3f5"]{fill:#3A5480}:root:not([data-theme=light]) [stroke="#151A23"],:root:not([data-theme=light]) [stroke="#151a23"]{stroke:#E8ECF1}:root:not([data-theme=light]) [stroke="#596273"],:root:not([data-theme=light]) [stroke="#596273"]{stroke:#A3ADBC}:root:not([data-theme=light]) [stroke="#C4CBD5"],:root:not([data-theme=light]) [stroke="#c4cbd5"]{stroke:#4A5566}:root:not([data-theme=light]) [stroke="#DCE1E8"],:root:not([data-theme=light]) [stroke="#dce1e8"]{stroke:#323C4B}:root:not([data-theme=light]) [stroke="#F2F4F7"],:root:not([data-theme=light]) [stroke="#f2f4f7"]{stroke:#1D2430}:root:not([data-theme=light]) [stroke="#EEF0F3"],:root:not([data-theme=light]) [stroke="#eef0f3"]{stroke:#252D3A}:root:not([data-theme=light]) [stroke="#2E5A12"],:root:not([data-theme=light]) [stroke="#2e5a12"]{stroke:#B9E67F}:root:not([data-theme=light]) [stroke="#2B4C86"],:root:not([data-theme=light]) [stroke="#2b4c86"]{stroke:#A9C9FF}:root:not([data-theme=light]) [stroke="#4A7BD0"],:root:not([data-theme=light]) [stroke="#4a7bd0"]{stroke:#86AAE8}:root:not([data-theme=light]) [stroke="#7FA4E0"],:root:not([data-theme=light]) [stroke="#7fa4e0"]{stroke:#5F84BF}:root:not([data-theme=light]) [stroke="#B42318"],:root:not([data-theme=light]) [stroke="#b42318"]{stroke:#FF8A7A}:root:not([data-theme=light]) [stroke="#8A5300"],:root:not([data-theme=light]) [stroke="#8a5300"]{stroke:#F2BE6A}:root:not([data-theme=light]) [stroke="#BFD3F5"],:root:not([data-theme=light]) [stroke="#bfd3f5"]{stroke:#3A5480}}
+:root[data-theme=dark]{color-scheme:dark;--bg-121A24:#222B39;--bg-151A23:#222B39;--bg-1C2633:#2A3546;--bg-2C3849:#34425A;--bg-C4CBD5:#3A4555;--bg-DCE1E8:#2A3341;--bg-DDF5B4:#28391A;--bg-E2EBFF:#1A2A45;--bg-E9ECF1:#222A36;--bg-EAF1FF:#16233A;--bg-ECF8D6:#1E2C13;--bg-EEF0F3:#222A36;--bg-F0FADF:#1B2811;--bg-F1E8FF:#251C38;--bg-F2F4F7:#1D2430;--bg-F3F4F7:#1D2430;--bg-F4FDE4:#18230F;--bg-F7F8FA:#0E1218;--bg-FAFFF2:#161F0E;--bg-FDECEA:#2E1816;--bg-FFE7E3:#341B18;--bg-FFF1DB:#2B2112;--bg-FFF8F7:#2A1715;--bg-FFFFFF:#161C25;--fg-151A23:#E8ECF1;--fg-1F3A0C:#C5F66A;--fg-2B4C86:#A9C9FF;--fg-2E5A12:#B9E67F;--fg-2F3B1E:#D2EAA9;--fg-3D4553:#C3CAD4;--fg-596273:#A3ADBC;--fg-6B7482:#9AA4B3;--fg-7A1A12:#FFB3A7;--fg-8A5300:#F2BE6A;--fg-9F1F12:#FF9C8C;--fg-B42318:#FF8A7A;--bd-121A24:#C5CDD8;--bd-151A23:#DDE3EA;--bd-4A7BD0:#86AAE8;--bd-B42318:#FF8A7A;--bd-B8C1CD:#424D5E;--bd-DCE1E8:#2C3544;--bd-E2F3C4:#33481F;--bd-EEF0F3:#252D3A;--bd-F3C1BB:#5C2B25;--hdr-glass:rgba(14,18,24,.86);--sun:block;--moon:none}
+:root[data-theme=dark] [fill="#151A23"],:root[data-theme=dark] [fill="#151a23"]{fill:#E8ECF1}:root[data-theme=dark] [fill="#596273"],:root[data-theme=dark] [fill="#596273"]{fill:#A3ADBC}:root[data-theme=dark] [fill="#C4CBD5"],:root[data-theme=dark] [fill="#c4cbd5"]{fill:#4A5566}:root[data-theme=dark] [fill="#DCE1E8"],:root[data-theme=dark] [fill="#dce1e8"]{fill:#323C4B}:root[data-theme=dark] [fill="#F2F4F7"],:root[data-theme=dark] [fill="#f2f4f7"]{fill:#1D2430}:root[data-theme=dark] [fill="#EEF0F3"],:root[data-theme=dark] [fill="#eef0f3"]{fill:#252D3A}:root[data-theme=dark] [fill="#2E5A12"],:root[data-theme=dark] [fill="#2e5a12"]{fill:#B9E67F}:root[data-theme=dark] [fill="#2B4C86"],:root[data-theme=dark] [fill="#2b4c86"]{fill:#A9C9FF}:root[data-theme=dark] [fill="#4A7BD0"],:root[data-theme=dark] [fill="#4a7bd0"]{fill:#86AAE8}:root[data-theme=dark] [fill="#7FA4E0"],:root[data-theme=dark] [fill="#7fa4e0"]{fill:#5F84BF}:root[data-theme=dark] [fill="#B42318"],:root[data-theme=dark] [fill="#b42318"]{fill:#FF8A7A}:root[data-theme=dark] [fill="#8A5300"],:root[data-theme=dark] [fill="#8a5300"]{fill:#F2BE6A}:root[data-theme=dark] [fill="#BFD3F5"],:root[data-theme=dark] [fill="#bfd3f5"]{fill:#3A5480}:root[data-theme=dark] [stroke="#151A23"],:root[data-theme=dark] [stroke="#151a23"]{stroke:#E8ECF1}:root[data-theme=dark] [stroke="#596273"],:root[data-theme=dark] [stroke="#596273"]{stroke:#A3ADBC}:root[data-theme=dark] [stroke="#C4CBD5"],:root[data-theme=dark] [stroke="#c4cbd5"]{stroke:#4A5566}:root[data-theme=dark] [stroke="#DCE1E8"],:root[data-theme=dark] [stroke="#dce1e8"]{stroke:#323C4B}:root[data-theme=dark] [stroke="#F2F4F7"],:root[data-theme=dark] [stroke="#f2f4f7"]{stroke:#1D2430}:root[data-theme=dark] [stroke="#EEF0F3"],:root[data-theme=dark] [stroke="#eef0f3"]{stroke:#252D3A}:root[data-theme=dark] [stroke="#2E5A12"],:root[data-theme=dark] [stroke="#2e5a12"]{stroke:#B9E67F}:root[data-theme=dark] [stroke="#2B4C86"],:root[data-theme=dark] [stroke="#2b4c86"]{stroke:#A9C9FF}:root[data-theme=dark] [stroke="#4A7BD0"],:root[data-theme=dark] [stroke="#4a7bd0"]{stroke:#86AAE8}:root[data-theme=dark] [stroke="#7FA4E0"],:root[data-theme=dark] [stroke="#7fa4e0"]{stroke:#5F84BF}:root[data-theme=dark] [stroke="#B42318"],:root[data-theme=dark] [stroke="#b42318"]{stroke:#FF8A7A}:root[data-theme=dark] [stroke="#8A5300"],:root[data-theme=dark] [stroke="#8a5300"]{stroke:#F2BE6A}:root[data-theme=dark] [stroke="#BFD3F5"],:root[data-theme=dark] [stroke="#bfd3f5"]{stroke:#3A5480}
+html,body{background:var(--bg-F7F8FA)}
+.theme-btn{flex:none;width:36px;height:36px;border-radius:10px;border:1px solid var(--bd-DCE1E8);background:var(--bg-FFFFFF);color:var(--fg-151A23);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background .15s,border-color .15s}
+.theme-btn:hover{border-color:var(--fg-596273)}.theme-btn:focus-visible{outline:none;box-shadow:0 0 0 3px #A9C9FF}
+.ico-sun{display:var(--sun)}.ico-moon{display:var(--moon)}
+.hdr-r{display:flex;gap:10px;align-items:center}
+body{margin:0;background:var(--bg-F7F8FA)}
+a{color:var(--fg-151A23)}a:hover{color:#000}
 *{box-sizing:border-box}
 :focus-visible{outline:3px solid #A9C9FF;outline-offset:2px}
 .btn{transition:background-color .15s cubic-bezier(.22,1,.36,1),transform .15s cubic-bezier(.22,1,.36,1),opacity .15s}
 .btn:active{transform:scale(.98)}
 .btn-accent:hover{background:#B4EA52 !important}
-.fld{width:100%;height:48px;padding:0 14px;border:1px solid #DCE1E8;border-radius:12px;font:500 16px Manrope,sans-serif;color:#151A23;background:#FFFFFF}
-.fld:focus{outline:none;border-color:#151A23;box-shadow:0 0 0 3px #A9C9FF}
+.fld{width:100%;height:48px;padding:0 14px;border:1px solid var(--bd-DCE1E8);border-radius:12px;font:500 16px Manrope,sans-serif;color:var(--fg-151A23);background:var(--bg-FFFFFF)}
+.fld:focus{outline:none;border-color:var(--bd-151A23);box-shadow:0 0 0 3px #A9C9FF}
 .chk path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s cubic-bezier(.22,1,.36,1) .1s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 .fade{animation:fade .22s cubic-bezier(.22,1,.36,1) both}
@@ -35,13 +44,13 @@ a{color:#151A23}a:hover{color:#000}
 @supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(21,26,35,.24) transparent}}
 /* --- Liquid glass --- */
 .lg-page{--gbg:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));--gbd:rgba(255,255,255,.78);--gsh:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 12px 32px -14px rgba(21,26,35,.20),0 2px 6px -2px rgba(21,26,35,.06);--gblur:blur(24px) saturate(180%);
-background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 62%),radial-gradient(900px 700px at 100% 40%,#ECF8D6 0%,rgba(236,248,214,0) 60%),radial-gradient(820px 620px at 15% 85%,#F1E8FF 0%,rgba(241,232,255,0) 60%),#F3F4F7 !important;background-attachment:fixed !important}
-.lg-page [style*="background: #FFFFFF; border: 1px solid #DCE1E8"],.lg-page .card[style*="background: #FFFFFF"],.lg-page details[style*="background: #FFFFFF"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+background:radial-gradient(900px 620px at 0% 0%,var(--bg-E2EBFF) 0%,transparent 62%),radial-gradient(900px 700px at 100% 40%,var(--bg-ECF8D6) 0%,transparent 60%),radial-gradient(820px 620px at 15% 85%,var(--bg-F1E8FF) 0%,transparent 60%),var(--bg-F3F4F7) !important;background-attachment:fixed !important}
+.lg-page [style*="background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8)"],.lg-page .card[style*="background: var(--bg-FFFFFF)"],.lg-page details[style*="background: var(--bg-FFFFFF)"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
 .lg-page [style*="border-radius: 24px"]{border-radius:30px !important}
 .lg-page [style*="border-radius: 20px"]{border-radius:26px !important}
 .lg-page .btn{border-radius:999px !important}
 .lg-page .btn-accent{background:linear-gradient(180deg,#DCFF96 0%,#C5F66A 55%,#B2E852 100%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(0,0,0,.06),0 12px 26px -12px rgba(105,155,20,.7) !important}
-.lg-page .btn-dark{background:linear-gradient(180deg,#2C3849,#121A24) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
+.lg-page .btn-dark{background:linear-gradient(180deg,var(--bg-2C3849),var(--bg-121A24)) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
 .lg-page .btn-line,.lg-page .btn-ghost-d{border-radius:999px !important}
 .lg-page .fld{border-radius:16px !important;background:rgba(255,255,255,.72) !important;border-color:rgba(21,26,35,.10) !important}
 .lg-page [role="tablist"]{background:rgba(118,118,128,.14) !important;border:none !important;border-radius:999px !important;padding:3px !important;box-shadow:none !important}
@@ -72,14 +81,18 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 .qcard:target{box-shadow:0 0 0 3px #A9C9FF,var(--gsh) !important}
 .olink{text-decoration:none;color:inherit;border-radius:10px;transition:background-color .15s}
 .olink:hover{background:rgba(21,26,35,.05)}
-.hl{background:#FFF1DB;box-shadow:0 0 0 2px #E8A33B;border-radius:3px}
+.hl{background:var(--bg-FFF1DB);box-shadow:0 0 0 2px #E8A33B;border-radius:3px}
 .pulse{animation:pulse 1.6s cubic-bezier(.22,1,.36,1) infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){.pulse{animation:none}}
 @media (max-width:1023px){.side{position:static !important}}
-@media (max-width:767px){.step-label{display:none !important}.mstep{display:flex !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}.qgrid{grid-template-columns:1fr !important}.fgrid{grid-template-columns:1fr !important}}
-.mstep{display:none}
+@media (max-width:767px){.step-label{display:none !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}.qgrid{grid-template-columns:1fr !important}.fgrid{grid-template-columns:1fr !important}}
+@media (max-width:767px){ol[aria-label="Шаги оформления"]>li{flex:none !important}ol[aria-label="Шаги оформления"]>li[aria-current="step"]{flex:1 1 auto !important}li[aria-current="step"] .step-label{display:flex !important}}
+.mstep{display:flex;flex-direction:column;gap:2px}
 @media (max-width:767px){header .timer{display:none !important}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .lg-page{--gbg:linear-gradient(180deg,rgba(32,40,53,.86),rgba(22,28,38,.72));--gbd:rgba(255,255,255,.09);--gsh:inset 0 1px 0 rgba(255,255,255,.07),0 14px 34px -16px rgba(0,0,0,.7),0 2px 6px -2px rgba(0,0,0,.4)}:root:not([data-theme=light]) .lg-page .fld{background:rgba(18,24,32,.85) !important;border-color:rgba(255,255,255,.13) !important}:root:not([data-theme=light]) .lg-page [role="tablist"]{background:rgba(255,255,255,.08) !important}:root:not([data-theme=light]) .lg-page .mmenu{background:rgba(0,0,0,.45) !important}:root:not([data-theme=light]) .ans:hover{background:rgba(34,43,57,.95)}:root:not([data-theme=light]) .lg-page .btn-accent{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 12px 26px -14px rgba(150,220,40,.45) !important}}
+:root[data-theme=dark] .lg-page{--gbg:linear-gradient(180deg,rgba(32,40,53,.86),rgba(22,28,38,.72));--gbd:rgba(255,255,255,.09);--gsh:inset 0 1px 0 rgba(255,255,255,.07),0 14px 34px -16px rgba(0,0,0,.7),0 2px 6px -2px rgba(0,0,0,.4)}:root[data-theme=dark] .lg-page .fld{background:rgba(18,24,32,.85) !important;border-color:rgba(255,255,255,.13) !important}:root[data-theme=dark] .lg-page [role="tablist"]{background:rgba(255,255,255,.08) !important}:root[data-theme=dark] .lg-page .mmenu{background:rgba(0,0,0,.45) !important}:root[data-theme=dark] .ans:hover{background:rgba(34,43,57,.95)}:root[data-theme=dark] .lg-page .btn-accent{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 12px 26px -14px rgba(150,220,40,.45) !important}
+@media (max-width:767px){header [style*="background: var(--bg-EAF1FF)"]{display:none !important}}
 </style>
 
 <style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}@media (max-width:767px){.demo-badge{animation:demoOut .6s ease 4s forwards}}@keyframes demoOut{to{opacity:0;visibility:hidden}}</style>
@@ -88,50 +101,50 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 <div id="app"></div>
 <template id="tpl">
 
-<div class="lg-page" style="font-family: Manrope, system-ui, sans-serif; color: #151A23; background: #F7F8FA; min-height: 100vh">
+<div class="lg-page" style="font-family: Manrope, system-ui, sans-serif; color: var(--fg-151A23); background: var(--bg-F7F8FA); min-height: 100vh">
 
-<header style="background: #FFFFFF; border-bottom: 1px solid #DCE1E8">
+<header style="background: var(--bg-FFFFFF); border-bottom: 1px solid var(--bd-DCE1E8)">
 <div style="max-width: 1264px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; color: #151A23">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; color: var(--fg-151A23)">
 <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 Оформление</a>
 <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-<span class="timer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #596273; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 52 мин</span>
-<span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: #EAF1FF; color: #2B4C86; font-size: 13px; font-weight: 700">Демонстрация</span>
+<span class="timer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--fg-596273); font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 52 мин</span>
+<span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--bg-EAF1FF); color: var(--fg-2B4C86); font-size: 13px; font-weight: 700">Демонстрация</span><button type="button" class="theme-btn" onclick="{{toggleTheme}}" aria-label="Светлая или тёмная тема" title="Светлая / тёмная тема"><svg class="ico-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"></path></svg><svg class="ico-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg></button>
 </div>
 </div>
 </header>
 
 <div style="max-width: 1264px; margin: 0 auto; padding: 32px 32px 72px; display: flex; flex-direction: column; gap: 28px">
 
-<ol aria-label="Шаги оформления" style="margin: 0; padding: 6px; list-style: none; display: flex; gap: 6px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 18px">
+<ol aria-label="Шаги оформления" style="margin: 0; padding: 6px; list-style: none; display: flex; gap: 6px; background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 18px">
 <li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
-<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #151A23; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
-<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 1</span><span style="font-size: 14px; font-weight: 800">Файл</span></span></li>
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: var(--bg-151A23); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: var(--fg-596273)">Шаг 1</span><span style="font-size: 14px; font-weight: 800">Файл</span></span></li>
 <li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
-<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #151A23; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
-<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 2</span><span style="font-size: 14px; font-weight: 800">Требования</span></span></li>
-<li aria-current="step" style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F4FDE4; box-shadow: inset 0 0 0 1.5px #151A23">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: var(--bg-151A23); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: var(--fg-596273)">Шаг 2</span><span style="font-size: 14px; font-weight: 800">Требования</span></span></li>
+<li aria-current="step" style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--bg-F4FDE4); box-shadow: inset 0 0 0 1.5px var(--bd-151A23)">
 <span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M4 12h6M4 18h9"></path><path d="M15.5 13.5l2 2 4-4.5"></path></svg></span>
-<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 3</span><span style="font-size: 14px; font-weight: 800">Проверка структуры</span></span></li>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: var(--fg-596273)">Шаг 3</span><span style="font-size: 14px; font-weight: 800">Проверка структуры</span></span></li>
 <li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
-<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
-<span class="step-label" style="display: flex; flex-direction: column; min-width: 0; color: #596273"><span style="font-size: 12px; font-weight: 700">Шаг 4</span><span style="font-size: 14px; font-weight: 700">Результат и оплата</span></span></li>
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: var(--bg-F2F4F7); display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0; color: var(--fg-596273)"><span style="font-size: 12px; font-weight: 700">Шаг 4</span><span style="font-size: 14px; font-weight: 700">Результат и оплата</span></span></li>
 </ol>
-<p class="mstep" style="margin: -14px 0 0; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><span style="color: #596273">Шаг 3 из 4</span><span>· Проверка структуры</span></p>
+<p class="mstep" style="margin: -14px 0 0; font-size: 14px; line-height: 1.45"><span style="font-weight: 800">Шаг 3 из 4 · Проверка структуры</span><span style="color: var(--fg-596273); font-weight: 500">Мы распознали разделы работы. Подтвердите спорное место — остальное решено автоматически.</span></p>
 
 <div style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px">
-<span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 8px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCE1E8; font-size: 13px; font-weight: 700"><span style="width: 18px; height: 18px; border-radius: 6px; background: #121A24; color: #C5F66A; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800">ИР</span>Профиль: ИР КОП · КЭП ВКР · ИДК 09.03.03</span>
+<span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 8px; border-radius: 999px; background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); font-size: 13px; font-weight: 700"><span style="width: 18px; height: 18px; border-radius: 6px; background: var(--bg-121A24); color: #C5F66A; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800">ИР</span>Профиль: ИР КОП · КЭП ВКР · ИДК 09.03.03</span>
 <h1 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em">Проверьте структуру работы</h1>
-<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3D4553">Мы разобрали <b style="color: #151A23">vkr_demo.docx</b>: 48 заголовков и разделов определились по тексту, виду и нумерации. Один вопрос мы не можем решить за вас — ответьте, и мы оформим без догадок.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--fg-3D4553)">Мы разобрали <b style="color: var(--fg-151A23)">vkr_demo.docx</b>: 48 заголовков и разделов определились по тексту, виду и нумерации. Один вопрос мы не можем решить за вас — ответьте, и мы оформим без догадок.</p>
 </div>
-<div role="status" aria-live="polite" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 16px">
+<div role="status" aria-live="polite" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 16px">
 <span style="position: relative; width: 44px; height: 44px; flex: none">
 <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(21,26,35,.08)" stroke-width="5"></circle><circle cx="22" cy="22" r="18" fill="none" stroke="#9BD43A" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ringDash}}" transform="rotate(-90 22 22)" style="transition: stroke-dasharray .4s cubic-bezier(.22,1,.36,1)"></circle></svg>
 <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800">{{doneCount}}/{{totalCount}}</span>
 </span>
-<span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 800">{{progressTitle}}</span><span style="font-size: 13px; color: #596273">{{progressSub}}</span></span>
+<span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 800">{{progressTitle}}</span><span style="font-size: 13px; color: var(--fg-596273)">{{progressSub}}</span></span>
 </div>
 </div>
 
@@ -140,35 +153,35 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 <div style="flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
 
 <sc-for list="{{questions}}" as="qq" hint-placeholder-count="3">
-<article id="{{qq.anchor}}" class="qcard" aria-labelledby="{{qq.hid}}" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+<article id="{{qq.anchor}}" class="qcard" aria-labelledby="{{qq.hid}}" style="background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px">
-<span style="height: 28px; padding: 0 10px; border-radius: 999px; background: #121A24; color: #FFFFFF; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center">Вопрос {{qq.n}} из {{qTotal}}</span>
+<span style="height: 28px; padding: 0 10px; border-radius: 999px; background: var(--bg-121A24); color: #FFFFFF; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center">Вопрос {{qq.n}} из {{qTotal}}</span>
 <span style="font-size: 15px; font-weight: 800">{{qq.kind}}</span>
-<span style="font-size: 13px; color: #596273; font-weight: 600">{{qq.where}}</span>
+<span style="font-size: 13px; color: var(--fg-596273); font-weight: 600">{{qq.where}}</span>
 <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px 0 9px; border-radius: 999px; font-size: 12px; font-weight: 700; {{qq.chipStyle}}"><sc-if value="{{qq.waiting}}" hint-placeholder-val="{{ true }}"><span class="pulse" style="width: 7px; height: 7px; border-radius: 50%; background: currentColor"></span></sc-if><sc-if value="{{qq.answered}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if>{{qq.chip}}</span>
 </div>
 
 <div class="qgrid" style="display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px">
-<figure style="margin: 0; background: #E9ECF1; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
-<div style="background: #FFFFFF; box-shadow: 0 4px 16px rgba(21,26,35,.10); border-radius: 4px; padding: 18px 20px 18px 30px; font-family: 'Times New Roman', serif; font-size: 13px; line-height: 1.55; color: #151A23; display: flex; flex-direction: column; gap: 6px; min-height: 170px">
+<figure style="margin: 0; background: var(--bg-E9ECF1); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: var(--bg-FFFFFF); box-shadow: 0 4px 16px rgba(21,26,35,.10); border-radius: 4px; padding: 18px 20px 18px 30px; font-family: 'Times New Roman', serif; font-size: 13px; line-height: 1.55; color: var(--fg-151A23); display: flex; flex-direction: column; gap: 6px; min-height: 170px">
 <sc-for list="{{qq.lines}}" as="ln" hint-placeholder-count="3">
 <p style="margin: 0; {{ln.style}}"><span class="{{ln.cls}}">{{ln.text}}</span></p>
 </sc-for>
 </div>
-<figcaption style="font-size: 12px; color: #596273; font-weight: 600">Фрагмент вашего файла · выделено то, о чём вопрос</figcaption>
+<figcaption style="font-size: 12px; color: var(--fg-596273); font-weight: 600">Фрагмент вашего файла · выделено то, о чём вопрос</figcaption>
 </figure>
 <div style="display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 13px; font-weight: 800; color: #596273; text-transform: uppercase; letter-spacing: .04em">Что мы увидели</h3>
+<h3 style="margin: 0; font-size: 13px; font-weight: 800; color: var(--fg-596273); text-transform: uppercase; letter-spacing: .04em">Что мы увидели</h3>
 <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{qq.evidence}}" as="ev" hint-placeholder-count="3">
 <li style="display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.4"><span style="flex: none; margin-top: 2px; width: 18px; height: 18px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; {{ev.style}}"><sc-if value="{{ev.pro}}" hint-placeholder-val="{{ true }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M12 6v12M6 12h12"></path></svg></sc-if><sc-if value="{{ev.con}}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"></path></svg></sc-if></span>{{ev.text}}</li>
 </sc-for>
 </ul>
-<p style="margin: auto 0 0; font-size: 13px; line-height: 1.45; color: #596273">{{qq.why}}</p>
+<p style="margin: auto 0 0; font-size: 13px; line-height: 1.45; color: var(--fg-596273)">{{qq.why}}</p>
 </div>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--bd-EEF0F3)">
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
 <h2 id="{{qq.hid}}" style="margin: 0; font-size: 20px; font-weight: 800">{{qq.ask}}</h2>
 <div role="radiogroup" aria-labelledby="{{qq.hid}}" style="display: inline-flex; padding: 3px; gap: 3px; border-radius: 999px; background: rgba(118,118,128,.14)">
@@ -183,48 +196,48 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 </article>
 </sc-for>
 
-<section aria-labelledby="auto-h" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<section aria-labelledby="auto-h" style="background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <h2 id="auto-h" style="margin: 0; font-size: 20px; font-weight: 800">Решено автоматически</h2>
-<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #596273">Здесь признаков достаточно, поэтому мы не спрашиваем. Если решение неверное — отмените его.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--fg-596273)">Здесь признаков достаточно, поэтому мы не спрашиваем. Если решение неверное — отмените его.</p>
 </div>
 <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{autos}}" as="au" hint-placeholder-count="2">
-<li id="{{au.anchor}}" class="qcard" style="border: 1px solid #EEF0F3; border-radius: 18px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center">
+<li id="{{au.anchor}}" class="qcard" style="border: 1px solid var(--bd-EEF0F3); border-radius: 18px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center">
 <span style="flex: none; width: 36px; height: 36px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; {{au.iconStyle}}"><sc-if value="{{au.on}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if><sc-if value="{{au.off}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14l-4-4 4-4"></path><path d="M5 10h9a5 5 0 0 1 0 10h-2"></path></svg></sc-if></span>
 <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
-<span style="font-size: 13px; color: #596273; font-weight: 600">{{au.where}} · «{{au.src}}»</span>
+<span style="font-size: 13px; color: var(--fg-596273); font-weight: 600">{{au.where}} · «{{au.src}}»</span>
 <span style="font-size: 15px; font-weight: 800">{{au.result}}</span>
-<span style="font-size: 13px; line-height: 1.45; color: #3D4553">{{au.reason}}</span>
+<span style="font-size: 13px; line-height: 1.45; color: var(--fg-3D4553)">{{au.reason}}</span>
 </div>
-<button type="button" class="ans" aria-pressed="{{au.offStr}}" onClick="{{au.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #DCE1E8; background: #FFFFFF; font: 700 13px Manrope, sans-serif; color: #151A23; cursor: pointer">{{au.btn}}</button>
+<button type="button" class="ans" aria-pressed="{{au.offStr}}" onClick="{{au.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--bd-DCE1E8); background: var(--bg-FFFFFF); font: 700 13px Manrope, sans-serif; color: var(--fg-151A23); cursor: pointer">{{au.btn}}</button>
 </li>
 </sc-for>
 </ul>
 </section>
 
-<section aria-labelledby="data-h" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+<section aria-labelledby="data-h" style="background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <h2 id="data-h" style="margin: 0; font-size: 20px; font-weight: 800">Таблица «Основные данные о работе»</h2>
-<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #596273">В шаблоне КЭП титульного листа нет — вместо него эта таблица. «Вид работы» сверяет робот, его мы заполним всегда. Остальное — как вам удобнее.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--fg-596273)">В шаблоне КЭП титульного листа нет — вместо него эта таблица. «Вид работы» сверяет робот, его мы заполним всегда. Остальное — как вам удобнее.</p>
 </div>
 <div role="radiogroup" aria-label="Как заполнить таблицу" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
 <sc-for list="{{fillModes}}" as="fm" hint-placeholder-count="2">
 <button type="button" role="radio" aria-checked="{{fm.checked}}" onClick="{{fm.pick}}" class="ans" style="text-align: left; padding: 14px 16px; border-radius: 18px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; font-family: Manrope, sans-serif; {{fm.style}}">
-<span style="flex: none; margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; {{fm.dot}}"><span style="width: 8px; height: 8px; border-radius: 50%; background: #121A24; {{fm.dotIn}}"></span></span>
-<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 800; color: #151A23">{{fm.title}}</span><span style="font-size: 13px; line-height: 1.4; color: #596273">{{fm.sub}}</span></span>
+<span style="flex: none; margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; {{fm.dot}}"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--bg-121A24); {{fm.dotIn}}"></span></span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 800; color: var(--fg-151A23)">{{fm.title}}</span><span style="font-size: 13px; line-height: 1.4; color: var(--fg-596273)">{{fm.sub}}</span></span>
 </button>
 </sc-for>
 </div>
 <sc-if value="{{fillLater}}" hint-placeholder-val="{{ false }}">
-<div class="fade" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: #EAF1FF; color: #1F3A68; font-size: 14px; line-height: 1.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M4 10h16M10 10v9"></path></svg><span>Вставим таблицу в начало файла. «Вид работы» и тему с титульного листа заполним, остальные ячейки останутся пустыми — впишите ФИО и ID в Word до загрузки в Ровеб. В отчёте напомним, какие поля пустые.</span></div>
+<div class="fade" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: var(--bg-EAF1FF); color: #1F3A68; font-size: 14px; line-height: 1.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M4 10h16M10 10v9"></path></svg><span>Вставим таблицу в начало файла. «Вид работы» и тему с титульного листа заполним, остальные ячейки останутся пустыми — впишите ФИО и ID в Word до загрузки в Ровеб. В отчёте напомним, какие поля пустые.</span></div>
 </sc-if>
 <sc-if value="{{fillSite}}" hint-placeholder-val="{{ true }}">
 <div class="fgrid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px">
 <sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
 <div style="display: flex; flex-direction: column; gap: 6px; {{f.span}}">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<label for="{{f.id}}" style="font-size: 14px; font-weight: 700">{{f.label}}<sc-if value="{{f.required}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color: #B42318"> *</span></sc-if></label>
+<label for="{{f.id}}" style="font-size: 14px; font-weight: 700">{{f.label}}<sc-if value="{{f.required}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color: var(--fg-B42318)"> *</span></sc-if></label>
 <span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; {{f.srcStyle}}">{{f.src}}</span>
 </div>
 <input id="{{f.id}}" class="fld" value="{{f.value}}" readonly="{{f.readonly}}" aria-invalid="{{f.invalid}}" aria-describedby="{{f.hintId}}" placeholder="{{f.placeholder}}" onInput="{{f.onInput}}" style="{{f.inputStyle}}">
@@ -238,10 +251,10 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 </div>
 
 <aside class="side" aria-labelledby="st-h" style="flex: 1 1 380px; min-width: 0; position: sticky; top: 88px; display: flex; flex-direction: column; gap: 16px">
-<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
 <h2 id="st-h" style="margin: 0; font-size: 18px; font-weight: 800">Структура после оформления</h2>
-<span style="font-size: 12px; color: #596273; font-weight: 600">как в шаблоне КЭП</span>
+<span style="font-size: 12px; color: var(--fg-596273); font-weight: 600">как в шаблоне КЭП</span>
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; max-height: 470px; overflow-y: auto">
 <sc-for list="{{outline}}" as="o" hint-placeholder-count="10">
@@ -259,15 +272,15 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 </a></li>
 </sc-for>
 </ol>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 10px; border-top: 1px solid #EEF0F3; font-size: 12px; color: #596273; font-weight: 600">
-<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #DDF5B4"></span>найдено</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 10px; border-top: 1px solid var(--bd-EEF0F3); font-size: 12px; color: var(--fg-596273); font-weight: 600">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--bg-DDF5B4)"></span>найдено</span>
 <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #DCE8FF"></span>добавим по шаблону</span>
 <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FFE3B8"></span>ждёт ответа</span>
 <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FFD9D4"></span>нет в работе</span>
 </div>
 </div>
 
-<div style="background: #121A24; color: #FFFFFF; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="background: var(--bg-121A24); color: #FFFFFF; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
 <span style="font-weight: 700">Прогноз проверки ИР КОП</span>
 <span style="font-size: 26px; font-weight: 800; {{forecastStyle}}">{{forecast}}</span>
@@ -334,24 +347,24 @@ class Component extends DCLogic {
     const done = answered + (needId && idOk ? 1 : 0);
     const blocked = s.a.intro === 'no';
     const ready = done === total;
-    const on = 'background: #FFFFFF; color: #151A23; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)';
-    const off = 'background: transparent; color: #3D4553';
+    const on = 'background: var(--bg-FFFFFF); color: var(--fg-151A23); box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)';
+    const off = 'background: transparent; color: var(--fg-3D4553)';
     const questions = Q.map((q) => {
       const v = s.a[q.id];
       const bad = v === 'no';
       return {
         ...q, anchor: 'q-' + q.id, hid: 'qh-' + q.id,
         evidence: q.evidence.map((e) => ({ text: e.t, pro: e.pro, con: !e.pro,
-          style: e.pro ? 'background: #DDF5B4; color: #2E5A12' : 'background: #EEF0F3; color: #596273' })),
+          style: e.pro ? 'background: var(--bg-DDF5B4); color: var(--fg-2E5A12)' : 'background: var(--bg-EEF0F3); color: var(--fg-596273)' })),
         waiting: v === null, answered: v !== null,
         chip: v === null ? 'Ждёт ответа' : (v === 'yes' ? 'Ответ: да' : 'Ответ: нет'),
-        chipStyle: v === null ? 'background: #FFF1DB; color: #8A5300' : (bad ? 'background: #FFE7E3; color: #9F1F12' : 'background: #F0FADF; color: #2E5A12'),
+        chipStyle: v === null ? 'background: var(--bg-FFF1DB); color: var(--fg-8A5300)' : (bad ? 'background: var(--bg-FFE7E3); color: var(--fg-9F1F12)' : 'background: var(--bg-F0FADF); color: var(--fg-2E5A12)'),
         yesChecked: v === 'yes' ? 'true' : 'false', noChecked: v === 'no' ? 'true' : 'false',
         yesStyle: v === 'yes' ? on : off, noStyle: v === 'no' ? on : off,
         pickYes: () => set(q.id, 'yes'), pickNo: () => set(q.id, 'no'),
         noteHead: v === 'yes' ? 'Сделаем так:' : 'Важно:',
         note: v === 'yes' ? q.yesNote : q.noNote,
-        noteStyle: bad ? 'background: #FFE7E3; color: #7A1A10' : 'background: #F4FDE4; color: #24420E'
+        noteStyle: bad ? 'background: var(--bg-FFE7E3); color: #7A1A10' : 'background: var(--bg-F4FDE4); color: #24420E'
       };
     });
     const autos = A.map((x) => {
@@ -359,7 +372,7 @@ class Component extends DCLogic {
       return {
         ...x, anchor: 'a-' + x.id, on: keep, off: !keep, offStr: keep ? 'false' : 'true',
         result: keep ? x.result : 'Отменено: ' + x.undo,
-        iconStyle: keep ? 'background: #DDF5B4; color: #2E5A12' : 'background: #EEF0F3; color: #596273',
+        iconStyle: keep ? 'background: var(--bg-DDF5B4); color: var(--fg-2E5A12)' : 'background: var(--bg-EEF0F3); color: var(--fg-596273)',
         btn: keep ? 'Не так? Отменить' : 'Вернуть',
         toggle: () => this.setState({ auto: { ...s.auto, [x.id]: !keep } })
       };
@@ -374,19 +387,19 @@ class Component extends DCLogic {
       { id: 'f-id', label: 'ID (№ контракта)', value: s.id, src: 'нужно ввести', required: true, placeholder: 'Например, 012345678901' },
       { id: 'f-ver', label: 'Версия шаблона', value: '4.1', src: 'из шаблона вуза', readonly: true, hint: 'Робот проверяет версию — менять её нельзя.' }
     ];
-    const srcStyle = { 'из профиля': 'background: #EAF1FF; color: #2B4C86', 'с титульного листа': 'background: #F0FADF; color: #2E5A12', 'нужно ввести': 'background: #FFF1DB; color: #8A5300', 'из шаблона вуза': 'background: #EAF1FF; color: #2B4C86' };
+    const srcStyle = { 'из профиля': 'background: var(--bg-EAF1FF); color: var(--fg-2B4C86)', 'с титульного листа': 'background: var(--bg-F0FADF); color: var(--fg-2E5A12)', 'нужно ввести': 'background: var(--bg-FFF1DB); color: var(--fg-8A5300)', 'из шаблона вуза': 'background: var(--bg-EAF1FF); color: var(--fg-2B4C86)' };
     const fields = F.map((f) => {
       const isId = f.id === 'f-id';
       const showErr = isId && s.id.length > 0 && !idOk;
       return {
         ...f, required: !!f.required, readonly: !!f.readonly, placeholder: f.placeholder || '', span: f.span || '',
-        srcStyle: isId && idOk ? 'background: #F0FADF; color: #2E5A12' : srcStyle[f.src],
+        srcStyle: isId && idOk ? 'background: var(--bg-F0FADF); color: var(--fg-2E5A12)' : srcStyle[f.src],
         src: isId && idOk ? 'заполнено' : f.src,
         invalid: showErr ? 'true' : 'false', hintId: f.id + '-h',
         hasHint: !!f.hint || isId,
         hint: isId ? (showErr ? 'Только цифры, не меньше 6. Номер есть в личном кабинете Ровеб.' : 'Номер договора из личного кабинета Ровеб.') : f.hint,
-        hintStyle: showErr ? 'color: #B42318; font-weight: 600' : 'color: #596273',
-        inputStyle: f.readonly ? 'background: #F2F4F7 !important; color: #3D4553' : (showErr ? 'border-color: #B42318 !important' : ''),
+        hintStyle: showErr ? 'color: var(--fg-B42318); font-weight: 600' : 'color: var(--fg-596273)',
+        inputStyle: f.readonly ? 'background: var(--bg-F2F4F7) !important; color: var(--fg-3D4553)' : (showErr ? 'border-color: var(--bd-B42318) !important' : ''),
         onInput: isId ? (e) => this.setState({ id: e.target.value }) : () => {}
       };
     });
@@ -396,15 +409,15 @@ class Component extends DCLogic {
     ].map((m) => {
       const c = s.fill === m.id;
       return { ...m, checked: c ? 'true' : 'false', pick: () => this.setState({ fill: m.id }),
-        style: c ? 'background: #F4FDE4; border: 1.5px solid #151A23' : 'background: #FFFFFF; border: 1px solid #DCE1E8',
-        dot: c ? 'border: 2px solid #121A24; background: #C5F66A' : 'border: 2px solid #C3CAD5; background: #FFFFFF',
+        style: c ? 'background: var(--bg-F4FDE4); border: 1.5px solid var(--bd-151A23)' : 'background: var(--bg-FFFFFF); border: 1px solid var(--bd-DCE1E8)',
+        dot: c ? 'border: 2px solid var(--bd-121A24); background: #C5F66A' : 'border: 2px solid #C3CAD5; background: var(--bg-FFFFFF)',
         dotIn: c ? '' : 'opacity: 0' };
     });
     const st = {
-      ok: { icon: 'background: #DDF5B4; color: #2E5A12', text: '', isOk: true },
-      add: { icon: 'background: #DCE8FF; color: #2B4C86', text: '', isAdd: true },
-      ask: { icon: 'background: #FFE3B8; color: #8A5300', text: 'font-weight: 700', isAsk: true },
-      miss: { icon: 'background: #FFD9D4; color: #9F1F12', text: 'color: #9F1F12; font-weight: 700', isMiss: true }
+      ok: { icon: 'background: var(--bg-DDF5B4); color: var(--fg-2E5A12)', text: '', isOk: true },
+      add: { icon: 'background: #DCE8FF; color: var(--fg-2B4C86)', text: '', isAdd: true },
+      ask: { icon: 'background: #FFE3B8; color: var(--fg-8A5300)', text: 'font-weight: 700', isAsk: true },
+      miss: { icon: 'background: #FFD9D4; color: var(--fg-9F1F12)', text: 'color: var(--fg-9F1F12); font-weight: 700', isMiss: true }
     };
     const introK = s.a.intro === null ? 'ask' : (s.a.intro === 'yes' ? 'add' : 'miss');
     const O = [
@@ -430,7 +443,7 @@ class Component extends DCLogic {
       text, href, note, hasNote: !!note,
       indent: lvl === 0 ? '' : (lvl === 1 ? 'padding-left: 22px' : 'padding-left: 40px'),
       iconStyle: st[k].icon, textStyle: (lvl === 0 ? 'font-weight: 700; ' : '') + st[k].text,
-      noteStyle: k === 'miss' ? 'color: #9F1F12' : (k === 'ask' ? 'color: #8A5300' : 'color: #596273'),
+      noteStyle: k === 'miss' ? 'color: var(--fg-9F1F12)' : (k === 'ask' ? 'color: var(--fg-8A5300)' : 'color: var(--fg-596273)'),
       isOk: !!st[k].isOk, isAdd: !!st[k].isAdd, isAsk: !!st[k].isAsk, isMiss: !!st[k].isMiss
     }));
     const left = total - done;
@@ -455,11 +468,24 @@ class Component extends DCLogic {
       ctaHref: ctaOk ? 'result.html' : '#',
       ctaDisabled: ctaOk ? 'false' : 'true',
       ctaClick: (e) => { if (!ctaOk) { e.preventDefault(); const first = Q.find((q) => s.a[q.id] === null); const el = document.getElementById(first ? 'q-' + first.id : 'f-id'); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); if (!first) el.focus(); } } },
-      ctaStyle: ctaOk ? (blocked ? 'background: #FFFFFF; color: #121A24' : 'background: #C5F66A; color: #121A24') : 'background: #2A3646 !important; color: #8B97A8; box-shadow: none !important; cursor: not-allowed',
+      ctaStyle: ctaOk ? (blocked ? 'background: var(--bg-FFFFFF); color: #121A24' : 'background: #C5F66A; color: #121A24') : 'background: #2A3646 !important; color: #8B97A8; box-shadow: none !important; cursor: not-allowed',
       ctaHint: blocked ? 'Деньги за файл, который робот не примет, не берём.' : (ctaOk ? (s.fill === 'later' ? 'Не забудьте вписать ФИО и ID в таблицу до загрузки в Ровеб.' : 'Дальше — оформление, предпросмотр и оплата.') : 'Кнопка станет активной после ответа.')
     };
   }
 }
+
+function __toggleTheme() {
+  var r = document.documentElement, cur = r.getAttribute('data-theme');
+  if (!cur) cur = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  try { localStorage.setItem('theme', next); } catch (e) {}
+}
+(function () { try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
+(function () {
+  var rv = Component.prototype.renderVals;
+  Component.prototype.renderVals = function () { var v = (rv ? rv.call(this) : null) || {}; v.toggleTheme = __toggleTheme; return v; };
+})();
 
 window.dcMount(Component, document.getElementById('tpl'), document.getElementById('app'));
 </script>
