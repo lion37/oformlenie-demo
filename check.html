@@ -81,7 +81,7 @@ label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
 .qcard:target{box-shadow:0 0 0 3px #A9C9FF,var(--gsh) !important}
 .olink{text-decoration:none;color:inherit;border-radius:10px;transition:background-color .15s}
 .olink:hover{background:rgba(21,26,35,.05)}
-.hl{background:var(--bg-FFF1DB);box-shadow:0 0 0 2px #E8A33B;border-radius:3px}
+.hl{background:var(--bg-FFF1DB);box-shadow:inset 3px 0 0 #E8A33B,0 0 0 1px rgba(232,163,59,.45);border-radius:6px;padding:6px 10px}@media (max-width:767px){p.hl{text-align:left !important}}
 .pulse{animation:pulse 1.6s cubic-bezier(.22,1,.36,1) infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){.pulse{animation:none}}
@@ -170,7 +170,7 @@ header .theme-btn,header .menu-btn{width:40px !important;height:40px !important;
 <figure style="margin: 0; background: var(--bg-E9ECF1); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
 <div style="background: var(--bg-FFFFFF); box-shadow: 0 4px 16px rgba(21,26,35,.10); border-radius: 4px; padding: 18px 20px 18px 30px; font-family: 'Times New Roman', serif; font-size: 13px; line-height: 1.55; color: var(--fg-151A23); display: flex; flex-direction: column; gap: 6px; min-height: 170px">
 <sc-for list="{{qq.lines}}" as="ln" hint-placeholder-count="3">
-<p style="margin: 0; {{ln.style}}"><span class="{{ln.cls}}">{{ln.text}}</span></p>
+<p class="{{ln.cls}}" style="margin: 0; {{ln.style}}">{{ln.text}}</p>
 </sc-for>
 </div>
 <figcaption style="font-size: 12px; color: var(--fg-596273); font-weight: 600">Фрагмент вашего файла · выделено то, о чём вопрос</figcaption>
