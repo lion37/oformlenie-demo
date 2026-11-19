@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Проверка структуры — демо</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F8FA}
+a{color:#151A23}a:hover{color:#000}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid #A9C9FF;outline-offset:2px}
+.btn{transition:background-color .15s cubic-bezier(.22,1,.36,1),transform .15s cubic-bezier(.22,1,.36,1),opacity .15s}
+.btn:active{transform:scale(.98)}
+.btn-accent:hover{background:#B4EA52 !important}
+.fld{width:100%;height:48px;padding:0 14px;border:1px solid #DCE1E8;border-radius:12px;font:500 16px Manrope,sans-serif;color:#151A23;background:#FFFFFF}
+.fld:focus{outline:none;border-color:#151A23;box-shadow:0 0 0 3px #A9C9FF}
+.chk path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s cubic-bezier(.22,1,.36,1) .1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fade{animation:fade .22s cubic-bezier(.22,1,.36,1) both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.chk path{animation:none;stroke-dashoffset:0}.fade{animation:none}}
+
+/* --- Scrollbars --- */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
+::-webkit-scrollbar-thumb{background:rgba(21,26,35,.18);border-radius:999px;border:4px solid transparent;background-clip:padding-box;min-height:40px}
+::-webkit-scrollbar-thumb:hover{background:rgba(21,26,35,.36);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:rgba(21,26,35,.5);border:3px solid transparent;background-clip:padding-box}
+@supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(21,26,35,.24) transparent}}
+/* --- Liquid glass --- */
+.lg-page{--gbg:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));--gbd:rgba(255,255,255,.78);--gsh:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 12px 32px -14px rgba(21,26,35,.20),0 2px 6px -2px rgba(21,26,35,.06);--gblur:blur(24px) saturate(180%);
+background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 62%),radial-gradient(900px 700px at 100% 40%,#ECF8D6 0%,rgba(236,248,214,0) 60%),radial-gradient(820px 620px at 15% 85%,#F1E8FF 0%,rgba(241,232,255,0) 60%),#F3F4F7 !important;background-attachment:fixed !important}
+.lg-page [style*="background: #FFFFFF; border: 1px solid #DCE1E8"],.lg-page .card[style*="background: #FFFFFF"],.lg-page details[style*="background: #FFFFFF"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page [style*="border-radius: 24px"]{border-radius:30px !important}
+.lg-page [style*="border-radius: 20px"]{border-radius:26px !important}
+.lg-page .btn{border-radius:999px !important}
+.lg-page .btn-accent{background:linear-gradient(180deg,#DCFF96 0%,#C5F66A 55%,#B2E852 100%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(0,0,0,.06),0 12px 26px -12px rgba(105,155,20,.7) !important}
+.lg-page .btn-dark{background:linear-gradient(180deg,#2C3849,#121A24) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
+.lg-page .btn-line,.lg-page .btn-ghost-d{border-radius:999px !important}
+.lg-page .fld{border-radius:16px !important;background:rgba(255,255,255,.72) !important;border-color:rgba(21,26,35,.10) !important}
+.lg-page [role="tablist"]{background:rgba(118,118,128,.14) !important;border:none !important;border-radius:999px !important;padding:3px !important;box-shadow:none !important}
+.lg-page [role="tablist"] button,.lg-page [role="group"] button{border-radius:999px !important}
+.lg-page header{background:transparent !important;border-bottom:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;padding-top:12px}
+.lg-page header > div[style]{max-width:1200px !important;border-radius:999px;background:var(--gbg);border:1px solid var(--gbd);box-shadow:var(--gsh);-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);padding:0 10px 0 22px !important}
+.lg-page .c1,.lg-page .c2,.lg-page .c3{background:linear-gradient(180deg,rgba(44,56,74,.62),rgba(22,30,42,.50)) !important;border-color:rgba(255,255,255,.2) !important;-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border-radius:999px !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px -12px rgba(0,0,0,.55) !important}
+.lg-page .c1 > span,.lg-page .c2 > span,.lg-page .c3 > span{border-radius:999px !important}
+.lg-page .stats{background:transparent !important;border:none !important;box-shadow:none !important;overflow:visible !important;gap:12px !important}
+.lg-page .stats li{background:var(--gbg) !important;border:1px solid var(--gbd);box-shadow:var(--gsh);border-radius:30px;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .mcta{left:12px !important;right:12px !important;bottom:12px !important;border-radius:30px;border:1px solid var(--gbd) !important;background:var(--gbg) !important;box-shadow:var(--gsh)}
+.lg-page .mmenu{top:84px !important;background:rgba(18,26,36,.18) !important}
+.lg-page .mmenu nav{margin:0 12px;border-radius:30px;background:var(--gbg) !important;border:1px solid var(--gbd) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .pop{background:var(--gbg) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);border-color:var(--gbd) !important;border-radius:22px !important}
+.lg-page .opt{border-radius:20px !important}
+@media (max-width:767px){.lg-page header{padding-top:8px}.lg-page header > div[style]{margin:0 12px !important;padding:0 6px 0 14px !important}}
+.chk-in{position:absolute;top:2px;left:2px;opacity:0;width:1px;height:1px;pointer-events:none}
+.chk-box{flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;border:1.5px solid rgba(255,255,255,.38);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;transition:background-color .15s,border-color .15s,box-shadow .15s}
+.chk-box svg{opacity:0;transform:scale(.6);transition:opacity .15s,transform .18s cubic-bezier(.22,1,.36,1)}
+.chk-in:checked + .chk-box{background:linear-gradient(180deg,#DCFF96,#C5F66A);border-color:#C5F66A;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.chk-in:checked + .chk-box svg{opacity:1;transform:none}
+.chk-in:focus-visible + .chk-box{outline:3px solid #A9C9FF;outline-offset:2px}
+label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
+@media (prefers-reduced-motion:reduce){.chk-box,.chk-box svg{transition:none}}
+.ans{transition:background-color .15s,box-shadow .15s,color .15s}
+.ans:hover{background:rgba(255,255,255,.95)}
+.qcard{scroll-margin-top:96px;transition:box-shadow .2s}
+.qcard:target{box-shadow:0 0 0 3px #A9C9FF,var(--gsh) !important}
+.olink{text-decoration:none;color:inherit;border-radius:10px;transition:background-color .15s}
+.olink:hover{background:rgba(21,26,35,.05)}
+.hl{background:#FFF1DB;box-shadow:0 0 0 2px #E8A33B;border-radius:3px}
+.pulse{animation:pulse 1.6s cubic-bezier(.22,1,.36,1) infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+@media (max-width:1023px){.side{position:static !important}}
+@media (max-width:767px){.step-label{display:none}.mstep{display:flex !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}.qgrid{grid-template-columns:1fr !important}.fgrid{grid-template-columns:1fr !important}}
+.mstep{display:none}
+</style>
+
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="lg-page" style="font-family: Manrope, system-ui, sans-serif; color: #151A23; background: #F7F8FA; min-height: 100vh">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE1E8">
+<div style="max-width: 1264px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; color: #151A23">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Оформление</a>
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #596273; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 52 мин</span>
+<span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: #EAF1FF; color: #2B4C86; font-size: 13px; font-weight: 700">Демонстрация</span>
+</div>
+</div>
+</header>
+
+<div style="max-width: 1264px; margin: 0 auto; padding: 32px 32px 72px; display: flex; flex-direction: column; gap: 28px">
+
+<ol aria-label="Шаги оформления" style="margin: 0; padding: 6px; list-style: none; display: flex; gap: 6px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 18px">
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #151A23; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 1</span><span style="font-size: 14px; font-weight: 800">Файл</span></span></li>
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #151A23; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 2</span><span style="font-size: 14px; font-weight: 800">Требования</span></span></li>
+<li aria-current="step" style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F4FDE4; box-shadow: inset 0 0 0 1.5px #151A23">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M4 12h6M4 18h9"></path><path d="M15.5 13.5l2 2 4-4.5"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 3</span><span style="font-size: 14px; font-weight: 800">Проверка структуры</span></span></li>
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0; color: #596273"><span style="font-size: 12px; font-weight: 700">Шаг 4</span><span style="font-size: 14px; font-weight: 700">Результат и оплата</span></span></li>
+</ol>
+<p class="mstep" style="margin: -14px 0 0; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><span style="color: #596273">Шаг 3 из 4</span><span>· Проверка структуры</span></p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px">
+<span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 8px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCE1E8; font-size: 13px; font-weight: 700"><span style="width: 18px; height: 18px; border-radius: 6px; background: #121A24; color: #C5F66A; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800">ИР</span>Профиль: ИР КОП · КЭП ВКР · ИДК 09.03.03</span>
+<h1 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em">Проверьте структуру работы</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3D4553">Мы разобрали <b style="color: #151A23">vkr_demo.docx</b>: 48 заголовков и разделов определились по тексту, виду и нумерации. Один вопрос мы не можем решить за вас — ответьте, и мы оформим без догадок.</p>
+</div>
+<div role="status" aria-live="polite" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 16px">
+<span style="position: relative; width: 44px; height: 44px; flex: none">
+<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(21,26,35,.08)" stroke-width="5"></circle><circle cx="22" cy="22" r="18" fill="none" stroke="#9BD43A" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ringDash}}" transform="rotate(-90 22 22)" style="transition: stroke-dasharray .4s cubic-bezier(.22,1,.36,1)"></circle></svg>
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800">{{doneCount}}/{{totalCount}}</span>
+</span>
+<span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 800">{{progressTitle}}</span><span style="font-size: 13px; color: #596273">{{progressSub}}</span></span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<div style="flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+<sc-for list="{{questions}}" as="qq" hint-placeholder-count="3">
+<article id="{{qq.anchor}}" class="qcard" aria-labelledby="{{qq.hid}}" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px">
+<span style="height: 28px; padding: 0 10px; border-radius: 999px; background: #121A24; color: #FFFFFF; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center">Вопрос {{qq.n}} из {{qTotal}}</span>
+<span style="font-size: 15px; font-weight: 800">{{qq.kind}}</span>
+<span style="font-size: 13px; color: #596273; font-weight: 600">{{qq.where}}</span>
+<span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px 0 9px; border-radius: 999px; font-size: 12px; font-weight: 700; {{qq.chipStyle}}"><sc-if value="{{qq.waiting}}" hint-placeholder-val="{{ true }}"><span class="pulse" style="width: 7px; height: 7px; border-radius: 50%; background: currentColor"></span></sc-if><sc-if value="{{qq.answered}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if>{{qq.chip}}</span>
+</div>
+
+<div class="qgrid" style="display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px">
+<figure style="margin: 0; background: #E9ECF1; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #FFFFFF; box-shadow: 0 4px 16px rgba(21,26,35,.10); border-radius: 4px; padding: 18px 20px 18px 30px; font-family: 'Times New Roman', serif; font-size: 13px; line-height: 1.55; color: #151A23; display: flex; flex-direction: column; gap: 6px; min-height: 170px">
+<sc-for list="{{qq.lines}}" as="ln" hint-placeholder-count="3">
+<p style="margin: 0; {{ln.style}}"><span class="{{ln.cls}}">{{ln.text}}</span></p>
+</sc-for>
+</div>
+<figcaption style="font-size: 12px; color: #596273; font-weight: 600">Фрагмент вашего файла · выделено то, о чём вопрос</figcaption>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 13px; font-weight: 800; color: #596273; text-transform: uppercase; letter-spacing: .04em">Что мы увидели</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{qq.evidence}}" as="ev" hint-placeholder-count="3">
+<li style="display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.4"><span style="flex: none; margin-top: 2px; width: 18px; height: 18px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; {{ev.style}}"><sc-if value="{{ev.pro}}" hint-placeholder-val="{{ true }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M12 6v12M6 12h12"></path></svg></sc-if><sc-if value="{{ev.con}}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"></path></svg></sc-if></span>{{ev.text}}</li>
+</sc-for>
+</ul>
+<p style="margin: auto 0 0; font-size: 13px; line-height: 1.45; color: #596273">{{qq.why}}</p>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid #EEF0F3">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<h2 id="{{qq.hid}}" style="margin: 0; font-size: 20px; font-weight: 800">{{qq.ask}}</h2>
+<div role="radiogroup" aria-labelledby="{{qq.hid}}" style="display: inline-flex; padding: 3px; gap: 3px; border-radius: 999px; background: rgba(118,118,128,.14)">
+<button type="button" role="radio" class="ans" aria-checked="{{qq.yesChecked}}" onClick="{{qq.pickYes}}" style="height: 44px; padding: 0 20px; border: 0; border-radius: 999px; font: 700 15px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; {{qq.yesStyle}}">{{qq.yes}}</button>
+<button type="button" role="radio" class="ans" aria-checked="{{qq.noChecked}}" onClick="{{qq.pickNo}}" style="height: 44px; padding: 0 20px; border: 0; border-radius: 999px; font: 700 15px Manrope, sans-serif; cursor: pointer; {{qq.noStyle}}">{{qq.no}}</button>
+</div>
+</div>
+<sc-if value="{{qq.answered}}" hint-placeholder-val="{{ false }}">
+<p class="fade" style="margin: 0; display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; {{qq.noteStyle}}"><span style="flex: none; font-weight: 800">{{qq.noteHead}}</span><span>{{qq.note}}</span></p>
+</sc-if>
+</div>
+</article>
+</sc-for>
+
+<section aria-labelledby="auto-h" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="auto-h" style="margin: 0; font-size: 20px; font-weight: 800">Решено автоматически</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #596273">Здесь признаков достаточно, поэтому мы не спрашиваем. Если решение неверное — отмените его.</p>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{autos}}" as="au" hint-placeholder-count="2">
+<li id="{{au.anchor}}" class="qcard" style="border: 1px solid #EEF0F3; border-radius: 18px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center">
+<span style="flex: none; width: 36px; height: 36px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; {{au.iconStyle}}"><sc-if value="{{au.on}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if><sc-if value="{{au.off}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14l-4-4 4-4"></path><path d="M5 10h9a5 5 0 0 1 0 10h-2"></path></svg></sc-if></span>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; color: #596273; font-weight: 600">{{au.where}} · «{{au.src}}»</span>
+<span style="font-size: 15px; font-weight: 800">{{au.result}}</span>
+<span style="font-size: 13px; line-height: 1.45; color: #3D4553">{{au.reason}}</span>
+</div>
+<button type="button" class="ans" aria-pressed="{{au.offStr}}" onClick="{{au.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #DCE1E8; background: #FFFFFF; font: 700 13px Manrope, sans-serif; color: #151A23; cursor: pointer">{{au.btn}}</button>
+</li>
+</sc-for>
+</ul>
+</section>
+
+<section aria-labelledby="data-h" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="data-h" style="margin: 0; font-size: 20px; font-weight: 800">Таблица «Основные данные о работе»</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #596273">В шаблоне КЭП титульного листа нет — вместо него эта таблица. «Вид работы» сверяет робот, его мы заполним всегда. Остальное — как вам удобнее.</p>
+</div>
+<div role="radiogroup" aria-label="Как заполнить таблицу" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{fillModes}}" as="fm" hint-placeholder-count="2">
+<button type="button" role="radio" aria-checked="{{fm.checked}}" onClick="{{fm.pick}}" class="ans" style="text-align: left; padding: 14px 16px; border-radius: 18px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; font-family: Manrope, sans-serif; {{fm.style}}">
+<span style="flex: none; margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; {{fm.dot}}"><span style="width: 8px; height: 8px; border-radius: 50%; background: #121A24; {{fm.dotIn}}"></span></span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 800; color: #151A23">{{fm.title}}</span><span style="font-size: 13px; line-height: 1.4; color: #596273">{{fm.sub}}</span></span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{fillLater}}" hint-placeholder-val="{{ false }}">
+<div class="fade" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: #EAF1FF; color: #1F3A68; font-size: 14px; line-height: 1.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M4 10h16M10 10v9"></path></svg><span>Вставим таблицу в начало файла. «Вид работы» и тему с титульного листа заполним, остальные ячейки останутся пустыми — впишите ФИО и ID в Word до загрузки в Ровеб. В отчёте напомним, какие поля пустые.</span></div>
+</sc-if>
+<sc-if value="{{fillSite}}" hint-placeholder-val="{{ true }}">
+<div class="fgrid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px">
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 6px; {{f.span}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<label for="{{f.id}}" style="font-size: 14px; font-weight: 700">{{f.label}}<sc-if value="{{f.required}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color: #B42318"> *</span></sc-if></label>
+<span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; {{f.srcStyle}}">{{f.src}}</span>
+</div>
+<input id="{{f.id}}" class="fld" value="{{f.value}}" readonly="{{f.readonly}}" aria-invalid="{{f.invalid}}" aria-describedby="{{f.hintId}}" placeholder="{{f.placeholder}}" onInput="{{f.onInput}}" style="{{f.inputStyle}}">
+<sc-if value="{{f.hasHint}}" hint-placeholder-val="{{ false }}"><span id="{{f.hintId}}" style="font-size: 13px; line-height: 1.4; {{f.hintStyle}}">{{f.hint}}</span></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</section>
+
+</div>
+
+<aside class="side" aria-labelledby="st-h" style="flex: 1 1 380px; min-width: 0; position: sticky; top: 88px; display: flex; flex-direction: column; gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<h2 id="st-h" style="margin: 0; font-size: 18px; font-weight: 800">Структура после оформления</h2>
+<span style="font-size: 12px; color: #596273; font-weight: 600">как в шаблоне КЭП</span>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; max-height: 470px; overflow-y: auto">
+<sc-for list="{{outline}}" as="o" hint-placeholder-count="10">
+<li><a href="{{o.href}}" class="olink" style="display: flex; align-items: center; gap: 10px; padding: 6px 8px; {{o.indent}}">
+<span style="flex: none; width: 22px; height: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; {{o.iconStyle}}">
+<sc-if value="{{o.isOk}}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if>
+<sc-if value="{{o.isAdd}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></sc-if>
+<sc-if value="{{o.isAsk}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.2 9a3 3 0 0 1 5.6 1.4c0 2-2.8 2.4-2.8 4"></path><path d="M12 18.2v.1"></path></svg></sc-if>
+<sc-if value="{{o.isMiss}}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></sc-if>
+</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<span style="font-size: 14px; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; {{o.textStyle}}">{{o.text}}</span>
+<sc-if value="{{o.hasNote}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; font-weight: 600; {{o.noteStyle}}">{{o.note}}</span></sc-if>
+</span>
+</a></li>
+</sc-for>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 10px; border-top: 1px solid #EEF0F3; font-size: 12px; color: #596273; font-weight: 600">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #DDF5B4"></span>найдено</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #DCE8FF"></span>добавим по шаблону</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FFE3B8"></span>ждёт ответа</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #FFD9D4"></span>нет в работе</span>
+</div>
+</div>
+
+<div style="background: #121A24; color: #FFFFFF; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+<span style="font-weight: 700">Прогноз проверки ИР КОП</span>
+<span style="font-size: 26px; font-weight: 800; {{forecastStyle}}">{{forecast}}</span>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #C9D1DC">{{forecastText}}</p>
+<sc-if value="{{blocked}}" hint-placeholder-val="{{ false }}">
+<div class="fade" role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: rgba(255,120,100,.14); color: #FFD3CC; font-size: 14px; line-height: 1.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 3l9.5 17h-19L12 3z"></path><path d="M12 10v4M12 17.2v.1"></path></svg><span>Без введения робот не примет работу, а придумывать его мы не будем. Допишите введение и загрузите файл снова — или оформите остальное бесплатно, отчёт покажет, чего не хватает.</span></div>
+</sc-if>
+<a href="{{ctaHref}}" class="btn btn-accent" aria-disabled="{{ctaDisabled}}" onClick="{{ctaClick}}" style="height: 52px; border-radius: 12px; font: 700 16px Manrope, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; {{ctaStyle}}">{{ctaLabel}}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<sc-if value="{{blocked}}" hint-placeholder-val="{{ false }}">
+<a href="upload.html" class="btn" style="height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,.22); color: #FFFFFF; font: 700 14px Manrope, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Загрузить исправленный файл</a>
+</sc-if>
+<span style="font-size: 13px; color: #9AA5B4">{{ctaHint}}</span>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</template>
+<div class="demo-badge">Демо-макет · файлы не обрабатываются</div>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { a: { intro: null }, auto: { ch1: true, s23: true }, fill: 'site', id: '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const set = (k, v) => this.setState({ a: { ...s.a, [k]: v } });
+    const Q = [
+      { id: 'intro', n: 1, kind: 'Текст без заголовка перед главой 1', where: 'Стр. 3–6 · 13 абзацев',
+        lines: [
+          { text: 'Содержание … 2', style: 'color: #A3ABB8; text-align: center; font-weight: 700', cls: '' },
+          { text: 'Учёт заявок в небольших организациях часто ведётся в таблицах и переписке, из-за чего обращения теряются…', style: 'text-indent: 1.25em; text-align: justify', cls: 'hl' },
+          { text: 'Актуальность темы связана с ростом числа обращений и необходимостью отвечать на них в срок…', style: 'text-indent: 1.25em; text-align: justify', cls: 'hl' },
+          { text: 'ТЕОРЕТИЧЕСКИЕ ОСНОВЫ УЧЁТА ЗАЯВОК', style: 'color: #A3ABB8; text-align: center; font-weight: 700', cls: '' }
+        ],
+        evidence: [
+          { t: 'Перед первой главой 13 абзацев обычного текста', pro: true },
+          { t: 'Над ними нет заголовка «Введение»', pro: false },
+          { t: 'В оглавлении введения тоже нет', pro: false }
+        ],
+        why: 'Введение — обязательный раздел шаблона КЭП. Заголовок над текстом, в котором мы не уверены, сами не ставим.',
+        ask: 'Это введение?', yes: 'Да, это введение', no: 'Нет',
+        yesNote: 'Добавим заголовок «Введение» стилем «Заголовок 1». Текст не меняется.',
+        noNote: 'Введения в работе нет. Без него робот не примет файл — раздел нужно дописать.' }
+    ];
+    const A = [
+      { id: 'ch1', where: 'Стр. 7', src: 'ТЕОРЕТИЧЕСКИЕ ОСНОВЫ УЧЁТА ЗАЯВОК',
+        result: 'Глава 1 → «ГЛАВА 1. Теоретические основы учёта заявок»',
+        reason: 'Номера нет, но дальше идут разделы 1.1, 1.2, 1.3 — значит, это глава 1. Плюс новая страница и жирный крупный шрифт.',
+        undo: 'оставим строку обычным текстом, разделы 1.1–1.3 будут без главы.' },
+      { id: 's23', where: 'Стр. 44', src: '2.3 Постановка задачи проектирования',
+        result: 'Раздел 2.3 → оформим как подпункт, добавим в оглавление',
+        reason: 'Шрифт обычный, но номер продолжает 2.1 и 2.2, а соседние строки не нумерованные — это не пункт списка.',
+        undo: 'оставим обычным абзацем.' }
+    ];
+    const needId = s.fill === 'site';
+    const answered = Q.filter((q) => s.a[q.id] !== null).length;
+    const idOk = /^\d{6,}$/.test(s.id.trim());
+    const total = Q.length + (needId ? 1 : 0);
+    const done = answered + (needId && idOk ? 1 : 0);
+    const blocked = s.a.intro === 'no';
+    const ready = done === total;
+    const on = 'background: #FFFFFF; color: #151A23; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)';
+    const off = 'background: transparent; color: #3D4553';
+    const questions = Q.map((q) => {
+      const v = s.a[q.id];
+      const bad = v === 'no';
+      return {
+        ...q, anchor: 'q-' + q.id, hid: 'qh-' + q.id,
+        evidence: q.evidence.map((e) => ({ text: e.t, pro: e.pro, con: !e.pro,
+          style: e.pro ? 'background: #DDF5B4; color: #2E5A12' : 'background: #EEF0F3; color: #596273' })),
+        waiting: v === null, answered: v !== null,
+        chip: v === null ? 'Ждёт ответа' : (v === 'yes' ? 'Ответ: да' : 'Ответ: нет'),
+        chipStyle: v === null ? 'background: #FFF1DB; color: #8A5300' : (bad ? 'background: #FFE7E3; color: #9F1F12' : 'background: #F0FADF; color: #2E5A12'),
+        yesChecked: v === 'yes' ? 'true' : 'false', noChecked: v === 'no' ? 'true' : 'false',
+        yesStyle: v === 'yes' ? on : off, noStyle: v === 'no' ? on : off,
+        pickYes: () => set(q.id, 'yes'), pickNo: () => set(q.id, 'no'),
+        noteHead: v === 'yes' ? 'Сделаем так:' : 'Важно:',
+        note: v === 'yes' ? q.yesNote : q.noNote,
+        noteStyle: bad ? 'background: #FFE7E3; color: #7A1A10' : 'background: #F4FDE4; color: #24420E'
+      };
+    });
+    const autos = A.map((x) => {
+      const keep = s.auto[x.id];
+      return {
+        ...x, anchor: 'a-' + x.id, on: keep, off: !keep, offStr: keep ? 'false' : 'true',
+        result: keep ? x.result : 'Отменено: ' + x.undo,
+        iconStyle: keep ? 'background: #DDF5B4; color: #2E5A12' : 'background: #EEF0F3; color: #596273',
+        btn: keep ? 'Не так? Отменить' : 'Вернуть',
+        toggle: () => this.setState({ auto: { ...s.auto, [x.id]: !keep } })
+      };
+    });
+    const F = [
+      { id: 'f-kind', label: 'Вид работы', value: 'Комплексная электронная предзащита', src: 'из профиля', readonly: true, span: 'grid-column: 1 / -1' },
+      { id: 'f-topic', label: 'Тема', value: 'Разработка информационной системы учёта заявок', src: 'с титульного листа', span: 'grid-column: 1 / -1' },
+      { id: 'f-disc', label: 'Название дисциплины', value: 'Выполнение и защита выпускной квалификационной работы', src: 'из профиля', span: 'grid-column: 1 / -1' },
+      { id: 'f-sur', label: 'Фамилия', value: 'Иванова', src: 'с титульного листа' },
+      { id: 'f-name', label: 'Имя', value: 'Мария', src: 'с титульного листа' },
+      { id: 'f-pat', label: 'Отчество', value: 'Сергеевна', src: 'с титульного листа' },
+      { id: 'f-id', label: 'ID (№ контракта)', value: s.id, src: 'нужно ввести', required: true, placeholder: 'Например, 012345678901' },
+      { id: 'f-ver', label: 'Версия шаблона', value: '4.1', src: 'из шаблона вуза', readonly: true, hint: 'Робот проверяет версию — менять её нельзя.' }
+    ];
+    const srcStyle = { 'из профиля': 'background: #EAF1FF; color: #2B4C86', 'с титульного листа': 'background: #F0FADF; color: #2E5A12', 'нужно ввести': 'background: #FFF1DB; color: #8A5300', 'из шаблона вуза': 'background: #EAF1FF; color: #2B4C86' };
+    const fields = F.map((f) => {
+      const isId = f.id === 'f-id';
+      const showErr = isId && s.id.length > 0 && !idOk;
+      return {
+        ...f, required: !!f.required, readonly: !!f.readonly, placeholder: f.placeholder || '', span: f.span || '',
+        srcStyle: isId && idOk ? 'background: #F0FADF; color: #2E5A12' : srcStyle[f.src],
+        src: isId && idOk ? 'заполнено' : f.src,
+        invalid: showErr ? 'true' : 'false', hintId: f.id + '-h',
+        hasHint: !!f.hint || isId,
+        hint: isId ? (showErr ? 'Только цифры, не меньше 6. Номер есть в личном кабинете Ровеб.' : 'Номер договора из личного кабинета Ровеб.') : f.hint,
+        hintStyle: showErr ? 'color: #B42318; font-weight: 600' : 'color: #596273',
+        inputStyle: f.readonly ? 'background: #F2F4F7 !important; color: #3D4553' : (showErr ? 'border-color: #B42318 !important' : ''),
+        onInput: isId ? (e) => this.setState({ id: e.target.value }) : () => {}
+      };
+    });
+    const fillModes = [
+      { id: 'site', title: 'Заполнить сейчас на сайте', sub: 'Таблица будет полностью готова в файле' },
+      { id: 'later', title: 'Заполню сам в файле', sub: 'Оставим пустые ячейки, впишете в Word' }
+    ].map((m) => {
+      const c = s.fill === m.id;
+      return { ...m, checked: c ? 'true' : 'false', pick: () => this.setState({ fill: m.id }),
+        style: c ? 'background: #F4FDE4; border: 1.5px solid #151A23' : 'background: #FFFFFF; border: 1px solid #DCE1E8',
+        dot: c ? 'border: 2px solid #121A24; background: #C5F66A' : 'border: 2px solid #C3CAD5; background: #FFFFFF',
+        dotIn: c ? '' : 'opacity: 0' };
+    });
+    const st = {
+      ok: { icon: 'background: #DDF5B4; color: #2E5A12', text: '', isOk: true },
+      add: { icon: 'background: #DCE8FF; color: #2B4C86', text: '', isAdd: true },
+      ask: { icon: 'background: #FFE3B8; color: #8A5300', text: 'font-weight: 700', isAsk: true },
+      miss: { icon: 'background: #FFD9D4; color: #9F1F12', text: 'color: #9F1F12; font-weight: 700', isMiss: true }
+    };
+    const introK = s.a.intro === null ? 'ask' : (s.a.intro === 'yes' ? 'add' : 'miss');
+    const O = [
+      ['Основные данные о работе', 'add', 0, s.fill === 'site' ? 'вместо титульного листа' : 'вместо титула, часть полей впишете сами', '#data-h'],
+      ['Содержание', 'add', 0, 'построим заново, номера страниц — Word', '#st-h'],
+      ['Введение', introK, 0, s.a.intro === null ? 'вопрос' : (s.a.intro === 'yes' ? 'заголовок над вашим текстом' : 'нужно дописать'), '#q-intro'],
+      ['Основная часть', 'add', 0, 'заголовок шаблона', '#st-h'],
+      [s.auto.ch1 ? 'ГЛАВА 1. Теоретические основы учёта заявок' : 'Теоретические основы учёта заявок', s.auto.ch1 ? 'ok' : 'miss', 1, s.auto.ch1 ? 'по разделам 1.1–1.3' : 'останется текстом', '#a-ch1'],
+      ['1.1 Назначение системы учёта заявок', 'ok', 2, '', '#st-h'],
+      ['1.2 Средства разработки', 'ok', 2, '', '#st-h'],
+      ['ГЛАВА 2. Анализ предметной области', 'ok', 1, '', '#st-h'],
+      ['2.1 Характеристика предметной области', 'ok', 2, '', '#st-h'],
+      ['2.2 Требования к системе', 'ok', 2, '', '#st-h'],
+      ['2.3 Постановка задачи проектирования', s.auto.s23 ? 'ok' : 'miss', 2, s.auto.s23 ? 'продолжает 2.2' : 'останется текстом', '#a-s23'],
+      ['ГЛАВА 3. Проектирование и реализация', 'ok', 1, '', '#st-h'],
+      ['Заключение', 'ok', 0, '', '#st-h'],
+      ['Список использованной литературы', 'ok', 0, 'было «Список литературы»', '#st-h'],
+      ['Приложения', 'add', 0, 'заголовок шаблона', '#st-h'],
+      ['Приложение А. Исходный код', 'ok', 1, 'было «Приложение 1»', '#st-h'],
+      ['Приложение Б. Схема базы данных', 'ok', 1, 'было «Приложение 2»', '#st-h']
+    ];
+    const outline = O.map(([text, k, lvl, note, href]) => ({
+      text, href, note, hasNote: !!note,
+      indent: lvl === 0 ? '' : (lvl === 1 ? 'padding-left: 22px' : 'padding-left: 40px'),
+      iconStyle: st[k].icon, textStyle: (lvl === 0 ? 'font-weight: 700; ' : '') + st[k].text,
+      noteStyle: k === 'miss' ? 'color: #9F1F12' : (k === 'ask' ? 'color: #8A5300' : 'color: #596273'),
+      isOk: !!st[k].isOk, isAdd: !!st[k].isAdd, isAsk: !!st[k].isAsk, isMiss: !!st[k].isMiss
+    }));
+    const left = total - done;
+    const C = 2 * Math.PI * 18;
+    const ctaOk = ready;
+    const unchapter = !s.auto.ch1;
+    return {
+      questions, autos, fields, fillModes, outline, blocked,
+      qTotal: Q.length,
+      fillLater: s.fill === 'later', fillSite: s.fill === 'site',
+      doneCount: done, totalCount: total,
+      ringDash: (C * done / total).toFixed(1) + ' ' + C.toFixed(1),
+      progressTitle: ready ? 'Всё готово к оформлению' : 'Осталось ' + left + ' из ' + total,
+      progressSub: ready ? 'Можно продолжать' : (answered < Q.length ? (needId ? 'ответ на вопрос и ID контракта' : 'ответ на вопрос') : 'заполните ID или выберите «сам в файле»'),
+      forecast: blocked ? '17 / 18' : '18 / 18',
+      forecastStyle: blocked ? 'color: #FF9C8C' : 'color: #C5F66A',
+      forecastText: blocked
+        ? 'Не пройдёт пункт «Последовательность структурных частей»: нет раздела «Введение».'
+        : (unchapter ? 'Все 18 пунктов пройдут, но без главы 1 нарушится требование чек-листа к структуре — это будет в отчёте.'
+          : 'Наша проверка повторяет 18 пунктов отчёта робота. После оформления все пункты пройдут.'),
+      ctaLabel: blocked ? 'Оформить без оплаты, с отчётом' : 'Продолжить оформление',
+      ctaHref: ctaOk ? 'result.html' : '#',
+      ctaDisabled: ctaOk ? 'false' : 'true',
+      ctaClick: (e) => { if (!ctaOk) { e.preventDefault(); const first = Q.find((q) => s.a[q.id] === null); const el = document.getElementById(first ? 'q-' + first.id : 'f-id'); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); if (!first) el.focus(); } } },
+      ctaStyle: ctaOk ? (blocked ? 'background: #FFFFFF; color: #121A24' : 'background: #C5F66A; color: #121A24') : 'background: #2A3646 !important; color: #8B97A8; box-shadow: none !important; cursor: not-allowed',
+      ctaHint: blocked ? 'Деньги за файл, который робот не примет, не берём.' : (ctaOk ? (s.fill === 'later' ? 'Не забудьте вписать ФИО и ID в таблицу до загрузки в Ровеб.' : 'Дальше — оформление, предпросмотр и оплата.') : 'Кнопка станет активной после ответа.')
+    };
+  }
+}
+
+window.dcMount(Component, document.getElementById('tpl'), document.getElementById('app'));
+</script>
+</body>
+</html>

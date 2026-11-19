@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Оформление работ по требованиям — демо</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F8FA}
+a{color:#151A23}a:hover{color:#000}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid #A9C9FF;outline-offset:2px}
+.btn{transition:background-color .15s cubic-bezier(.22,1,.36,1),transform .15s cubic-bezier(.22,1,.36,1),border-color .15s}
+.btn:active{transform:scale(.98)}
+.btn .arr{transition:transform .15s cubic-bezier(.22,1,.36,1)}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-accent:hover{background:#B4EA52 !important}
+.btn-ghost-d:hover{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.4) !important}
+.nav a{transition:color .15s}.nav a:hover{color:#151A23 !important}
+.card{transition:transform .2s cubic-bezier(.22,1,.36,1),border-color .2s,box-shadow .2s}
+@media (hover:hover) and (pointer:fine){.card:hover{transform:translateY(-4px);border-color:#C9D3E0 !important;box-shadow:0 18px 40px -18px rgba(21,26,35,.22)}}
+.fadeup{animation:fadeUp .55s cubic-bezier(.22,1,.36,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fixX{0%,18%{transform:translateX(var(--dx))}42%,88%{transform:translateX(0)}100%{transform:translateX(var(--dx))}}
+@keyframes fixH{0%,18%{transform:translateX(-36px) scale(1.14)}42%,88%{transform:none}100%{transform:translateX(-36px) scale(1.14)}}
+@keyframes gap{0%,18%{transform:translateY(var(--dy))}42%,88%{transform:none}100%{transform:translateY(var(--dy))}}
+@keyframes chk{0%,46%{opacity:0;transform:translateY(8px)}54%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes guide{0%,24%{opacity:0}38%,90%{opacity:1}100%{opacity:0}}
+@keyframes glow{0%,30%{opacity:0}42%,60%{opacity:1}75%,100%{opacity:0}}
+@keyframes blobA{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,40px)}}
+@keyframes blobB{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,-50px)}}
+.l{animation:fixX 7s cubic-bezier(.22,1,.36,1) infinite}
+.h{animation:fixH 7s cubic-bezier(.22,1,.36,1) infinite;transform-origin:left center}
+.g{animation:gap 7s cubic-bezier(.22,1,.36,1) infinite}
+.c1{animation:chk 7s cubic-bezier(.22,1,.36,1) infinite}
+.c2{animation:chk 7s cubic-bezier(.22,1,.36,1) infinite .25s}
+.c3{animation:chk 7s cubic-bezier(.22,1,.36,1) infinite .5s}
+.gd{animation:guide 7s ease infinite}
+.gl{animation:glow 7s ease infinite}
+.blob{display:none}
+@media (min-width:1024px){.blob{display:block}.ba-tabs{display:none !important}}
+.blob-a{animation:blobA 20s ease-in-out infinite}
+.blob-b{animation:blobB 24s ease-in-out infinite}
+.paused .l,.paused .h,.paused .g,.paused .c1,.paused .c2,.paused .c3,.paused .gd,.paused .gl,.paused .blob-a,.paused .blob-b{animation-play-state:paused}
+.reduced .l,.reduced .h,.reduced .g,.reduced .gl,.reduced .blob-a,.reduced .blob-b,.reduced .fadeup{animation:none}
+.reduced .c1,.reduced .c2,.reduced .c3,.reduced .gd{animation:none;opacity:1}
+@media (prefers-reduced-motion:reduce){.l,.h,.g,.gl,.blob-a,.blob-b,.fadeup{animation:none !important}.c1,.c2,.c3,.gd{animation:none !important;opacity:1}}
+@media (max-width:767px){.hide-m{display:none !important}.nav{display:none !important}.full-m{width:100%;justify-content:center}.callouts{position:static !important;margin-top:16px}}
+@media (min-width:768px){.menu-btn{display:none !important}}
+@media (min-width:1024px){.sticky-d{position:sticky;top:104px;align-self:flex-start}}
+.steps .card{position:relative}
+.tear{animation:tear .7s cubic-bezier(.45,0,.7,.2) forwards}
+@keyframes tear{0%{transform:none}28%{transform:translateY(5px) rotate(1.2deg)}100%{transform:translate(16px,130px) rotate(8deg);opacity:0}}
+.mcta{display:none}
+@media (max-width:767px){.mcta{display:flex}footer{padding-bottom:96px}}
+.btn-dark:hover{background:#000000 !important}
+@media (max-width:767px){
+[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}
+section[style*="padding: 120px 32px"]{padding-top:72px !important}
+#faq{padding-bottom:72px !important}
+[style*="padding: 112px 32px 120px"]{padding-top:72px !important;padding-bottom:80px !important}
+[style*="padding: 104px 32px 152px"]{padding-top:40px !important;padding-bottom:112px !important;gap:40px !important}
+header [style*="height: 72px"]{height:64px !important}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.stats li{padding:18px 16px !important;flex-direction:column;align-items:flex-start !important;gap:10px !important}
+.stats li > span:first-child{width:36px !important;height:36px !important;border-radius:10px !important}
+.stats .big{font-size:26px !important}
+.ticket-pad{padding-left:22px !important;padding-right:22px !important}
+.mplay-off .l,.mplay-off .h,.mplay-off .g,.mplay-off .gl{animation:none !important}
+.mplay-off .c1,.mplay-off .c2,.mplay-off .c3,.mplay-off .gd{animation:none !important;opacity:1}
+}
+@media (min-width:768px){.mmenu{display:none !important}}
+section[id]{scroll-margin-top:80px}
+.mcta{transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.mcta-off{transform:translateY(110%)}
+.mlink{transition:background-color .15s}.mlink:hover{background:#F7F8FA}
+
+/* --- Scrollbars --- */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
+::-webkit-scrollbar-thumb{background:rgba(21,26,35,.18);border-radius:999px;border:4px solid transparent;background-clip:padding-box;min-height:40px}
+::-webkit-scrollbar-thumb:hover{background:rgba(21,26,35,.36);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:rgba(21,26,35,.5);border:3px solid transparent;background-clip:padding-box}
+@supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(21,26,35,.24) transparent}}
+/* --- Liquid glass --- */
+.lg-page{--gbg:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));--gbd:rgba(255,255,255,.78);--gsh:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 12px 32px -14px rgba(21,26,35,.20),0 2px 6px -2px rgba(21,26,35,.06);--gblur:blur(24px) saturate(180%);
+background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 62%),radial-gradient(900px 700px at 100% 40%,#ECF8D6 0%,rgba(236,248,214,0) 60%),radial-gradient(820px 620px at 15% 85%,#F1E8FF 0%,rgba(241,232,255,0) 60%),#F3F4F7 !important;background-attachment:fixed !important}
+.lg-page [style*="background: #FFFFFF; border: 1px solid #DCE1E8"],.lg-page .card[style*="background: #FFFFFF"],.lg-page details[style*="background: #FFFFFF"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page [style*="border-radius: 24px"]{border-radius:30px !important}
+.lg-page [style*="border-radius: 20px"]{border-radius:26px !important}
+.lg-page .btn{border-radius:999px !important}
+.lg-page .btn-accent{background:linear-gradient(180deg,#DCFF96 0%,#C5F66A 55%,#B2E852 100%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(0,0,0,.06),0 12px 26px -12px rgba(105,155,20,.7) !important}
+.lg-page .btn-dark{background:linear-gradient(180deg,#2C3849,#121A24) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
+.lg-page .btn-line,.lg-page .btn-ghost-d{border-radius:999px !important}
+.lg-page .fld{border-radius:16px !important;background:rgba(255,255,255,.72) !important;border-color:rgba(21,26,35,.10) !important}
+.lg-page [role="tablist"]{background:rgba(118,118,128,.14) !important;border:none !important;border-radius:999px !important;padding:3px !important;box-shadow:none !important}
+.lg-page [role="tablist"] button,.lg-page [role="group"] button{border-radius:999px !important}
+.lg-page header{background:transparent !important;border-bottom:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;padding-top:12px}
+.lg-page header > div[style]{max-width:1200px !important;border-radius:999px;background:var(--gbg);border:1px solid var(--gbd);box-shadow:var(--gsh);-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);padding:0 10px 0 22px !important}
+.lg-page .c1,.lg-page .c2,.lg-page .c3{background:linear-gradient(180deg,rgba(44,56,74,.62),rgba(22,30,42,.50)) !important;border-color:rgba(255,255,255,.2) !important;-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border-radius:999px !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px -12px rgba(0,0,0,.55) !important}
+.lg-page .c1 > span,.lg-page .c2 > span,.lg-page .c3 > span{border-radius:999px !important}
+.lg-page .stats{background:transparent !important;border:none !important;box-shadow:none !important;overflow:visible !important;gap:12px !important}
+.lg-page .stats li{background:var(--gbg) !important;border:1px solid var(--gbd);box-shadow:var(--gsh);border-radius:30px;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .mcta{left:12px !important;right:12px !important;bottom:12px !important;border-radius:30px;border:1px solid var(--gbd) !important;background:var(--gbg) !important;box-shadow:var(--gsh)}
+.lg-page .mmenu{top:84px !important;background:rgba(18,26,36,.18) !important}
+.lg-page .mmenu nav{margin:0 12px;border-radius:30px;background:var(--gbg) !important;border:1px solid var(--gbd) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .pop{background:var(--gbg) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);border-color:var(--gbd) !important;border-radius:22px !important}
+.lg-page .opt{border-radius:20px !important}
+@media (max-width:767px){.lg-page header{padding-top:8px}.lg-page header > div[style]{margin:0 12px !important;padding:0 6px 0 14px !important}}
+.lg-page header{margin-bottom:-84px}
+.lg-page [style*="padding: 104px 32px 152px"]{padding-top:150px !important}
+@media (max-width:767px){.lg-page [style*="padding: 104px 32px 152px"]{padding-top:104px !important}}
+details summary{list-style:none;cursor:pointer}
+details summary::-webkit-details-marker{display:none}
+details .chev{transition:transform .22s cubic-bezier(.22,1,.36,1),background-color .2s}
+details[open] .chev{transform:rotate(180deg);background:#C5F66A !important}
+</style>
+
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="background: #F7F8FA; overflow-x: clip">
+<div class="lg-page {{motionCls}}" style="font-family: Manrope, system-ui, sans-serif; color: #151A23; background: #F7F8FA; min-height: 100vh; {{leaveStyle}}">
+<a ref="{{setGo}}" href="upload.html" tabindex="-1" aria-hidden="true" style="display: none">Перейти к оформлению</a>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(247,248,250,.88); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid #DCE1E8">
+<div style="max-width: 1264px; margin: 0 auto; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: #151A23">
+<svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span>Оформление</span>
+</a>
+<nav class="nav" aria-label="Основное меню" style="display: flex; gap: 32px; font-size: 15px; font-weight: 600">
+<a href="#how" style="text-decoration: none; color: #596273">Как работает</a>
+<a href="#fix" style="text-decoration: none; color: #596273">Что исправляем</a>
+<a href="#price" style="text-decoration: none; color: #596273">Стоимость</a>
+<a href="#faq" style="text-decoration: none; color: #596273">Вопросы</a>
+</nav>
+<div style="display: flex; gap: 8px; align-items: center">
+<a href="upload.html" onClick="{{go}}" class="btn btn-accent" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 12px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap"><span>Оформить<span class="hide-m"> работу</span></span><svg class="arr hide-m" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<button type="button" class="menu-btn" aria-label="{{menuLabel}}" aria-expanded="{{menuStr}}" aria-controls="mmenu" onClick="{{toggleMenu}}" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DCE1E8; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="{{menuIcon}}"></path></svg></button>
+</div>
+</div>
+</header>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div id="mmenu" class="mmenu" onKeyDown="{{menuKey}}" style="position: fixed; top: 64px; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(18,26,36,.45)">
+<nav aria-label="Мобильное меню" style="background: #FFFFFF; border-bottom: 1px solid #DCE1E8; padding: 4px 20px 20px; display: flex; flex-direction: column; box-shadow: 0 20px 40px -20px rgba(21,26,35,.4)">
+<a href="#how" class="mlink" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 4px; border-bottom: 1px solid #EEF0F3; font-size: 18px; font-weight: 700; text-decoration: none; color: #151A23">Как работает<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a><a href="#fix" class="mlink" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 4px; border-bottom: 1px solid #EEF0F3; font-size: 18px; font-weight: 700; text-decoration: none; color: #151A23">Что исправляем<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a><a href="#price" class="mlink" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 4px; border-bottom: 1px solid #EEF0F3; font-size: 18px; font-weight: 700; text-decoration: none; color: #151A23">Стоимость<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a><a href="#faq" class="mlink" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 4px; border-bottom: 1px solid #EEF0F3; font-size: 18px; font-weight: 700; text-decoration: none; color: #151A23">Вопросы<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<a href="upload.html" onClick="{{goMenu}}" class="btn btn-accent" style="margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 14px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 16px; text-decoration: none">Оформить работу</a>
+</nav>
+</div>
+</sc-if>
+
+<section id="top" style="position: relative; overflow: hidden; background: radial-gradient(110% 85% at 88% 0%, rgba(74,123,208,.30) 0%, rgba(74,123,208,0) 55%), radial-gradient(80% 70% at 0% 100%, rgba(197,246,106,.10) 0%, rgba(197,246,106,0) 60%), linear-gradient(165deg, #131C27 0%, #0F161F 100%); color: #FFFFFF">
+
+<div style="position: relative; max-width: 1264px; margin: 0 auto; padding: 104px 32px 152px; display: flex; flex-wrap: wrap; align-items: center; gap: 72px">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+<p class="fadeup" style="margin: 0; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); border-radius: 999px; font-size: 14px; color: #C9D1DC">
+<span style="width: 24px; height: 24px; border-radius: 50%; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg></span>
+По шаблону кафедры или вашим настройкам</p>
+<h1 class="fadeup" style="margin: 0; font-size: clamp(40px, 5.2vw, 70px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; animation-delay: .07s">Оформите работу по требованиям <span style="color: #C5F66A">вашей кафедры</span></h1>
+<p class="fadeup" style="margin: 0; font-size: 19px; line-height: 1.55; color: #C9D1DC; max-width: 540px; animation-delay: .14s">Загрузите DOCX, выберите шаблон или задайте параметры. Посмотрите изменения и скачайте исправленный документ.</p>
+<div class="fadeup" style="display: flex; flex-wrap: wrap; gap: 12px; animation-delay: .21s">
+<a href="upload.html" onClick="{{go}}" class="btn btn-accent full-m" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 26px; border-radius: 14px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 17px; text-decoration: none; box-shadow: 0 10px 30px -10px rgba(197,246,106,.55)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"></path><path d="M7.5 8.5L12 4l4.5 4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>
+Загрузить работу</a>
+<a href="#compare" class="btn btn-ghost-d full-m" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 22px; border-radius: 14px; border: 1px solid rgba(255,255,255,.22); color: #FFFFFF; font-weight: 600; font-size: 17px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="8" height="16" rx="1.5"></rect><rect x="13" y="4" width="8" height="16" rx="1.5"></rect><path d="M5.5 8h3M5.5 11h3M15.5 8h3M15.5 11h3"></path></svg>
+Посмотреть пример</a>
+</div>
+<div class="fadeup" style="display: flex; gap: 14px; align-items: center; align-self: flex-start; max-width: 520px; padding: 12px 18px 12px 12px; border-radius: 18px; background: rgba(197,246,106,.07); border: 1px solid rgba(197,246,106,.28); animation-delay: .25s">
+<span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; font-size: 15px; line-height: 1.4"><b style="color: #FFFFFF">Сначала результат — потом оплата</b><span style="color: #C9D1DC">Не подошёл предпросмотр — ничего не платите. 250 ₽ только за готовый файл.</span></span>
+</div>
+<ul class="fadeup" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: #9AA5B4; animation-delay: .28s">
+<li style="display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg>DOCX</li>
+<li style="display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>Предпросмотр до оплаты</li>
+<li style="display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>Без подписки</li>
+</ul>
+</div>
+
+<div class="fadeup" style="flex: 1 1 440px; min-width: 0; max-width: 540px; display: flex; flex-direction: column; gap: 14px; animation-delay: .3s">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 14px; color: #A9C9FF; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 18v3"></path><path d="M10 9l4 2-4 2z" fill="currentColor"></path></svg>Демонстрационный пример</span>
+<button type="button" onClick="{{togglePause}}" aria-pressed="{{pausedStr}}" class="btn btn-ghost-d" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: #FFFFFF; font: 600 14px Manrope, sans-serif; cursor: pointer">
+<sc-if value="{{paused}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"></path></svg></sc-if>
+<sc-if value="{{playing}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"></rect><rect x="14" y="5" width="4" height="14" rx="1.2"></rect></svg></sc-if>
+{{pauseLabel}}</button>
+</div>
+
+<div style="position: relative">
+<div class="hide-m" aria-hidden="true" style="position: absolute; inset: 18px -14px -14px 18px; border-radius: 22px; background: #1C2633; border: 1px solid rgba(255,255,255,.07); transform: rotate(3deg)"></div>
+<div class="hide-m" aria-hidden="true" style="position: absolute; inset: 10px 10px -8px -10px; border-radius: 22px; background: #233042; border: 1px solid rgba(255,255,255,.08); transform: rotate(-2.5deg)"></div>
+<div style="position: relative; background: #FFFFFF; border-radius: 20px; color: #151A23; box-shadow: 0 40px 90px -20px rgba(0,0,0,.6); overflow: hidden">
+<div class="gl" aria-hidden="true" style="position: absolute; inset: 0; border-radius: 20px; box-shadow: inset 0 0 0 2px #C5F66A; pointer-events: none"></div>
+<div style="height: 48px; padding: 0 18px; border-bottom: 1px solid #EEF0F3; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #596273">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7BD0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg>
+<span style="font-weight: 600; color: #151A23">primer_raboty.docx</span>
+<span style="margin-left: auto">стр. 2</span>
+</div>
+<div style="position: relative; padding: 38px 40px 40px 60px">
+<div class="gd" aria-hidden="true" style="position: absolute; top: 20px; left: 44px; right: 24px; bottom: 22px; border: 1.25px dashed #4A7BD0; border-radius: 4px; background: rgba(169,201,255,.08)"></div>
+<div class="gd" aria-hidden="true" style="position: absolute; left: 8px; top: 50%; display: flex; align-items: center; gap: 0">
+<svg width="36" height="12" viewBox="0 0 36 12" aria-hidden="true"><path d="M1 6h34M5 2L1 6l4 4M31 2l4 4-4 4" fill="none" stroke="#4A7BD0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="gd" aria-hidden="true" style="position: absolute; left: 5px; top: calc(50% + 12px); padding: 2px 6px; border-radius: 999px; background: #151A23; color: #C5F66A; font-size: 10px; font-weight: 800; white-space: nowrap">30 мм</div>
+<div class="h" style="position: relative; height: 13px; width: 50%; margin: 0 auto 26px; background: #151A23; border-radius: 4px"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 11px">
+<div class="l" style="--dx: 22px; height: 7px; width: 92%; margin-left: 8%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l" style="--dx: -14px; height: 7px; width: 100%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l g" style="--dx: 10px; --dy: 7px; height: 7px; width: 100%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l" style="--dx: -20px; height: 7px; width: 62%; background: #C4CBD5; border-radius: 4px"></div>
+</div>
+<div class="h" style="position: relative; height: 10px; width: 38%; margin: 28px 0 18px 8%; background: #151A23; border-radius: 4px; animation-delay: .15s"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 11px">
+<div class="l g" style="--dx: 28px; --dy: -6px; height: 7px; width: 92%; margin-left: 8%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l" style="--dx: -10px; height: 7px; width: 100%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l" style="--dx: 16px; height: 7px; width: 100%; background: #C4CBD5; border-radius: 4px"></div>
+<div class="l" style="--dx: -24px; height: 7px; width: 46%; background: #C4CBD5; border-radius: 4px"></div>
+</div>
+<div style="position: relative; display: flex; justify-content: center; margin-top: 26px"><span style="font-size: 11px; font-weight: 600; color: #596273">2</span></div>
+</div>
+</div>
+
+<div class="callouts" style="position: absolute; right: -44px; bottom: -30px; display: flex; flex-direction: column; gap: 8px">
+<div class="c1" style="display: flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; background: rgba(18,26,36,.94); border: 1px solid rgba(255,255,255,.12); color: #FFFFFF; border-radius: 14px; font-size: 13px; font-weight: 600; box-shadow: 0 14px 30px -10px rgba(0,0,0,.5)">
+<span style="width: 30px; height: 30px; border-radius: 9px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><rect x="8" y="7" width="8" height="10" rx=".5" stroke-dasharray="2 2"></rect></svg></span>Поля 30 / 15 / 20 / 20 мм</div>
+<div class="c2" style="display: flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; background: rgba(18,26,36,.94); border: 1px solid rgba(255,255,255,.12); color: #FFFFFF; border-radius: 14px; font-size: 13px; font-weight: 600; box-shadow: 0 14px 30px -10px rgba(0,0,0,.5)">
+<span style="width: 30px; height: 30px; border-radius: 9px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="M5 4v16M3 6l2-2 2 2M3 18l2 2 2-2"></path></svg></span>Интервал 1,5 · отступ 1,25 см</div>
+<div class="c3" style="display: flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; background: rgba(18,26,36,.94); border: 1px solid rgba(255,255,255,.12); color: #FFFFFF; border-radius: 14px; font-size: 13px; font-weight: 600; box-shadow: 0 14px 30px -10px rgba(0,0,0,.5)">
+<span style="width: 30px; height: 30px; border-radius: 9px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5v14M13 5v14M5 12h8"></path><path d="M17 9l2-1.5V19"></path></svg></span>Заголовки единообразны</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div style="position: relative; z-index: 2; max-width: 1264px; margin: -64px auto 0; padding: 0 32px">
+<ul class="stats" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #DCE1E8; border: 1px solid #DCE1E8; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(21,26,35,.35)">
+<li style="background: #FFFFFF; padding: 26px 28px; display: flex; gap: 16px; align-items: center">
+<span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h3l2-5 4 10 2-5h3"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span class="big" style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">4 шага</span><span style="font-size: 14px; color: #596273">от загрузки до готового файла</span></span></li>
+<li style="background: #FFFFFF; padding: 26px 28px; display: flex; gap: 16px; align-items: center">
+<span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EAF1FF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B4C86" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span class="big" style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">20 МБ</span><span style="font-size: 14px; color: #596273">максимальный размер DOCX</span></span></li>
+<li style="background: #FFFFFF; padding: 26px 28px; display: flex; gap: 16px; align-items: center">
+<span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EAF1FF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B4C86" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span class="big" style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">0 ₽</span><span style="font-size: 14px; color: #596273">за просмотр результата и отчёта</span></span></li>
+<li style="background: #FFFFFF; padding: 26px 28px; display: flex; gap: 16px; align-items: center">
+<span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EAF1FF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B4C86" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span class="big" style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">24 ч</span><span style="font-size: 14px; color: #596273">и файлы удаляются автоматически</span></span></li>
+</ul>
+</div>
+
+<section id="pain" aria-labelledby="pain-h" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 0">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>Знакомо?</p>
+<h2 id="pain-h" style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Работа готова, а оформление — нет</h2>
+</div>
+<p style="margin: 0; max-width: 380px; font-size: 17px; line-height: 1.6; color: #596273">Текст вы уже написали. Мы берём на себя рутину, которая обычно съедает вечер перед сдачей.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+<div style="padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FDECEA; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"></path><path d="M4 9h11a5 5 0 0 1 0 10h-3"></path></svg></span>
+<p style="margin: 0; font-size: 19px; line-height: 1.4; font-weight: 700">«Работу вернули из-за полей, шрифта и интервалов»</p>
+</div>
+<div style="padding: 18px 26px; background: #F4FDE4; border-top: 1px solid #E2F3C4; display: flex; gap: 12px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>
+<span style="font-size: 15px; line-height: 1.5; color: #1F3A0C">Параметры применяются ко всему документу сразу — по шаблону кафедры или вашим настройкам</span>
+</div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+<div style="padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FDECEA; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h7"></path><path d="M17 15l4 4M21 15l-4 4"></path></svg></span>
+<p style="margin: 0; font-size: 19px; line-height: 1.4; font-weight: 700">«Заголовки оформлены по-разному, оглавление съехало»</p>
+</div>
+<div style="padding: 18px 26px; background: #F4FDE4; border-top: 1px solid #E2F3C4; display: flex; gap: 12px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>
+<span style="font-size: 15px; line-height: 1.5; color: #1F3A0C">Единый стиль для каждого уровня заголовков и оглавление по структуре документа</span>
+</div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+<div style="padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FDECEA; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 0 1 4.6 1.3c0 1.7-2.1 2-2.1 3.2M12 17h.01"></path></svg></span>
+<p style="margin: 0; font-size: 19px; line-height: 1.4; font-weight: 700">«Непонятно, что ещё не так перед сдачей»</p>
+</div>
+<div style="padding: 18px 26px; background: #F4FDE4; border-top: 1px solid #E2F3C4; display: flex; gap: 12px; align-items: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>
+<span style="font-size: 15px; line-height: 1.5; color: #1F3A0C">Отчёт до оплаты: что исправлено и что стоит проверить вручную</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="compare" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 0">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: 44px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>До и после</p>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Один и тот же документ — до и после обработки</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #596273">Демонстрационный фрагмент. Подсвечены только изменения, перечисленные ниже.</p>
+</div>
+<div class="ba-tabs" role="tablist" aria-label="Вид сравнения" style="display: flex; gap: 4px; padding: 4px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 14px; margin-bottom: 16px">
+<button type="button" role="tab" aria-selected="{{tabBeforeSel}}" onClick="{{showBefore}}" style="flex: 1; height: 44px; border: 0; border-radius: 10px; font: 700 15px Manrope, sans-serif; cursor: pointer; {{tabBeforeStyle}}">До</button>
+<button type="button" role="tab" aria-selected="{{tabAfterSel}}" onClick="{{showAfter}}" style="flex: 1; height: 44px; border: 0; border-radius: 10px; font: 700 15px Manrope, sans-serif; cursor: pointer; {{tabAfterStyle}}">После</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<div class="{{beforeCls}}" style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<span style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px"><span style="width: 32px; height: 32px; border-radius: 10px; background: #FDECEA; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9.5 12.5l5 5M14.5 12.5l-5 5"></path></svg></span>До</span>
+<span style="font-size: 13px; color: #596273">Исходный DOCX</span></div>
+<div style="flex: 1; background: #F7F8FA; border: 1px solid #EEF0F3; border-radius: 14px; padding: 28px 22px; font-family: Arial, sans-serif; font-size: 13px; line-height: 1.15; color: #151A23; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 19px; font-weight: 700; background: rgba(180,35,24,.07); box-shadow: inset 2px 0 0 #B42318; border-radius: 4px; padding: 3px 6px">1. введение<span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #B42318; color: #FFFFFF; font: 800 11px Manrope, sans-serif; display: flex; align-items: center; justify-content: center">1</span></p>
+<p style="margin: 0; display: flex; gap: 8px; align-items: flex-start; background: rgba(180,35,24,.07); box-shadow: inset 2px 0 0 #B42318; border-radius: 4px; padding: 3px 6px"><span>Актуальность темы исследования обусловлена ростом объёма данных, которые требуется обрабатывать в учебных организациях.</span><span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #B42318; color: #FFFFFF; font: 800 11px Manrope, sans-serif; display: flex; align-items: center; justify-content: center">2</span></p>
+<p style="margin: 0; padding: 3px 6px">Целью работы является разработка подхода к единообразному оформлению текстовых документов.</p>
+<p style="margin: 0; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 15px; font-style: italic; background: rgba(180,35,24,.07); box-shadow: inset 2px 0 0 #B42318; border-radius: 4px; padding: 3px 6px">1.1 Обзор подходов<span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #B42318; color: #FFFFFF; font: normal 800 11px Manrope, sans-serif; display: flex; align-items: center; justify-content: center">3</span></p>
+<p style="margin: 0; display: flex; justify-content: flex-end; gap: 8px; align-items: center; font-size: 11px; color: #596273; background: rgba(180,35,24,.07); box-shadow: inset 2px 0 0 #B42318; border-radius: 4px; padding: 3px 6px">стр. 2<span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #B42318; color: #FFFFFF; font: 800 11px Manrope, sans-serif; display: flex; align-items: center; justify-content: center">4</span></p>
+</div>
+</div>
+<div class="{{afterCls}}" style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<span style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px"><span style="width: 32px; height: 32px; border-radius: 10px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 14.5l2 2 4-4.5"></path></svg></span>После</span>
+<span style="font-size: 13px; color: #596273">Профиль: свои настройки</span></div>
+<div style="flex: 1; background: #F7F8FA; border: 1px solid #EEF0F3; border-radius: 14px; padding: 28px 22px; font-family: 'Times New Roman', serif; font-size: 14px; line-height: 1.5; color: #151A23; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; position: relative; font-size: 16px; font-weight: 700; text-align: center; text-transform: uppercase; background: rgba(169,201,255,.32); box-shadow: inset 2px 0 0 #4A7BD0; border-radius: 4px; padding: 3px 30px">1 Введение<span style="position: absolute; right: 6px; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: #2B4C86; color: #FFFFFF; font: 800 11px Manrope, sans-serif; text-transform: none; display: flex; align-items: center; justify-content: center">1</span></p>
+<p style="margin: 0; position: relative; text-indent: 1.25em; text-align: justify; background: rgba(169,201,255,.32); box-shadow: inset 2px 0 0 #4A7BD0; border-radius: 4px; padding: 3px 32px 3px 6px">Актуальность темы исследования обусловлена ростом объёма данных, которые требуется обрабатывать в учебных организациях.<span style="position: absolute; right: 6px; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: #2B4C86; color: #FFFFFF; font: 800 11px Manrope, sans-serif; text-indent: 0; display: flex; align-items: center; justify-content: center">2</span></p>
+<p style="margin: 0; text-indent: 1.25em; text-align: justify; padding: 3px 32px 3px 6px">Целью работы является разработка подхода к единообразному оформлению текстовых документов.</p>
+<p style="margin: 0; position: relative; font-weight: 700; text-indent: 1.25em; background: rgba(169,201,255,.32); box-shadow: inset 2px 0 0 #4A7BD0; border-radius: 4px; padding: 3px 6px">1.1 Обзор подходов<span style="position: absolute; right: 6px; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: #2B4C86; color: #FFFFFF; font: 800 11px Manrope, sans-serif; text-indent: 0; display: flex; align-items: center; justify-content: center">3</span></p>
+<p style="margin: 0; position: relative; text-align: center; font-size: 12px; background: rgba(169,201,255,.32); box-shadow: inset 2px 0 0 #4A7BD0; border-radius: 4px; padding: 3px 6px">2<span style="position: absolute; right: 6px; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: #2B4C86; color: #FFFFFF; font: 800 11px Manrope, sans-serif; display: flex; align-items: center; justify-content: center">4</span></p>
+</div>
+</div>
+<ol style="flex: 1 1 100%; min-width: 0; margin: 0; padding: 26px; list-style: none; background: #121A24; color: #FFFFFF; border-radius: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 28px">
+<li style="grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #9AA5B4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>Показанные изменения</li>
+<li style="display: flex; gap: 12px"><span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #A9C9FF; color: #121A24; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center">1</span><span style="font-size: 15px; line-height: 1.5">Заголовок раздела: по центру, прописными, полужирный 16 pt, без точки после номера</span></li>
+<li style="display: flex; gap: 12px"><span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #A9C9FF; color: #121A24; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center">2</span><span style="font-size: 15px; line-height: 1.5">Основной текст: Times New Roman 14 pt, интервал 1,5, отступ 1,25 см, по ширине</span></li>
+<li style="display: flex; gap: 12px"><span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #A9C9FF; color: #121A24; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center">3</span><span style="font-size: 15px; line-height: 1.5">Подзаголовок: единый стиль второго уровня</span></li>
+<li style="display: flex; gap: 12px"><span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #A9C9FF; color: #121A24; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center">4</span><span style="font-size: 15px; line-height: 1.5">Номер страницы: внизу по центру, без слова «стр.»</span></li>
+</ol>
+</div>
+</section>
+
+<div style="position: relative; overflow: hidden; margin-top: 120px; background: radial-gradient(90% 70% at 100% 100%, rgba(74,123,208,.22) 0%, rgba(74,123,208,0) 60%), linear-gradient(180deg, #0F161F 0%, #142033 100%); color: #FFFFFF">
+
+<section id="how" style="position: relative; max-width: 1264px; margin: 0 auto; padding: 112px 32px 120px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 52px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #9AA5B4"><span style="width: 18px; height: 2px; background: #C5F66A; border-radius: 2px"></span>Как работает</p>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Четыре шага от черновика <span style="color: #C5F66A">к готовому файлу</span></h2>
+</div>
+<p style="margin: 0; max-width: 360px; font-size: 16px; line-height: 1.6; color: #C9D1DC">Без обязательной регистрации и пароля. Доступ к заказу восстанавливается по ссылке на email.</p>
+</div>
+<div class="steps" style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+<div aria-hidden="true" class="hide-m" style="position: absolute; left: 40px; right: 40px; top: 92px; border-top: 2px dashed rgba(197,246,106,.45)"></div>
+
+<div class="card" style="color: #151A23; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 160px; border-radius: 16px; background: #F2F4F7; display: flex; align-items: center; justify-content: center">
+<svg width="210" height="136" viewBox="0 0 160 104" aria-hidden="true"><path d="M60 12h28l14 14v62a4 4 0 0 1-4 4H60a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z" fill="#FFFFFF" stroke="#151A23" stroke-width="1.75" stroke-linejoin="round"></path><path d="M88 12v14h14" fill="none" stroke="#151A23" stroke-width="1.75" stroke-linejoin="round"></path><path d="M64 40h28M64 48h28M64 56h18" stroke="#C4CBD5" stroke-width="3.5" stroke-linecap="round"></path><circle cx="104" cy="76" r="16" fill="#C5F66A" stroke="#151A23" stroke-width="1.75"></circle><path d="M104 84V68M97.5 74.5L104 68l6.5 6.5" fill="none" stroke="#151A23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div style="padding: 0 14px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 800; color: #596273; letter-spacing: .04em">01</span>
+<h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Загрузите файл</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Один документ DOCX до 20 МБ. Проверим структуру и сразу скажем, что поддерживается.</p>
+</div>
+</div>
+
+<div class="card" style="color: #151A23; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 160px; border-radius: 16px; background: #F2F4F7; display: flex; align-items: center; justify-content: center">
+<svg width="210" height="136" viewBox="0 0 160 104" aria-hidden="true"><rect x="36" y="14" width="88" height="76" rx="12" fill="#FFFFFF" stroke="#151A23" stroke-width="1.75"></rect><path d="M50 34h60M50 52h60M50 70h60" stroke="#DCE1E8" stroke-width="4" stroke-linecap="round"></path><path d="M50 34h38M50 52h18M50 70h46" stroke="#151A23" stroke-width="4" stroke-linecap="round"></path><circle cx="88" cy="34" r="6.5" fill="#FFFFFF" stroke="#151A23" stroke-width="1.75"></circle><circle cx="68" cy="52" r="6.5" fill="#C5F66A" stroke="#151A23" stroke-width="1.75"></circle><circle cx="96" cy="70" r="6.5" fill="#FFFFFF" stroke="#151A23" stroke-width="1.75"></circle></svg>
+</div>
+<div style="padding: 0 14px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 800; color: #596273; letter-spacing: .04em">02</span>
+<h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Выберите требования</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Проверенный шаблон кафедры или свои параметры из методички.</p>
+</div>
+</div>
+
+<div class="card" style="color: #151A23; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 26px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 160px; border-radius: 16px; background: #F2F4F7; display: flex; align-items: center; justify-content: center">
+<svg width="210" height="136" viewBox="0 0 160 104" aria-hidden="true"><rect x="40" y="12" width="56" height="80" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.75"></rect><path d="M48 26h40M48 34h40M48 42h28M48 60h40M48 68h32" stroke="#C4CBD5" stroke-width="3.5" stroke-linecap="round"></path><rect x="45" y="47" width="46" height="9" rx="2" fill="#A9C9FF" fill-opacity=".55"></rect><circle cx="102" cy="58" r="18" fill="#FFFFFF" fill-opacity=".9" stroke="#151A23" stroke-width="1.75"></circle><path d="M115 71l13 13" stroke="#151A23" stroke-width="4" stroke-linecap="round"></path><path d="M95 58l5 5 9-10" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div style="padding: 0 14px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 800; color: #596273; letter-spacing: .04em">03</span>
+<h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Проверьте изменения</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Предпросмотр результата и отчёт: что исправлено и что стоит проверить вручную.</p>
+</div>
+</div>
+
+<div class="card" style="background: #C5F66A; border: 1px solid #C5F66A; border-radius: 24px; padding: 12px 12px 26px; display: flex; flex-direction: column; gap: 16px; color: #121A24">
+<div style="height: 160px; border-radius: 16px; background: #B2E25A; display: flex; align-items: center; justify-content: center">
+<svg width="210" height="136" viewBox="0 0 160 104" aria-hidden="true"><path d="M56 12h28l14 14v62a4 4 0 0 1-4 4H56a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z" fill="#FFFFFF" stroke="#121A24" stroke-width="1.75" stroke-linejoin="round"></path><path d="M84 12v14h14" fill="none" stroke="#121A24" stroke-width="1.75" stroke-linejoin="round"></path><path d="M60 40h28M60 48h28M60 56h18" stroke="#C4CBD5" stroke-width="3.5" stroke-linecap="round"></path><path d="M60 72l5 5 9-10" fill="none" stroke="#2E5A12" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="104" cy="74" r="16" fill="#121A24"></circle><path d="M104 66v16M97.5 75.5L104 82l6.5-6.5" fill="none" stroke="#C5F66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div style="padding: 0 14px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 800; color: #121A24; letter-spacing: .04em">04</span>
+<h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em">Оплатите и скачайте</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #2F3B1E">Разовая оплата, исправленный DOCX и краткий отчёт. Повторное скачивание без новой оплаты.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<section id="fix" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 0">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: 44px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>Что исправляем</p>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Оформление, а не содержание</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #596273">Текст работы остаётся вашим. Список возможностей сверяется с движком перед запуском.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема полей страницы" style="display: block; background: #F2F4F7; border-radius: 16px"><rect x="100" y="14" width="80" height="112" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.5"></rect><rect x="116" y="24" width="56" height="92" rx="1.5" fill="#A9C9FF" fill-opacity=".2" stroke="#4A7BD0" stroke-width="1.25" stroke-dasharray="3 3"></rect><path d="M122 34h44M122 42h44M122 50h44M122 58h44M122 66h44M122 74h44M122 82h30" stroke="#C4CBD5" stroke-width="2.6" stroke-linecap="round"></path><path d="M64 70h44" stroke="#151A23" stroke-width="1.2" stroke-dasharray="2 3"></path><circle cx="108" cy="70" r="2.6" fill="#151A23"></circle><rect x="20" y="60" width="46" height="20" rx="10" fill="#151A23"></rect><text x="43" y="74" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#C5F66A">30 мм</text><path d="M176 46h38" stroke="#151A23" stroke-width="1.2" stroke-dasharray="2 3"></path><circle cx="176" cy="46" r="2.6" fill="#151A23"></circle><rect x="214" y="36" width="46" height="20" rx="10" fill="#151A23"></rect><text x="237" y="50" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#C5F66A">15 мм</text><circle cx="140" cy="121" r="2" fill="#151A23"></circle></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Параметры страницы</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Поля, ориентация, положение номера страницы.</p></div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема абзацного отступа и интервала" style="display: block; background: #F2F4F7; border-radius: 16px"><path d="M56 30h24" stroke="#4A7BD0" stroke-width="1.4" stroke-linecap="round"></path><path d="M60 26l-4 4 4 4M76 26l4 4-4 4" fill="none" stroke="#4A7BD0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><rect x="88" y="20" width="54" height="20" rx="10" fill="#151A23"></rect><text x="115" y="34" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#C5F66A">1,25 см</text><path d="M82 52h136M56 68h162M56 84h162M56 100h162M56 116h98" stroke="#C4CBD5" stroke-width="4.5" stroke-linecap="round"></path><path d="M56 46v12" stroke="#4A7BD0" stroke-width="1.4" stroke-dasharray="2 2"></path><path d="M232 52v16" stroke="#151A23" stroke-width="1.4"></path><path d="M228 52h8M228 68h8" stroke="#151A23" stroke-width="1.4" stroke-linecap="round"></path><rect x="240" y="50" width="28" height="20" rx="10" fill="#C5F66A" stroke="#151A23" stroke-width="1.2"></rect><text x="254" y="64" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="800" fill="#121A24">1,5</text></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Основной текст</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Шрифт, размер, межстрочный интервал, отступ абзаца, выравнивание.</p></div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема уровней заголовков" style="display: block; background: #F2F4F7; border-radius: 16px"><path d="M150 12v28" stroke="#4A7BD0" stroke-width="1.2" stroke-dasharray="2 3"></path><rect x="24" y="18" width="30" height="18" rx="9" fill="#A9C9FF"></rect><text x="39" y="31" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="800" fill="#121A24">H1</text><rect x="110" y="21" width="80" height="11" rx="3" fill="#151A23"></rect><path d="M70 50h160" stroke="#C4CBD5" stroke-width="4.5" stroke-linecap="round"></path><rect x="24" y="62" width="30" height="18" rx="9" fill="#A9C9FF"></rect><text x="39" y="75" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="800" fill="#121A24">H2</text><rect x="86" y="66" width="72" height="9" rx="3" fill="#151A23"></rect><path d="M70 92h160M70 106h160M70 120h104" stroke="#C4CBD5" stroke-width="4.5" stroke-linecap="round"></path><path d="M70 64v14" stroke="#4A7BD0" stroke-width="1.2" stroke-dasharray="2 2"></path><circle cx="244" cy="26" r="10" fill="#C5F66A" stroke="#151A23" stroke-width="1.2"></circle><path d="M239.5 26l3 3 5.5-6" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Заголовки</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Единый стиль для каждого уровня, регистр и выравнивание.</p></div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема нумерации разделов и страниц" style="display: block; background: #F2F4F7; border-radius: 16px"><rect x="80" y="10" width="120" height="120" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.5"></rect><text x="96" y="38" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#2B4C86">1.1</text><path d="M120 34h64" stroke="#C4CBD5" stroke-width="4" stroke-linecap="round"></path><text x="96" y="58" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#2B4C86">1.2</text><path d="M120 54h52" stroke="#C4CBD5" stroke-width="4" stroke-linecap="round"></path><text x="96" y="78" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#2B4C86">1.3</text><path d="M120 74h60" stroke="#C4CBD5" stroke-width="4" stroke-linecap="round"></path><path d="M96 92h88" stroke="#EEF0F3" stroke-width="4" stroke-linecap="round"></path><circle cx="140" cy="112" r="11" fill="#C5F66A" stroke="#151A23" stroke-width="1.3"></circle><text x="140" y="116" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="800" fill="#121A24">12</text></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Нумерация</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Страницы, разделы и подписи к рисункам и таблицам.</p></div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема оглавления" style="display: block; background: #F2F4F7; border-radius: 16px"><rect x="112" y="14" width="56" height="7" rx="3" fill="#151A23"></rect><path d="M56 40h52M56 60h70M72 78h58M72 96h40M56 116h56" stroke="#151A23" stroke-width="4" stroke-linecap="round"></path><path d="M114 40h90M132 60h72M136 78h68M118 96h86M118 116h86" stroke="#8B97A8" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 6"></path><text x="214" y="44" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#151A23">3</text><text x="214" y="64" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#151A23">5</text><text x="214" y="82" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#151A23">9</text><text x="214" y="100" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#151A23">14</text><text x="214" y="120" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#151A23">29</text><rect x="50" y="70" width="190" height="34" rx="6" fill="none" stroke="#4A7BD0" stroke-width="1.2" stroke-dasharray="3 3"></rect></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Структура и оглавление</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Оглавление по заголовкам документа, разрывы перед разделами.</p></div>
+</div>
+
+<div class="card" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 12px 12px 24px; display: flex; flex-direction: column; gap: 18px">
+<svg viewBox="0 0 280 140" width="100%" height="148" role="img" aria-label="Схема таблицы с подписью" style="display: block; background: #F2F4F7; border-radius: 16px"><path d="M60 22h84" stroke="#151A23" stroke-width="4.5" stroke-linecap="round"></path><circle cx="160" cy="22" r="9" fill="#C5F66A" stroke="#151A23" stroke-width="1.2"></circle><path d="M156 22l2.6 2.6 4.8-5.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><rect x="60" y="36" width="160" height="88" rx="5" fill="#FFFFFF" stroke="#151A23" stroke-width="1.5"></rect><path d="M61.5 37.5h157v18h-157z" fill="#EEF2F7"></path><path d="M60 56h160M60 78h160M60 100h160M113 36v88M166 36v88" stroke="#DCE1E8" stroke-width="1.2"></path><path d="M70 46h30M123 46h30M176 46h30" stroke="#151A23" stroke-width="3" stroke-linecap="round"></path><path d="M70 67h24M123 67h32M176 67h20M70 89h34M123 89h22M176 89h30M70 111h20M123 111h28M176 111h24" stroke="#C4CBD5" stroke-width="3" stroke-linecap="round"></path></svg>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 20px; font-weight: 800">Таблицы и подписи</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #596273">Шрифт в таблицах, положение и формат подписей.</p></div>
+</div>
+</div>
+
+<div style="margin-top: 20px; display: flex; gap: 16px; align-items: center; padding: 18px 22px; border: 1px solid #DCE1E8; border-radius: 20px; background: #FFFFFF">
+<span style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: #FFF1DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A5300" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 5H7l5 7-5 7h10"></path></svg></span>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #151A23"><b>Формулы</b> сохраняем без изменений, автоматическое исправление их оформления пока недоступно. Сложные библиографические описания и перекрёстные ссылки отмечаем в отчёте как требующие проверки.</p>
+</div>
+</section>
+
+<section id="templates" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 0">
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 28px; padding: clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<span style="width: 56px; height: 56px; border-radius: 16px; background: #EAF1FF; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2B4C86" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5"></path><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"></path><path d="M3 20.5h18"></path></svg></span>
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>Шаблоны кафедр</p>
+<h2 style="margin: 0; font-size: clamp(28px, 3vw, 40px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 800">Найдите требования своей кафедры</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #596273">В каталоге только профили, сверенные с методичкой. Нет вашей кафедры — перенесите параметры из методички в свои настройки.</p>
+</div>
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<label for="tpl-search" style="font-size: 14px; font-weight: 700">Вуз, кафедра или вид работы</label>
+<div style="position: relative">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+<input id="tpl-search" type="search" placeholder="Например, экономическая кафедра, курсовая" style="width: 100%; height: 52px; padding: 0 16px 0 46px; border: 1px solid #DCE1E8; border-radius: 14px; font: 500 16px Manrope, sans-serif; color: #151A23; background: #F7F8FA">
+</div>
+<div class="card" style="border: 1px solid #DCE1E8; border-radius: 20px; padding: 18px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap">
+<span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"></path><path d="M22 9v6"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 200px">
+<span style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px">[Вуз] · [Кафедра]<span style="display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 999px; background: #F0FADF; color: #2E5A12; font-size: 11px; font-weight: 800"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg>проверен</span></span>
+<span style="font-size: 14px; color: #596273">[Вид работы] · версия 1 · [дата проверки]</span>
+<a href="#templates" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600">Основание: методичка, стр. [N]<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></a>
+</div>
+<a href="upload.html" onClick="{{go}}" class="btn" style="display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 16px; border-radius: 12px; background: #121A24; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none">Выбрать<svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+<a href="upload.html" onClick="{{go}}" class="btn" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px; background: #F7F8FA; border: 1px dashed #B8C1CD; border-radius: 16px; text-decoration: none">
+<span style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: #151A23"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg><span>Не нашли кафедру? <b>Использовать свои настройки</b></span></span>
+<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+</section>
+
+<section id="price" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 0">
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>Стоимость</p>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Платите за документ, а не за подписку</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #596273">Цену видно до оплаты. Если обработка не удалась по технической причине, повтор того же заказа бесплатен.</p>
+<div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCE1E8; align-self: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"></path><path d="M20 4v4h-4"></path></svg>
+<span style="font-size: 15px; font-weight: 600">Повтор при технической ошибке — бесплатно</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCE1E8; align-self: flex-start">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+<span style="font-size: 15px; font-weight: 600">Не подошёл предпросмотр — ничего не платите</span>
+</div>
+</div>
+<div style="flex: 1 1 400px; min-width: 0; max-width: 520px; position: relative; color: #FFFFFF; filter: drop-shadow(0 30px 34px rgba(21,26,35,.16))">
+<div class="ticket-pad" style="padding: 34px 34px 26px; display: flex; flex-direction: column; gap: 18px; background: #121A24; border-radius: 28px 28px 0 0; transition: transform .25s cubic-bezier(.22,1,.36,1); {{stubStyle}}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+<span style="display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 800"><span style="width: 36px; height: 36px; border-radius: 11px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 14.5l2 2 4-4.5"></path></svg></span>Разовая обработка</span>
+<span style="font-size: 12px; font-weight: 700; color: #9AA5B4; padding: 4px 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px">цена для макета</span>
+</div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-size: 68px; font-weight: 800; letter-spacing: -0.04em; line-height: 1">250 ₽</span><span style="font-size: 16px; color: #C9D1DC">за документ</span></div>
+</div>
+<div class="{{tearCls}}" style="background: #121A24; border-radius: 0 0 28px 28px; transform-origin: 0 0">
+<div aria-hidden="true" style="position: relative; height: 24px">
+<span style="position: absolute; left: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: #F7F8FA"></span>
+<span style="position: absolute; right: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: #F7F8FA"></span>
+<span style="position: absolute; left: 24px; right: 24px; top: 11px; border-top: 2px dashed rgba(255,255,255,.14)"></span>
+</div>
+<div class="ticket-pad" style="padding: 22px 34px 34px; display: flex; flex-direction: column; gap: 22px">
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.45">
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg>Один файл DOCX и одна подтверждённая версия параметров</li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>Предпросмотр и отчёт до оплаты</li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Скачивание в течение 24 часов, повторно — бесплатно</li>
+<li style="display: flex; gap: 12px; align-items: flex-start; color: #C9D1DC"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9AA5B4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Изменённый файл или другой профиль — новый расчёт</li>
+</ul>
+<a href="upload.html" onClick="{{goTear}}" class="btn btn-accent" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 14px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 17px; text-decoration: none">Оформить работу<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="faq" style="max-width: 1264px; margin: 0 auto; padding: 120px 32px 120px">
+<div style="display: flex; flex-wrap: wrap; gap: 48px">
+<div class="sticky-d" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #596273"><span style="width: 18px; height: 2px; background: #151A23; border-radius: 2px"></span>Вопросы</p>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800">Частые вопросы</h2>
+<a href="#top" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 15px; font-weight: 700; text-decoration: none"><span style="width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DCE1E8; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"></path></svg></span>Написать в поддержку</a>
+</div>
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<details open="" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Какие файлы поддерживаются?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Один документ DOCX до 20 МБ. DOC, DOCM, PDF, повреждённые и защищённые паролем файлы не принимаем — подскажем, как пересохранить.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Что делать, если шаблона моей кафедры нет?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Выберите «Свои настройки» и перенесите параметры из методички: поля, шрифт, интервал, отступ, выравнивание и номер страницы.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Сохраняются ли формулы?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Да, формулы сохраняются. Их оформление автоматически пока не исправляется.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Гарантируется ли принятие работы?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Нет. Мы применяем выбранные параметры и показываем, что требует проверки человеком. Решение о допуске принимает кафедра.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Когда удаляются файлы?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Через 24 часа после загрузки или сразу по кнопке «Удалить файлы». Срок виден на странице заказа.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Как вернуть оплату при ошибке?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Сначала доступен бесплатный повтор. Если он не помог, напишите в поддержку — условия описаны на странице возврата.</p>
+</details>
+<details style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 20px; padding: 0 22px">
+<summary style="min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 17px">Как восстановить доступ к заказу?<span class="chev" aria-hidden="true" style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></summary>
+<p style="margin: 0 0 22px; font-size: 16px; line-height: 1.6; color: #596273">Укажите email, который вводили при оплате, — пришлём одноразовую ссылку. Пароль не нужен.</p>
+</details>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="cta-h" style="max-width: 1264px; margin: 0 auto; padding: 0 32px 120px">
+<div style="position: relative; overflow: hidden; background: linear-gradient(120deg, #D6FB8E 0%, #C5F66A 45%, #AEE34E 100%); color: #121A24; border-radius: 32px; padding: clamp(32px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px">
+
+<div style="position: relative; flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 id="cta-h" style="margin: 0; font-size: clamp(32px, 4vw, 56px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 800">Приведите оформление работы в порядок</h2>
+<p style="margin: 0; max-width: 520px; font-size: 18px; line-height: 1.55; color: #2F3B1E">Загрузите DOCX — предпросмотр и отчёт увидите до оплаты.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="upload.html" onClick="{{go}}" class="btn btn-dark full-m" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 26px; border-radius: 14px; background: #121A24; color: #FFFFFF; font-weight: 700; font-size: 17px; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"></path><path d="M7.5 8.5L12 4l4.5 4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>
+Загрузить работу</a>
+<a href="#compare" class="btn full-m" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 22px; border-radius: 14px; border: 1.5px solid #121A24; color: #121A24; font-weight: 700; font-size: 17px; text-decoration: none">Посмотреть пример<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+<svg class="hide-m" viewBox="0 0 360 250" width="360" height="250" aria-hidden="true" style="position: relative; flex: none; max-width: 100%"><rect x="70" y="40" width="150" height="196" rx="12" fill="#A9DB4C" stroke="#121A24" stroke-width="2" transform="rotate(-9 145 138)"></rect><rect x="150" y="34" width="150" height="196" rx="12" fill="#E9FBC9" stroke="#121A24" stroke-width="2" transform="rotate(7 225 132)"></rect><rect x="105" y="22" width="156" height="206" rx="12" fill="#FFFFFF" stroke="#121A24" stroke-width="2"></rect><rect x="122" y="38" width="122" height="174" rx="3" fill="#A9C9FF" fill-opacity=".15" stroke="#4A7BD0" stroke-width="1.4" stroke-dasharray="4 4"></rect><rect x="148" y="52" width="70" height="9" rx="3" fill="#121A24"></rect><path d="M146 78h90M134 90h102M134 102h102M134 114h66M146 134h90M134 146h102M134 158h56" stroke="#C4CBD5" stroke-width="5" stroke-linecap="round"></path><circle cx="183" cy="198" r="5" fill="#121A24"></circle><circle cx="268" cy="196" r="32" fill="#121A24"></circle><path d="M254 196l10 10 18-20" fill="none" stroke="#C5F66A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+</section>
+
+<footer style="background: #121A24; color: #C9D1DC">
+<div style="max-width: 1264px; margin: 0 auto; padding: 56px 32px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 12px; flex: 1 1 260px">
+<span style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; color: #FFFFFF"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#1E2834"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>Оформление</span>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA5B4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>[email поддержки]</span>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA5B4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"></path><path d="M9 21v-6h6v6"></path></svg>[Реквизиты исполнителя]</span>
+</div>
+<nav aria-label="Документы" style="display: flex; flex-direction: column; gap: 12px; flex: 1 1 200px; font-size: 14px">
+<a href="#top" style="color: #C9D1DC">Публичная оферта</a>
+<a href="#top" style="color: #C9D1DC">Политика обработки данных</a>
+<a href="#top" style="color: #C9D1DC">Условия возврата</a>
+</nav>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 700; color: #FFFFFF">Анимация</span>
+<button type="button" role="switch" aria-checked="{{reducedStr}}" onClick="{{toggleReduce}}" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0; border: 0; background: transparent; color: #C9D1DC; font: 500 14px Manrope, sans-serif; cursor: pointer; align-self: flex-start">
+<span style="width: 44px; height: 26px; border-radius: 999px; padding: 3px; display: flex; {{switchTrack}}"><span style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; transition: transform .18s cubic-bezier(.22,1,.36,1); {{switchKnob}}"></span></span>
+Уменьшить анимацию</button>
+</div>
+</div>
+</footer>
+<div class="mcta {{mctaCls}}" aria-hidden="{{mctaHidden}}" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); background: rgba(247,248,250,.94); backdrop-filter: blur(12px); border-top: 1px solid #DCE1E8; flex-direction: column; gap: 6px; align-items: stretch">
+<a href="upload.html" onClick="{{go}}" class="btn btn-accent" style="display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 14px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 16px; text-decoration: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"></path><path d="M7.5 8.5L12 4l4.5 4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Загрузить работу</a>
+<span style="text-align: center; font-size: 12px; color: #596273">Предпросмотр бесплатно · 250 ₽ за готовый файл</span>
+</div>
+</div>
+</div>
+</template>
+<div class="demo-badge">Демо-макет · файлы не обрабатываются</div>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { paused: false, reduced: false, tab: 'before', leaving: false, tearing: false, mplay: false, menuOpen: false, scrolled: false };
+    this.goEl = null;
+  }
+  componentDidMount() {
+    this.onScroll = () => {
+      const v = (window.scrollY || 0) > 520;
+      if (v !== this.state.scrolled) this.setState({ scrolled: v });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    clearTimeout(this.goT0);
+    clearTimeout(this.goT1);
+    clearTimeout(this.goT2);
+  }
+  leave(e, tear) {
+    const sysReduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.state.reduced || sysReduce || !this.goEl || this.state.leaving || this.state.tearing) return;
+    e.preventDefault();
+    const fadeAt = tear ? 560 : 0;
+    if (tear) this.setState({ tearing: true });
+    this.goT0 = setTimeout(() => this.setState({ leaving: true }), fadeAt);
+    this.goT1 = setTimeout(() => { if (this.goEl) this.goEl.click(); }, fadeAt + 300);
+    this.goT2 = setTimeout(() => this.setState({ leaving: false, tearing: false }), fadeAt + 900);
+  }
+  renderVals() {
+    const s = this.state;
+    const isM = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    const stopped = isM ? !s.mplay : s.paused;
+    const flip = {
+      setGo: (el) => { this.goEl = el; },
+      leaveStyle: s.leaving ? 'opacity: 0; transition: opacity .28s ease' : '',
+      tearCls: s.tearing ? 'tear' : '',
+      stubStyle: s.tearing ? 'transform: translateY(-3px)' : '',
+      go: (e) => this.leave(e, false),
+      goTear: (e) => this.leave(e, true)
+    };
+    const on = 'background: #FFFFFF; color: #151A23; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)';
+    const off = 'background: transparent; color: #596273';
+    return {
+      ...flip,
+      paused: stopped,
+      playing: !stopped,
+      pausedStr: stopped ? 'true' : 'false',
+      pauseLabel: isM ? (s.mplay ? 'Пауза' : 'Запустить демо') : (s.paused ? 'Продолжить' : 'Пауза'),
+      togglePause: () => (isM ? this.setState({ mplay: !s.mplay }) : this.setState({ paused: !s.paused })),
+      mctaCls: s.scrolled && !s.menuOpen ? '' : 'mcta-off',
+      mctaHidden: s.scrolled && !s.menuOpen ? 'false' : 'true',
+      menuOpen: s.menuOpen,
+      menuStr: s.menuOpen ? 'true' : 'false',
+      menuLabel: s.menuOpen ? 'Закрыть меню' : 'Открыть меню',
+      menuIcon: s.menuOpen ? 'M6 6l12 12M18 6L6 18' : 'M4 7h16M4 12h16M4 17h10',
+      toggleMenu: () => this.setState({ menuOpen: !s.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      menuKey: (e) => { if (e.key === 'Escape') this.setState({ menuOpen: false }); },
+      goMenu: (e) => { this.setState({ menuOpen: false }); this.leave(e, false); },
+      reducedStr: s.reduced ? 'true' : 'false',
+      toggleReduce: () => this.setState({ reduced: !s.reduced }),
+      switchTrack: s.reduced ? 'background: #C5F66A' : 'background: #3A4554',
+      switchKnob: s.reduced ? 'transform: translateX(18px)' : 'transform: none',
+      motionCls: (s.paused ? 'paused ' : '') + (s.mplay ? '' : 'mplay-off ') + (s.reduced ? 'reduced' : ''),
+      showBefore: () => this.setState({ tab: 'before' }),
+      showAfter: () => this.setState({ tab: 'after' }),
+      tabBeforeSel: s.tab === 'before' ? 'true' : 'false',
+      tabAfterSel: s.tab === 'after' ? 'true' : 'false',
+      tabBeforeStyle: s.tab === 'before' ? on : off,
+      tabAfterStyle: s.tab === 'after' ? on : off,
+      beforeCls: s.tab === 'after' ? 'hide-m' : '',
+      afterCls: s.tab === 'before' ? 'hide-m' : ''
+    };
+  }
+}
+
+window.dcMount(Component, document.getElementById('tpl'), document.getElementById('app'));
+</script>
+</body>
+</html>

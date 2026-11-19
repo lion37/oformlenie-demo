@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Файл и требования — демо</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F8FA}
+.flipin{animation:riseIn .5s cubic-bezier(.22,1,.36,1) backwards}
+@keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.flipin{animation:none}}
+a{color:#151A23}a:hover{color:#000}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid #A9C9FF;outline-offset:2px}
+.btn{transition:background-color .15s cubic-bezier(.22,1,.36,1),transform .15s cubic-bezier(.22,1,.36,1),border-color .15s}
+.btn:active{transform:scale(.98)}
+.btn .arr{transition:transform .15s cubic-bezier(.22,1,.36,1)}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-accent:hover{background:#B4EA52 !important}
+.btn-line:hover{border-color:#151A23 !important}
+.panel{animation:panelIn .22s cubic-bezier(.22,1,.36,1) both}
+@keyframes panelIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}}
+.fld{width:100%;height:48px;padding:0 14px;border:1px solid #DCE1E8;border-radius:12px;font:600 16px Manrope,sans-serif;color:#151A23;background:#FFFFFF;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s}
+.fld:hover{border-color:#B8C1CD}
+.fld:focus{outline:none;border-color:#151A23;box-shadow:0 0 0 3px #A9C9FF}
+.opt{transition:border-color .15s,background-color .15s}
+.opt:hover{border-color:#B8C1CD}
+.opt:has(input:checked){border-color:#151A23 !important;background:#FAFFF2 !important;box-shadow:inset 0 0 0 1px #151A23}
+.opt:has(input:focus-visible){outline:3px solid #A9C9FF;outline-offset:2px}
+@media (min-width:1024px){.sticky-d{position:sticky;top:24px;align-self:flex-start}}
+.optb{transition:background-color .12s}
+.optb:hover{background:#F2F4F7 !important}
+.pop{animation:popIn .18s cubic-bezier(.22,1,.36,1) both;transform-origin:top center}
+@keyframes popIn{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+
+/* --- Scrollbars --- */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
+::-webkit-scrollbar-thumb{background:rgba(21,26,35,.18);border-radius:999px;border:4px solid transparent;background-clip:padding-box;min-height:40px}
+::-webkit-scrollbar-thumb:hover{background:rgba(21,26,35,.36);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:rgba(21,26,35,.5);border:3px solid transparent;background-clip:padding-box}
+@supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(21,26,35,.24) transparent}}
+/* --- Liquid glass --- */
+.lg-page{--gbg:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));--gbd:rgba(255,255,255,.78);--gsh:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 12px 32px -14px rgba(21,26,35,.20),0 2px 6px -2px rgba(21,26,35,.06);--gblur:blur(24px) saturate(180%);
+background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 62%),radial-gradient(900px 700px at 100% 40%,#ECF8D6 0%,rgba(236,248,214,0) 60%),radial-gradient(820px 620px at 15% 85%,#F1E8FF 0%,rgba(241,232,255,0) 60%),#F3F4F7 !important;background-attachment:fixed !important}
+.lg-page [style*="background: #FFFFFF; border: 1px solid #DCE1E8"],.lg-page .card[style*="background: #FFFFFF"],.lg-page details[style*="background: #FFFFFF"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page [style*="border-radius: 24px"]{border-radius:30px !important}
+.lg-page [style*="border-radius: 20px"]{border-radius:26px !important}
+.lg-page .btn{border-radius:999px !important}
+.lg-page .btn-accent{background:linear-gradient(180deg,#DCFF96 0%,#C5F66A 55%,#B2E852 100%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(0,0,0,.06),0 12px 26px -12px rgba(105,155,20,.7) !important}
+.lg-page .btn-dark{background:linear-gradient(180deg,#2C3849,#121A24) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
+.lg-page .btn-line,.lg-page .btn-ghost-d{border-radius:999px !important}
+.lg-page .fld{border-radius:16px !important;background:rgba(255,255,255,.72) !important;border-color:rgba(21,26,35,.10) !important}
+.lg-page [role="tablist"]{background:rgba(118,118,128,.14) !important;border:none !important;border-radius:999px !important;padding:3px !important;box-shadow:none !important}
+.lg-page [role="tablist"] button,.lg-page [role="group"] button{border-radius:999px !important}
+.lg-page header{background:transparent !important;border-bottom:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;padding-top:12px}
+.lg-page header > div[style]{max-width:1200px !important;border-radius:999px;background:var(--gbg);border:1px solid var(--gbd);box-shadow:var(--gsh);-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);padding:0 10px 0 22px !important}
+.lg-page .c1,.lg-page .c2,.lg-page .c3{background:linear-gradient(180deg,rgba(44,56,74,.62),rgba(22,30,42,.50)) !important;border-color:rgba(255,255,255,.2) !important;-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border-radius:999px !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px -12px rgba(0,0,0,.55) !important}
+.lg-page .c1 > span,.lg-page .c2 > span,.lg-page .c3 > span{border-radius:999px !important}
+.lg-page .stats{background:transparent !important;border:none !important;box-shadow:none !important;overflow:visible !important;gap:12px !important}
+.lg-page .stats li{background:var(--gbg) !important;border:1px solid var(--gbd);box-shadow:var(--gsh);border-radius:30px;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .mcta{left:12px !important;right:12px !important;bottom:12px !important;border-radius:30px;border:1px solid var(--gbd) !important;background:var(--gbg) !important;box-shadow:var(--gsh)}
+.lg-page .mmenu{top:84px !important;background:rgba(18,26,36,.18) !important}
+.lg-page .mmenu nav{margin:0 12px;border-radius:30px;background:var(--gbg) !important;border:1px solid var(--gbd) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .pop{background:var(--gbg) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);border-color:var(--gbd) !important;border-radius:22px !important}
+.lg-page .opt{border-radius:20px !important}
+@media (max-width:767px){.lg-page header{padding-top:8px}.lg-page header > div[style]{margin:0 12px !important;padding:0 6px 0 14px !important}}
+.chk-in{position:absolute;top:2px;left:2px;opacity:0;width:1px;height:1px;pointer-events:none}
+.chk-box{flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;border:1.5px solid rgba(255,255,255,.38);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;transition:background-color .15s,border-color .15s,box-shadow .15s}
+.chk-box svg{opacity:0;transform:scale(.6);transition:opacity .15s,transform .18s cubic-bezier(.22,1,.36,1)}
+.chk-in:checked + .chk-box{background:linear-gradient(180deg,#DCFF96,#C5F66A);border-color:#C5F66A;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.chk-in:checked + .chk-box svg{opacity:1;transform:none}
+.chk-in:focus-visible + .chk-box{outline:3px solid #A9C9FF;outline-offset:2px}
+label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
+@media (prefers-reduced-motion:reduce){.chk-box,.chk-box svg{transition:none}}
+.sr{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+@media (max-width:767px){.step-label{display:none}.hide-m{display:none !important}.mstep{display:flex !important}[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}a[href="check.html"]{width:100%;justify-content:center}}
+.mstep{display:none}
+</style>
+
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="flipin lg-page" style="font-family: Manrope, system-ui, sans-serif; color: #151A23; background: #F7F8FA; min-height: 100vh">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE1E8">
+<div style="max-width: 1264px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; color: #151A23">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Оформление</a>
+<span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 6px; border-radius: 999px; background: #EAF1FF; color: #2B4C86; font-size: 13px; font-weight: 700">
+<span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></span>
+Демонстрация<span class="hide-m">&#160;· платежи отключены</span></span>
+</div>
+</header>
+
+<div style="max-width: 1264px; margin: 0 auto; padding: 32px 32px 72px; display: flex; flex-direction: column; gap: 28px">
+
+<ol aria-label="Шаги оформления" style="margin: 0; padding: 6px; list-style: none; display: flex; gap: 6px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 18px">
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #151A23; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 1</span><span style="font-size: 14px; font-weight: 800">Файл</span></span></li>
+<li aria-current="step" style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F4FDE4; box-shadow: inset 0 0 0 1.5px #151A23">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 12px; font-weight: 700; color: #596273">Шаг 2</span><span style="font-size: 14px; font-weight: 800">Требования</span></span></li>
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"></path><path d="M20 4v4h-4"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0; color: #596273"><span style="font-size: 12px; font-weight: 700">Шаг 3</span><span style="font-size: 14px; font-weight: 700">Обработка</span></span></li>
+<li style="flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg></span>
+<span class="step-label" style="display: flex; flex-direction: column; min-width: 0; color: #596273"><span style="font-size: 12px; font-weight: 700">Шаг 4</span><span style="font-size: 14px; font-weight: 700">Результат и оплата</span></span></li>
+</ol>
+<p class="mstep" style="margin: -14px 0 0; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><span style="color: #596273">Шаг 2 из 4</span><span>· Требования</span></p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<section class="sticky-d" aria-labelledby="file-h" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h2 id="file-h" style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.01em">Ваш документ</h2>
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 14px; align-items: center">
+<svg width="48" height="58" viewBox="0 0 48 58" aria-hidden="true" style="flex: none"><path d="M6 1.5h24l16.5 16.5V52A4.5 4.5 0 0 1 42 56.5H6A4.5 4.5 0 0 1 1.5 52V6A4.5 4.5 0 0 1 6 1.5z" fill="#FFFFFF" stroke="#151A23" stroke-width="1.5" stroke-linejoin="round"></path><path d="M30 1.5V14a4 4 0 0 0 4 4h12.5" fill="#EAF1FF" stroke="#151A23" stroke-width="1.5" stroke-linejoin="round"></path><path d="M9 22h18M9 28h28M9 34h22" stroke="#C4CBD5" stroke-width="2.5" stroke-linecap="round"></path><rect x="1.5" y="40" width="34" height="13" rx="3" fill="#2B4C86"></rect><text x="18.5" y="49.5" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" letter-spacing=".5">DOCX</text></svg>
+<div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 3px">
+<span title="kursovaya_rabota_final_ispravlennaya_v3.docx" style="font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">kursovaya_rabota_final_ispravlennaya_v3.docx</span>
+<span style="font-size: 14px; color: #596273">2,4 МБ · 34 страницы</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F0FADF; color: #2E5A12; font-size: 14px; font-weight: 700">
+<span style="width: 22px; height: 22px; border-radius: 50%; background: #2E5A12; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Файл принят и проверен</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" class="btn btn-line" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #DCE1E8; background: #FFFFFF; font: 700 14px Manrope, sans-serif; color: #151A23; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 8.5"></path><path d="M20 4v4.5h-4.5"></path><path d="M20 12a8 8 0 0 1-13.7 5.7L4 15.5"></path><path d="M4 20v-4.5h4.5"></path></svg>Заменить файл</button>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: 16px; font-weight: 800">Что нашли в файле</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.4">
+<li style="display: flex; gap: 12px; align-items: center"><span style="flex: none; width: 36px; height: 36px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5v14M13 5v14M5 12h8"></path><path d="M17 9l2-1.5V19"></path></svg></span><span style="flex: 1">Заголовки 2 уровней, 12 разделов</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="поддерживается" role="img"><path d="M5 12l5 5 9-10"></path></svg></li>
+<li style="display: flex; gap: 12px; align-items: center"><span style="flex: none; width: 36px; height: 36px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M3 14.5h18M9 9v11M15 9v11"></path></svg></span><span style="flex: 1">4 таблицы с подписями</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="поддерживается" role="img"><path d="M5 12l5 5 9-10"></path></svg></li>
+<li style="display: flex; gap: 12px; align-items: center"><span style="flex: none; width: 36px; height: 36px; border-radius: 10px; background: #F2F4F7; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5-5-9 9"></path></svg></span><span style="flex: 1">6 рисунков с подписями</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="поддерживается" role="img"><path d="M5 12l5 5 9-10"></path></svg></li>
+<li style="display: flex; gap: 12px; align-items: center"><span style="flex: none; width: 36px; height: 36px; border-radius: 10px; background: #FFF1DB; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5300" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 5H7l5 7-5 7h10"></path></svg></span><span style="flex: 1"><b>3 формулы</b> — сохраним без изменения оформления</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="ограничение" role="img"><path d="M10.3 3.9L2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9.5v4M12 17h.01"></path></svg></li>
+</ul>
+</div>
+
+<p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #596273"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M12 8v5l2 1.5"></path></svg>Файлы удалятся через 24 часа после загрузки. Можно удалить раньше на странице заказа.</p>
+</section>
+
+<section aria-labelledby="req-h" style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h2 id="req-h" tabindex="-1" style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.01em">Требования к оформлению</h2>
+<div role="tablist" aria-label="Режим требований" style="display: flex; gap: 4px; padding: 4px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 16px">
+<button type="button" role="tab" aria-selected="{{tplSel}}" onClick="{{pickTpl}}" style="flex: 1; height: 48px; border: 0; border-radius: 12px; font: 700 15px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; {{tplStyle}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5"></path><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"></path><path d="M3 20.5h18"></path></svg>Шаблон кафедры</button>
+<button type="button" role="tab" aria-selected="{{ownSel}}" onClick="{{pickOwn}}" style="flex: 1; height: 48px; border: 0; border-radius: 12px; font: 700 15px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; {{ownStyle}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg>Свои настройки</button>
+</div>
+
+<sc-if value="{{isTpl}}" hint-placeholder-val="{{ false }}">
+<div class="panel" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<label for="tpl-q" style="font-size: 14px; font-weight: 700">Поиск по вузу, кафедре и виду работы</label>
+<div style="position: relative">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#596273" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 14px; top: 14px"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+<input id="tpl-q" class="fld" type="search" placeholder="Начните вводить название" style="padding-left: 44px">
+</div>
+<div style="border: 1.5px solid #151A23; background: #FAFFF2; border-radius: 20px; padding: 18px; display: flex; gap: 14px; align-items: flex-start">
+<span style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DCE1E8; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"></path><path d="M22 9v6"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 800; font-size: 16px">[Вуз] · [Кафедра]<span style="display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 999px; background: #F0FADF; color: #2E5A12; font-size: 11px; font-weight: 800"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg>проверен</span></span>
+<span style="font-size: 14px; color: #596273">[Вид работы] · версия 1 · [дата проверки]</span>
+<span style="font-size: 14px; line-height: 1.5">Поля 30/15/20/20 мм · Times New Roman 14 · интервал 1,5 · отступ 1,25 см · по ширине · номер внизу по центру</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #596273">Профили появляются в каталоге только после сверки с методичкой.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{isOwn}}" hint-placeholder-val="{{ true }}">
+<div class="panel" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 28px">
+
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend style="padding: 0; margin-bottom: 14px; font-size: 16px; font-weight: 800">Поля страницы</legend>
+<div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: center; justify-content: center">
+<svg class="diagram" width="168" height="196" viewBox="0 0 168 196" role="img" aria-label="{{diagLabel}}" style="flex: none; display: block; background: #F2F4F7; border-radius: 16px"><rect x="34" y="20" width="100" height="140" rx="3" fill="#FFFFFF" stroke="#151A23" stroke-width="1.4"></rect><rect x="{{ix}}" y="{{iy}}" width="{{iw}}" height="{{ih}}" style="{{innerStyle}}" fill="#A9C9FF" fill-opacity=".18" stroke="#4A7BD0" stroke-width="1.1" stroke-dasharray="3 3"></rect><path d="{{linesPath}}" stroke="#C4CBD5" stroke-width="2.4" stroke-linecap="round"></path><path d="{{dimL}}" stroke="{{cL}}" stroke-width="{{wL}}"></path><path d="{{dimR}}" stroke="{{cR}}" stroke-width="{{wR}}"></path><path d="{{dimT}}" stroke="{{cT}}" stroke-width="{{wT}}"></path><path d="{{dimB}}" stroke="{{cB}}" stroke-width="{{wB}}"></path><rect x="5" y="80" width="28" height="18" rx="5" fill="{{pL}}" stroke="#BFD3F5" stroke-width="1"></rect><text x="19" y="92.5" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="{{tL}}">{{ml}}</text><rect x="135" y="111" width="28" height="18" rx="5" fill="{{pR}}" stroke="#BFD3F5" stroke-width="1"></rect><text x="149" y="123.5" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="{{tR}}">{{mr}}</text><rect x="70" y="1" width="28" height="17" rx="5" fill="{{pT}}" stroke="#BFD3F5" stroke-width="1"></rect><text x="84" y="12.8" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="{{tT}}">{{mt}}</text><rect x="70" y="163" width="28" height="17" rx="5" fill="{{pB}}" stroke="#BFD3F5" stroke-width="1"></rect><text x="84" y="174.8" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="{{tB}}">{{mb}}</text><text x="84" y="192" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" font-weight="600" fill="#596273">A4 · мм</text></svg>
+<div style="flex: 1 1 260px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="m-l" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7BD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16"></path><path d="M20 12H8M12 8l-4 4 4 4"></path></svg>Левое</label><div style="position: relative"><input id="m-l" class="fld" inputmode="decimal" value="{{ml}}" onChange="{{setMl}}" onFocus="{{focMl}}" onBlur="{{blur}}" aria-invalid="{{mlInv}}" aria-describedby="m-err" style="padding-right: 46px; {{mlErr}}"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">мм</span></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="m-r" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7BD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4v16"></path><path d="M4 12h12M12 8l4 4-4 4"></path></svg>Правое</label><div style="position: relative"><input id="m-r" class="fld" inputmode="decimal" value="{{mr}}" onChange="{{setMr}}" onFocus="{{focMr}}" onBlur="{{blur}}" aria-invalid="{{mrInv}}" aria-describedby="m-err" style="padding-right: 46px; {{mrErr}}"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">мм</span></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="m-t" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7BD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16"></path><path d="M12 20V8M8 12l4-4 4 4"></path></svg>Верхнее</label><div style="position: relative"><input id="m-t" class="fld" inputmode="decimal" value="{{mt}}" onChange="{{setMt}}" onFocus="{{focMt}}" onBlur="{{blur}}" aria-invalid="{{mtInv}}" aria-describedby="m-err" style="padding-right: 46px; {{mtErr}}"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">мм</span></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="m-b" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7BD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"></path><path d="M12 4v12M8 12l4 4 4-4"></path></svg>Нижнее</label><div style="position: relative"><input id="m-b" class="fld" inputmode="decimal" value="{{mb}}" onChange="{{setMb}}" onFocus="{{focMb}}" onBlur="{{blur}}" aria-invalid="{{mbInv}}" aria-describedby="m-err" style="padding-right: 46px; {{mbErr}}"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">мм</span></div></div>
+</div>
+</div>
+<sc-if value="{{marginErr}}" hint-placeholder-val="{{ false }}"><p id="m-err" role="alert" style="margin: 14px 0 0; display: flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 700; color: #B42318"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16h.01"></path></svg>{{marginMsg}}</p></sc-if>
+</fieldset>
+
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend style="padding: 0; margin-bottom: 14px; font-size: 16px; font-weight: 800">Основной текст</legend>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="f-font" style="font-size: 14px; font-weight: 700">Шрифт</label>
+<div style="position: relative">
+<button type="button" id="f-font" class="fld" aria-haspopup="true" aria-expanded="{{fontOpenStr}}" onClick="{{toggleFont}}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; text-align: left; {{fontBtnStyle}}">
+<span style="display: flex; align-items: center; gap: 10px; min-width: 0"><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 8px; background: #F2F4F7; display: flex; align-items: center; justify-content: center; font: 700 15px {{fontFamily}}">Аа</span><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{font}}</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .2s cubic-bezier(.22,1,.36,1); {{chevStyle}}"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{fontOpen}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="position: absolute; top: 54px; left: 0; right: 0; z-index: 10; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 16px; box-shadow: 0 24px 48px -16px rgba(21,26,35,.28); padding: 6px; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{fonts}}" as="o" hint-placeholder-count="3">
+<button type="button" class="optb" aria-pressed="{{o.selStr}}" onClick="{{o.pick}}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 0 12px; border: 0; border-radius: 11px; cursor: pointer; text-align: left; color: #151A23; {{o.bg}}">
+<span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 9px; background: #FFFFFF; border: 1px solid #DCE1E8; display: flex; align-items: center; justify-content: center; font: 700 16px {{o.family}}">Аа</span><span style="display: flex; flex-direction: column; gap: 1px"><span style="font: 600 16px {{o.family}}">{{o.name}}</span><span style="font: 500 12px Manrope, sans-serif; color: #596273">{{o.note}}</span></span></span>
+<sc-if value="{{o.selected}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E5A12" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if>
+</button>
+</sc-for>
+</div>
+</sc-if>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="f-size" style="font-size: 14px; font-weight: 700">Размер</label><div style="position: relative"><input id="f-size" class="fld" inputmode="decimal" value="14" style="padding-right: 40px"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">pt</span></div></div>
+<div role="group" aria-labelledby="f-int-l" style="display: flex; flex-direction: column; gap: 6px"><span id="f-int-l" style="font-size: 14px; font-weight: 700">Межстрочный интервал</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 3px; height: 48px; box-sizing: border-box; background: rgba(118,118,128,.14); border-radius: 999px">
+<sc-for list="{{intervals}}" as="iv" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{iv.selStr}}" onClick="{{iv.pick}}" style="border: 0; border-radius: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font: 700 15px Manrope, sans-serif; transition: background-color .15s; {{iv.style}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="{{iv.path}}"></path></svg>{{iv.label}}</button>
+</sc-for>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-ind" style="font-size: 14px; font-weight: 700">Отступ абзаца</label>
+<div style="position: relative"><input id="f-ind" class="fld" inputmode="decimal" value="1,5" aria-invalid="true" aria-describedby="f-ind-err" style="padding-right: 40px; border-color: #B42318; background: #FFF8F7"><span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; font-size: 14px; font-weight: 600; color: #596273">см</span></div>
+<span id="f-ind-err" style="display: flex; gap: 6px; align-items: flex-start; font-size: 13px; line-height: 1.35; color: #B42318; font-weight: 700"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16h.01"></path></svg>Проверьте значение: в методичках обычно 1,25 см</span>
+</div>
+</div>
+</fieldset>
+
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend style="padding: 0; margin-bottom: 14px; font-size: 16px; font-weight: 800">Выравнивание текста</legend>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+<label class="opt" style="position: relative; display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 14px; border: 1px solid #DCE1E8; border-radius: 14px; background: #FFFFFF; cursor: pointer"><input class="sr" type="radio" name="al" checked=""><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#F2F4F7"></rect><path d="M9 11h18M9 16h18M9 21h18M9 26h12" stroke="#151A23" stroke-width="2.2" stroke-linecap="round"></path></svg><span style="font-size: 14px; font-weight: 700">По ширине</span></label>
+<label class="opt" style="position: relative; display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 14px; border: 1px solid #DCE1E8; border-radius: 14px; background: #FFFFFF; cursor: pointer"><input class="sr" type="radio" name="al"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#F2F4F7"></rect><path d="M9 11h18M9 16h12M9 21h16M9 26h10" stroke="#151A23" stroke-width="2.2" stroke-linecap="round"></path></svg><span style="font-size: 14px; font-weight: 700">По левому краю</span></label>
+</div>
+</fieldset>
+
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0">
+<legend style="padding: 0; margin-bottom: 14px; font-size: 16px; font-weight: 800">Номер страницы</legend>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 10px">
+<label class="opt" style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px; border: 1px solid #DCE1E8; border-radius: 14px; background: #FFFFFF; cursor: pointer"><input class="sr" type="radio" name="pn" checked=""><svg width="48" height="62" viewBox="0 0 48 62" aria-hidden="true"><rect x="1" y="1" width="46" height="60" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.4"></rect><path d="M9 12h30M9 18h30M9 24h30M9 30h22" stroke="#C4CBD5" stroke-width="2.4" stroke-linecap="round"></path><rect x="18" y="48" width="12" height="8" rx="2.5" fill="#C5F66A" stroke="#151A23" stroke-width="1.2"></rect></svg><span style="font-size: 14px; font-weight: 700">Внизу по центру</span></label>
+<label class="opt" style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px; border: 1px solid #DCE1E8; border-radius: 14px; background: #FFFFFF; cursor: pointer"><input class="sr" type="radio" name="pn"><svg width="48" height="62" viewBox="0 0 48 62" aria-hidden="true"><rect x="1" y="1" width="46" height="60" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.4"></rect><path d="M9 12h30M9 18h30M9 24h30M9 30h22" stroke="#C4CBD5" stroke-width="2.4" stroke-linecap="round"></path><rect x="30" y="48" width="12" height="8" rx="2.5" fill="#DCE1E8" stroke="#151A23" stroke-width="1.2"></rect></svg><span style="font-size: 14px; font-weight: 700">Внизу справа</span></label>
+<label class="opt" style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px; border: 1px solid #DCE1E8; border-radius: 14px; background: #FFFFFF; cursor: pointer"><input class="sr" type="radio" name="pn"><svg width="48" height="62" viewBox="0 0 48 62" aria-hidden="true"><rect x="1" y="1" width="46" height="60" rx="4" fill="#FFFFFF" stroke="#151A23" stroke-width="1.4"></rect><path d="M9 20h30M9 26h30M9 32h30M9 38h22" stroke="#C4CBD5" stroke-width="2.4" stroke-linecap="round"></path><rect x="30" y="6" width="12" height="8" rx="2.5" fill="#DCE1E8" stroke="#151A23" stroke-width="1.2"></rect></svg><span style="font-size: 14px; font-weight: 700">Вверху справа</span></label>
+</div>
+</fieldset>
+</div>
+</sc-if>
+
+<div style="background: #121A24; color: #FFFFFF; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<h3 style="margin: 0; display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C5F66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"></path></svg>Итоговая сводка</h3>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; background: #1C2633"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A9C9FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="4" y="3" width="16" height="18" rx="2"></rect><rect x="8" y="7" width="8" height="10" rx=".5" stroke-dasharray="2 2"></rect></svg><div><dt style="font-size: 12px; color: #9AA5B4">Поля</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 700">{{ml}} / {{mr}} / {{mt}} / {{mb}} мм</dd></div></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; background: #1C2633"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A9C9FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 20L10 4h1l6 16M6.5 14h8"></path><path d="M19 12v8"></path></svg><div><dt style="font-size: 12px; color: #9AA5B4">Шрифт</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 700">{{font}}, 14 pt</dd></div></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; background: #1C2633; box-shadow: inset 0 0 0 1px rgba(232,80,64,.6)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9C8F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="M5 4v16M3 6l2-2 2 2M3 18l2 2 2-2"></path></svg><div><dt style="font-size: 12px; color: #9AA5B4">Интервал и отступ</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 700">{{interval}} · 1,5 см <span style="color: #FF9C8F">проверьте</span></dd></div></div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; background: #1C2633"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A9C9FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M10.5 17h3"></path></svg><div><dt style="font-size: 12px; color: #9AA5B4">Номер страницы</dt><dd style="margin: 2px 0 0; font-size: 14px; font-weight: 700">Внизу по центру</dd></div></div>
+</dl>
+<label style="position: relative; display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.45; cursor: pointer"><input class="chk-in" type="checkbox"><span class="chk-box" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>Я проверил параметры. Обработка будет выполнена именно по этой версии.</label>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between">
+<span style="display: flex; gap: 8px; align-items: center; font-size: 14px; color: #C9D1DC"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Изменение параметров после запуска создаёт новый расчёт</span>
+<a href="check.html" class="btn btn-accent" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 14px; background: #C5F66A; color: #121A24; font-weight: 700; font-size: 16px; text-decoration: none">Запустить обработку<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</template>
+<div class="demo-badge">Демо-макет · файлы не обрабатываются</div>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'own', font: 'Times New Roman', fontOpen: false, interval: '1,5', ml: '30', mr: '15', mt: '20', mb: '20', focus: null, lastGood: { l: 30, r: 15, t: 20, b: 20 } };
+  }
+  renderVals() {
+    const m = this.state.mode;
+    const s = this.state;
+    const FONTS = [
+      { name: 'Times New Roman', family: "'Times New Roman', Times, serif", note: 'С засечками · чаще всего в методичках' },
+      { name: 'Arial', family: 'Arial, Helvetica, sans-serif', note: 'Без засечек' },
+      { name: 'Calibri', family: 'Calibri, Carlito, sans-serif', note: 'Без засечек · стандарт Word' }
+    ];
+    const cur = FONTS.find((f) => f.name === s.font) || FONTS[0];
+    const IV = [
+      { label: '1,0', path: 'M4 9h16M4 15h16' },
+      { label: '1,5', path: 'M4 7h16M4 17h16' },
+      { label: '2,0', path: 'M4 5h16M4 19h16' }
+    ];
+    const M = { l: s.ml, r: s.mr, t: s.mt, b: s.mb };
+    const num = (v) => { const n = parseFloat(String(v).replace(',', '.')); return (String(v).trim() === '' || isNaN(n) || n < 0 || n > 60) ? null : n; };
+    const N = { l: num(M.l), r: num(M.r), t: num(M.t), b: num(M.b) };
+    const last = s.lastGood;
+    const g = { l: N.l ?? last.l, r: N.r ?? last.r, t: N.t ?? last.t, b: N.b ?? last.b };
+    const kx = 100 / 210, ky = 140 / 297;
+    let ix = 34 + g.l * kx, iw = 100 - (g.l + g.r) * kx;
+    let iy = 20 + g.t * ky, ih = 140 - (g.t + g.b) * ky;
+    const tooBig = iw < 20 || ih < 30;
+    if (tooBig) { ix = 34 + last.l * kx; iw = 100 - (last.l + last.r) * kx; iy = 20 + last.t * ky; ih = 140 - (last.t + last.b) * ky; }
+    const r1 = (n) => Math.round(n * 10) / 10;
+    let lp = '';
+    const x1 = ix + 5, x2 = ix + iw - 5;
+    let y = iy + 9, k = 0;
+    while (y <= iy + ih - 7 && k < 16) {
+      const endOfPara = (k % 5) === 4;
+      const xe = endOfPara ? x1 + (x2 - x1) * 0.6 : x2;
+      lp += 'M' + r1((k % 5) === 0 ? x1 + 5 : x1) + ' ' + r1(y) + 'H' + r1(Math.max(xe, x1 + 4));
+      y += endOfPara ? 12 : 7.5; k++;
+    }
+    const f = s.focus;
+    const hi = (side) => f === side;
+    const anyInv = N.l === null || N.r === null || N.t === null || N.b === null;
+    const errCss = 'border-color: #B42318; background: #FFF8F7';
+    const margins = {
+      ml: s.ml, mr: s.mr, mt: s.mt, mb: s.mb,
+      ix: r1(ix), iy: r1(iy), iw: r1(iw), ih: r1(ih),
+      innerStyle: 'transition: x .25s cubic-bezier(.22,1,.36,1), y .25s cubic-bezier(.22,1,.36,1), width .25s cubic-bezier(.22,1,.36,1), height .25s cubic-bezier(.22,1,.36,1)',
+      linesPath: lp,
+      dimL: 'M34 89H' + r1(ix) + 'M' + r1(ix) + ' 86V92M34 86V92', dimR: 'M' + r1(ix + iw) + ' 120H134M' + r1(ix + iw) + ' 117V123M134 117V123', dimT: 'M84 20V' + r1(iy) + 'M81 ' + r1(iy) + 'H87M81 20H87', dimB: 'M84 ' + r1(iy + ih) + 'V160M81 ' + r1(iy + ih) + 'H87M81 160H87',
+      cL: hi('l') ? '#4A7BD0' : '#7FA4E0', wL: hi('l') ? 2.2 : 1.2,
+      cR: hi('r') ? '#4A7BD0' : '#7FA4E0', wR: hi('r') ? 2.2 : 1.2,
+      cT: hi('t') ? '#4A7BD0' : '#7FA4E0', wT: hi('t') ? 2.2 : 1.2,
+      cB: hi('b') ? '#4A7BD0' : '#7FA4E0', wB: hi('b') ? 2.2 : 1.2,
+      pL: hi('l') ? '#C5F66A' : '#FFFFFF', tL: hi('l') ? '#121A24' : '#2B4C86',
+      pR: hi('r') ? '#C5F66A' : '#FFFFFF', tR: hi('r') ? '#121A24' : '#2B4C86',
+      pT: hi('t') ? '#C5F66A' : '#FFFFFF', tT: hi('t') ? '#121A24' : '#2B4C86',
+      pB: hi('b') ? '#C5F66A' : '#FFFFFF', tB: hi('b') ? '#121A24' : '#2B4C86',
+      diagLabel: 'Схема полей страницы A4: левое ' + s.ml + ', правое ' + s.mr + ', верхнее ' + s.mt + ', нижнее ' + s.mb + ' мм',
+      mlInv: N.l === null ? 'true' : 'false', mrInv: N.r === null ? 'true' : 'false', mtInv: N.t === null ? 'true' : 'false', mbInv: N.b === null ? 'true' : 'false',
+      mlErr: N.l === null ? errCss : '', mrErr: N.r === null ? errCss : '', mtErr: N.t === null ? errCss : '', mbErr: N.b === null ? errCss : '',
+      marginErr: anyInv || tooBig,
+      marginMsg: anyInv ? 'Введите значение от 0 до 60 мм' : 'Поля слишком большие: на странице не остаётся места для текста',
+      blur: () => this.setState({ focus: null }),
+      focMl: () => this.setState({ focus: 'l' }), focMr: () => this.setState({ focus: 'r' }),
+      focMt: () => this.setState({ focus: 't' }), focMb: () => this.setState({ focus: 'b' })
+    };
+    const upd = (side, key) => (e) => {
+      const v = e.target.value;
+      const n = num(v);
+      const lg = { ...this.state.lastGood };
+      if (n !== null) {
+        const t = { ...lg, [side]: n };
+        if (100 - (t.l + t.r) * kx >= 20 && 140 - (t.t + t.b) * ky >= 30) lg[side] = n;
+      }
+      this.setState({ [key]: v, lastGood: lg });
+    };
+    margins.setMl = upd('l', 'ml'); margins.setMr = upd('r', 'mr'); margins.setMt = upd('t', 'mt'); margins.setMb = upd('b', 'mb');
+    const ext = {
+      font: s.font,
+      fontFamily: cur.family,
+      fontOpen: s.fontOpen,
+      fontOpenStr: s.fontOpen ? 'true' : 'false',
+      fontBtnStyle: s.fontOpen ? 'border-color: #151A23; box-shadow: 0 0 0 3px #A9C9FF' : '',
+      chevStyle: s.fontOpen ? 'transform: rotate(180deg)' : 'transform: none',
+      toggleFont: () => this.setState({ fontOpen: !s.fontOpen }),
+      fonts: FONTS.map((f) => ({
+        ...f,
+        selected: f.name === s.font,
+        selStr: f.name === s.font ? 'true' : 'false',
+        bg: f.name === s.font ? 'background: #F4FDE4' : 'background: transparent',
+        pick: () => this.setState({ font: f.name, fontOpen: false })
+      })),
+      interval: s.interval,
+      intervals: IV.map((v) => ({
+        ...v,
+        selStr: v.label === s.interval ? 'true' : 'false',
+        style: v.label === s.interval ? 'background: #FFFFFF; color: #151A23; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)' : 'background: transparent; color: #596273',
+        pick: () => this.setState({ interval: v.label })
+      }))
+    };
+    const on = 'background: #FFFFFF; color: #151A23; box-shadow: 0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)';
+    const off = 'background: transparent; color: #596273';
+    return {
+      ...ext,
+      ...margins,
+      isTpl: m === 'tpl',
+      isOwn: m === 'own',
+      tplSel: m === 'tpl' ? 'true' : 'false',
+      ownSel: m === 'own' ? 'true' : 'false',
+      tplStyle: m === 'tpl' ? on : off,
+      ownStyle: m === 'own' ? on : off,
+      pickTpl: () => this.setState({ mode: 'tpl' }),
+      pickOwn: () => this.setState({ mode: 'own' })
+    };
+  }
+}
+
+window.dcMount(Component, document.getElementById('tpl'), document.getElementById('app'));
+</script>
+</body>
+</html>

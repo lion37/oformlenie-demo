@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Результат и оплата — демо</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F8FA}
+a{color:#151A23}a:hover{color:#000}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid #A9C9FF;outline-offset:2px}
+.btn{transition:background-color .15s cubic-bezier(.22,1,.36,1),transform .15s cubic-bezier(.22,1,.36,1),opacity .15s}
+.btn:active{transform:scale(.98)}
+.btn-accent:hover{background:#B4EA52 !important}
+.fld{width:100%;height:48px;padding:0 14px;border:1px solid #DCE1E8;border-radius:12px;font:500 16px Manrope,sans-serif;color:#151A23;background:#FFFFFF}
+.fld:focus{outline:none;border-color:#151A23;box-shadow:0 0 0 3px #A9C9FF}
+.chk path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s cubic-bezier(.22,1,.36,1) .1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fade{animation:fade .22s cubic-bezier(.22,1,.36,1) both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.chk path{animation:none;stroke-dashoffset:0}.fade{animation:none}}
+
+/* --- Scrollbars --- */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
+::-webkit-scrollbar-thumb{background:rgba(21,26,35,.18);border-radius:999px;border:4px solid transparent;background-clip:padding-box;min-height:40px}
+::-webkit-scrollbar-thumb:hover{background:rgba(21,26,35,.36);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:rgba(21,26,35,.5);border:3px solid transparent;background-clip:padding-box}
+@supports (-moz-appearance:none){*{scrollbar-width:thin;scrollbar-color:rgba(21,26,35,.24) transparent}}
+/* --- Liquid glass --- */
+.lg-page{--gbg:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.58));--gbd:rgba(255,255,255,.78);--gsh:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 12px 32px -14px rgba(21,26,35,.20),0 2px 6px -2px rgba(21,26,35,.06);--gblur:blur(24px) saturate(180%);
+background:radial-gradient(900px 620px at 0% 0%,#E2EBFF 0%,rgba(226,235,255,0) 62%),radial-gradient(900px 700px at 100% 40%,#ECF8D6 0%,rgba(236,248,214,0) 60%),radial-gradient(820px 620px at 15% 85%,#F1E8FF 0%,rgba(241,232,255,0) 60%),#F3F4F7 !important;background-attachment:fixed !important}
+.lg-page [style*="background: #FFFFFF; border: 1px solid #DCE1E8"],.lg-page .card[style*="background: #FFFFFF"],.lg-page details[style*="background: #FFFFFF"]{background:var(--gbg) !important;border-color:var(--gbd) !important;box-shadow:var(--gsh) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page [style*="border-radius: 24px"]{border-radius:30px !important}
+.lg-page [style*="border-radius: 20px"]{border-radius:26px !important}
+.lg-page .btn{border-radius:999px !important}
+.lg-page .btn-accent{background:linear-gradient(180deg,#DCFF96 0%,#C5F66A 55%,#B2E852 100%) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(0,0,0,.06),0 12px 26px -12px rgba(105,155,20,.7) !important}
+.lg-page .btn-dark{background:linear-gradient(180deg,#2C3849,#121A24) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px -12px rgba(0,0,0,.55) !important}
+.lg-page .btn-line,.lg-page .btn-ghost-d{border-radius:999px !important}
+.lg-page .fld{border-radius:16px !important;background:rgba(255,255,255,.72) !important;border-color:rgba(21,26,35,.10) !important}
+.lg-page [role="tablist"]{background:rgba(118,118,128,.14) !important;border:none !important;border-radius:999px !important;padding:3px !important;box-shadow:none !important}
+.lg-page [role="tablist"] button,.lg-page [role="group"] button{border-radius:999px !important}
+.lg-page header{background:transparent !important;border-bottom:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;padding-top:12px}
+.lg-page header > div[style]{max-width:1200px !important;border-radius:999px;background:var(--gbg);border:1px solid var(--gbd);box-shadow:var(--gsh);-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);padding:0 10px 0 22px !important}
+.lg-page .c1,.lg-page .c2,.lg-page .c3{background:linear-gradient(180deg,rgba(44,56,74,.62),rgba(22,30,42,.50)) !important;border-color:rgba(255,255,255,.2) !important;-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border-radius:999px !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px -12px rgba(0,0,0,.55) !important}
+.lg-page .c1 > span,.lg-page .c2 > span,.lg-page .c3 > span{border-radius:999px !important}
+.lg-page .stats{background:transparent !important;border:none !important;box-shadow:none !important;overflow:visible !important;gap:12px !important}
+.lg-page .stats li{background:var(--gbg) !important;border:1px solid var(--gbd);box-shadow:var(--gsh);border-radius:30px;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .mcta{left:12px !important;right:12px !important;bottom:12px !important;border-radius:30px;border:1px solid var(--gbd) !important;background:var(--gbg) !important;box-shadow:var(--gsh)}
+.lg-page .mmenu{top:84px !important;background:rgba(18,26,36,.18) !important}
+.lg-page .mmenu nav{margin:0 12px;border-radius:30px;background:var(--gbg) !important;border:1px solid var(--gbd) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur)}
+.lg-page .pop{background:var(--gbg) !important;-webkit-backdrop-filter:var(--gblur);backdrop-filter:var(--gblur);border-color:var(--gbd) !important;border-radius:22px !important}
+.lg-page .opt{border-radius:20px !important}
+@media (max-width:767px){.lg-page header{padding-top:8px}.lg-page header > div[style]{margin:0 12px !important;padding:0 6px 0 14px !important}}
+.chk-in{position:absolute;top:2px;left:2px;opacity:0;width:1px;height:1px;pointer-events:none}
+.chk-box{flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;border:1.5px solid rgba(255,255,255,.38);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;transition:background-color .15s,border-color .15s,box-shadow .15s}
+.chk-box svg{opacity:0;transform:scale(.6);transition:opacity .15s,transform .18s cubic-bezier(.22,1,.36,1)}
+.chk-in:checked + .chk-box{background:linear-gradient(180deg,#DCFF96,#C5F66A);border-color:#C5F66A;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.chk-in:checked + .chk-box svg{opacity:1;transform:none}
+.chk-in:focus-visible + .chk-box{outline:3px solid #A9C9FF;outline-offset:2px}
+label:hover > .chk-box{border-color:rgba(255,255,255,.65)}
+@media (prefers-reduced-motion:reduce){.chk-box,.chk-box svg{transition:none}}
+@media (max-width:1023px){.report{order:-1}}
+@media (max-width:767px){[style*="max-width: 1264px"]{padding-left:20px !important;padding-right:20px !important}header [style*="height: 64px"]{height:auto !important;min-height:64px;padding-top:10px !important;padding-bottom:10px !important;flex-wrap:wrap}[style*="height: 900px"]{height:520px !important;padding:16px !important}}
+</style>
+
+<style>.demo-badge{position:fixed;left:12px;bottom:12px;z-index:9999;font:600 12px Manrope,system-ui,sans-serif;background:#121A24;color:#C5F66A;padding:6px 10px;border-radius:999px;opacity:.85;pointer-events:none}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="lg-page" style="font-family: Manrope, system-ui, sans-serif; color: #151A23; background: #F7F8FA; min-height: 100vh">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE1E8">
+<div style="max-width: 1264px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 17px; color: #151A23">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#121A24"></rect><path d="M10.5 7.5h7l5 5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5V9a1.5 1.5 0 0 1 1.5-1.5z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M17.5 7.5v5h5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 15.5h5.5M12.5 18.5h3.5" stroke="#8B97A8" stroke-width="1.6" stroke-linecap="round"></path><circle cx="22.5" cy="22.5" r="5.5" fill="#C5F66A" stroke="#121A24" stroke-width="1.5"></circle><path d="M20.2 22.6l1.6 1.6 3-3.2" fill="none" stroke="#121A24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Оформление</a>
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #596273; font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Файлы удалятся через 23 ч 41 мин</span>
+<span style="display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: #EAF1FF; color: #2B4C86; font-size: 13px; font-weight: 700">Демонстрация</span>
+</div>
+</div>
+</header>
+
+<div style="max-width: 1264px; margin: 0 auto; padding: 28px 32px 64px; display: flex; flex-direction: column; gap: 24px">
+
+<div role="status" aria-live="polite" style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; padding: 14px 18px; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 16px; font-size: 14px; font-weight: 600">
+<span style="display: inline-flex; align-items: center; gap: 6px; color: #2E5A12"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Проверяем файл</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: #2E5A12"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Применяем параметры</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: #2E5A12"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Проверяем результат</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: #2E5A12"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Предпросмотр готов</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+<section aria-labelledby="pv-h" style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-bottom: 1px solid #DCE1E8">
+<h2 id="pv-h" style="margin: 0; font-size: 16px; font-weight: 800">Предпросмотр результата · стр. 1–3 из 34</h2>
+<div style="display: flex; gap: 6px">
+<button type="button" aria-label="Уменьшить" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DCE1E8; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<button type="button" aria-label="Увеличить" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DCE1E8; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151A23" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5v14"></path></svg></button>
+<button type="button" style="height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #DCE1E8; background: #FFFFFF; font: 600 14px Manrope, sans-serif; color: #151A23; cursor: pointer">По ширине</button>
+</div>
+</div>
+<div style="background: #E9ECF1; padding: 28px; height: 900px; overflow: auto; display: flex; flex-direction: column; align-items: center; gap: 24px">
+<div style="width: 100%; max-width: 560px; aspect-ratio: 210 / 297; flex: none; background: #FFFFFF; box-shadow: 0 6px 24px rgba(21,26,35,.12); padding: 9% 7% 7% 13%; font-family: 'Times New Roman', serif; color: #151A23; font-size: 12px; line-height: 1.5; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0 0 6px; text-align: center; font-weight: 700; font-size: 13px; text-transform: uppercase">Содержание</p>
+<p style="margin: 0; display: flex; justify-content: space-between">Введение<span>3</span></p>
+<p style="margin: 0; display: flex; justify-content: space-between">1 Теоретические основы<span>5</span></p>
+<p style="margin: 0 0 0 1.25em; display: flex; justify-content: space-between">1.1 Обзор подходов<span>5</span></p>
+<p style="margin: 0 0 0 1.25em; display: flex; justify-content: space-between">1.2 Требования к оформлению<span>9</span></p>
+<p style="margin: 0; display: flex; justify-content: space-between">2 Практическая часть<span>14</span></p>
+<p style="margin: 0; display: flex; justify-content: space-between">Заключение<span>29</span></p>
+<p style="margin: 0; display: flex; justify-content: space-between">Список источников<span>31</span></p>
+<span style="margin-top: auto; text-align: center; font-size: 11px">2</span>
+</div>
+<div style="width: 100%; max-width: 560px; aspect-ratio: 210 / 297; flex: none; background: #FFFFFF; box-shadow: 0 6px 24px rgba(21,26,35,.12); padding: 9% 7% 7% 13%; font-family: 'Times New Roman', serif; color: #151A23; font-size: 12px; line-height: 1.5; display: flex; flex-direction: column; gap: 6px">
+<p style="margin: 0 0 8px; text-align: center; font-weight: 700; font-size: 13px; text-transform: uppercase; position: relative">Введение</p>
+<p style="margin: 0; text-indent: 1.25em; text-align: justify">Актуальность темы исследования обусловлена ростом объёма данных, которые требуется обрабатывать в учебных организациях. Единые требования к оформлению упрощают проверку работ.</p>
+<p style="margin: 0; text-indent: 1.25em; text-align: justify">Целью работы является разработка подхода к единообразному оформлению текстовых документов. Для достижения цели поставлены задачи, перечисленные ниже.</p>
+<p style="margin: 0; text-indent: 1.25em; text-align: justify; outline: 2px solid #E8A33B; outline-offset: 2px; border-radius: 2px">Формула (1) сохранена без изменения оформления.</p>
+<span aria-hidden="true" style="align-self: flex-end; margin-top: -2px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px 2px 4px; border-radius: 999px; background: #FFF1DB; color: #8A5300; font: 700 10px Manrope, sans-serif"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>Требует проверки</span>
+<span style="margin-top: auto; text-align: center; font-size: 11px">3</span>
+</div>
+</div>
+</section>
+
+<aside class="report" aria-labelledby="rep-h" style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="rep-h" style="margin: 0; font-size: 18px; font-weight: 800">Отчёт</h2>
+<div role="group" aria-label="Фильтр замечаний" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{f.pressed}}" aria-label="{{f.aria}}" title="{{f.aria}}" onClick="{{f.pick}}" style="height: 44px; padding: 0 8px; border-radius: 12px; font: 700 13px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; {{f.style}}"><sc-if value="{{f.isFixed}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if><sc-if value="{{f.isCheck}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></sc-if><sc-if value="{{f.isUnsup}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M5.6 5.6l12.8 12.8"></path></svg></sc-if>{{f.label}}<span style="min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: rgba(127,138,153,.18); font-size: 12px; display: inline-flex; align-items: center; justify-content: center">{{f.count}}</span></button>
+</sc-for>
+</div>
+<ul style="margin: 0; padding: 0 4px 0 0; list-style: none; display: flex; flex-direction: column; gap: 10px; max-height: 420px; overflow-y: auto">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="4">
+<li class="fade" style="border: 1px solid #DCE1E8; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px; align-items: center">
+<span style="font-size: 14px; font-weight: 700">{{it.type}}</span>
+<span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px 0 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; {{it.badge}}"><sc-if value="{{it.isFixed}}" hint-placeholder-val="{{ true }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if><sc-if value="{{it.isCheck}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></sc-if><sc-if value="{{it.isUnsup}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M5.6 5.6l12.8 12.8"></path></svg></sc-if>{{it.status}}</span>
+</div>
+<span style="font-size: 13px; color: #596273">{{it.where}}</span>
+<span style="font-size: 14px; line-height: 1.45">{{it.text}}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+
+<sc-if value="{{unpaid}}" hint-placeholder-val="{{ true }}">
+<div style="background: #121A24; color: #FFFFFF; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 700">К оплате</span><span style="font-size: 32px; font-weight: 800">250 ₽</span></div>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #C9D1DC">Исправленный DOCX и отчёт. Скачивание доступно до удаления файлов, повторно — бесплатно.</p>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="em" style="font-size: 14px; font-weight: 600">Email для чека и доступа к заказу</label>
+<input id="em" class="fld" type="email" autocomplete="email" placeholder="name@example.com">
+</div>
+<label style="position: relative; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; cursor: pointer"><input class="chk-in" type="checkbox" checked="{{agreed}}" onChange="{{toggleAgree}}"><span class="chk-box" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><span>Принимаю <a href="#" style="color: #C5F66A">условия услуги</a> и <a href="#" style="color: #C5F66A">политику обработки данных</a></span></label>
+<label style="position: relative; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #C9D1DC; cursor: pointer"><input class="chk-in" type="checkbox"><span class="chk-box" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>Получать новости сервиса (необязательно)</label>
+<button type="button" class="btn btn-accent" onClick="{{pay}}" disabled="{{payDisabled}}" style="height: 52px; border: 0; border-radius: 12px; background: #C5F66A; color: #121A24; font: 700 16px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; {{payStyle}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path><path d="M12 14.5v2"></path></svg>Оплатить 250 ₽</button>
+<span style="font-size: 13px; color: #9AA5B4">Изменённый файл или другой профиль — новый расчёт.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{paid}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="fade" style="background: #FFFFFF; border: 1px solid #DCE1E8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 12px; align-items: center">
+<span style="width: 44px; height: 44px; border-radius: 50%; background: #C5F66A; display: flex; align-items: center; justify-content: center"><svg class="chk" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121A24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<div style="display: flex; flex-direction: column"><span style="font-weight: 800; font-size: 17px">Оплата подтверждена</span><span style="font-size: 13px; color: #596273">Демонстрация: без реального платежа</span></div>
+</div>
+<span title="kursovaya_rabota_final_ispravlennaya_v3_oformleno.docx" style="font-size: 14px; color: #596273; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">kursovaya_rabota_final_ispravlennaya_v3_oformleno.docx</span>
+<button type="button" class="btn btn-accent" style="height: 52px; border: 0; border-radius: 12px; background: #C5F66A; color: #121A24; font: 700 16px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"></path></svg>Скачать DOCX</button>
+<button type="button" class="btn" style="height: 44px; border: 1px solid #DCE1E8; border-radius: 12px; background: #FFFFFF; color: #B42318; font: 700 14px Manrope, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6"></path><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"></path><path d="M9 7V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V7"></path></svg>Удалить файлы</button>
+</div>
+</sc-if>
+</aside>
+</div>
+</div>
+</div>
+</template>
+<div class="demo-badge">Демо-макет · файлы не обрабатываются</div>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'all', agreed: false, paid: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const B = {
+      fixed: { status: 'Исправлено', badge: 'background: #F0FADF; color: #2E5A12' },
+      check: { status: 'Требует проверки', badge: 'background: #FFF1DB; color: #8A5300' },
+      unsup: { status: 'Не поддерживается', badge: 'background: #EEF0F3; color: #3D4553' }
+    };
+    const all = [
+      { k: 'fixed', type: 'Основной текст', where: 'Весь документ', text: 'Times New Roman 14 pt, интервал 1,5, отступ 1,25 см' },
+      { k: 'fixed', type: 'Заголовки', where: '12 заголовков', text: 'Первый уровень по центру прописными, второй — с абзацного отступа' },
+      { k: 'fixed', type: 'Номера страниц', where: 'Со стр. 2', text: 'Внизу по центру, титульный лист без номера' },
+      { k: 'check', type: 'Формула', where: 'Стр. 3, формула (1)', text: 'Сохранена без изменений, проверьте оформление вручную' },
+      { k: 'check', type: 'Источники', where: 'Стр. 31–33', text: 'Библиографические описания не изменялись' },
+      { k: 'unsup', type: 'Перекрёстные ссылки', where: 'Стр. 18', text: 'Ссылка на рисунок оставлена как текст' }
+    ];
+    const count = (k) => all.filter((x) => x.k === k).length;
+    const defs = [
+      { id: 'all', label: 'Все', aria: 'Все замечания', count: all.length },
+      { id: 'fixed', label: '', aria: 'Исправлено', count: count('fixed') },
+      { id: 'check', label: '', aria: 'Требует проверки', count: count('check') },
+      { id: 'unsup', label: '', aria: 'Не поддерживается', count: count('unsup') }
+    ].map((d) => ({ ...d, isFixed: d.id === 'fixed', isCheck: d.id === 'check', isUnsup: d.id === 'unsup' }));
+    return {
+      filters: defs.map((d) => ({
+        ...d,
+        pressed: s.filter === d.id ? 'true' : 'false',
+        style: s.filter === d.id ? 'background: #121A24; color: #FFFFFF; border: 1px solid #121A24' : 'background: #FFFFFF; color: #151A23; border: 1px solid #DCE1E8',
+        pick: () => this.setState({ filter: d.id })
+      })),
+      items: all.filter((x) => s.filter === 'all' || x.k === s.filter).map((x) => ({ ...x, ...B[x.k], isFixed: x.k === 'fixed', isCheck: x.k === 'check', isUnsup: x.k === 'unsup' })),
+      agreed: s.agreed,
+      toggleAgree: () => this.setState({ agreed: !s.agreed }),
+      payDisabled: !s.agreed,
+      payStyle: s.agreed ? 'background: #C5F66A; color: #121A24' : 'background: #2A3646; color: #8B97A8; cursor: not-allowed',
+      pay: () => { if (s.agreed) this.setState({ paid: true }); },
+      paid: s.paid,
+      unpaid: !s.paid
+    };
+  }
+}
+
+window.dcMount(Component, document.getElementById('tpl'), document.getElementById('app'));
+</script>
+</body>
+</html>
